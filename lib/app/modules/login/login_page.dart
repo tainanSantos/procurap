@@ -26,6 +26,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
           children: [
             Container(
               height: height / 2,
+
               child: Stack(
                 children: [
                   Container(
@@ -92,6 +93,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                               // ),
                             ],
                           )
+
                           // child: Image.asset('assets/images/home.png'),
                           )),
                   Positioned(
@@ -156,12 +158,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                             labelText: "Senha",
                             prefixIcon: Icon(Icons.vpn_key),
                             suffixIcon: IconButton(
-                                icon: Icon(controller.getVisiblePass
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                                onPressed: () {
-                                  controller.setVisiblePass();
-                                }),
+                              icon: Icon(controller.getVisiblePass
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                              onPressed: () {
+                                controller.setVisiblePass();
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -179,7 +182,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           color: Colors.transparent,
                           elevation: 0,
                           onPressed: () {
-                            Modular.to.pushNamed("/home");
+                            Modular.to.pushReplacementNamed("/home");
                           },
                           child: Text(
                             "ENTRAR",

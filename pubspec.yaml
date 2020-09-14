@@ -26,6 +26,17 @@ dependencies:
   mobx: ^1.2.1+2
   flutter_modular: ^2.0.0+1
 
+  datetime_picker_formfield: ^1.0.0
+  mask_text_input_formatter: ^1.0.7
+  flutter_masked_text: ^0.8.0
+  intl: ^0.16.1
+
+
+
+
+  flutter_localizations:
+    sdk: flutter
+  
   flutter:
     sdk: flutter
 
