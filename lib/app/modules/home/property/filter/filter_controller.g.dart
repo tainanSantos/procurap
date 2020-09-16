@@ -34,20 +34,6 @@ mixin _$FilterController on _FilterControllerBase, Store {
     });
   }
 
-  final _$_FilterControllerBaseActionController =
-      ActionController(name: '_FilterControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_FilterControllerBaseActionController.startAction(
-        name: '_FilterControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_FilterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''

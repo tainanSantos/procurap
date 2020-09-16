@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 part 'list_controller.g.dart';
 
-
 @Injectable()
 class ListController = _ListControllerBase with _$ListController;
 
@@ -15,5 +14,5 @@ abstract class _ListControllerBase with Store {
   void increment() {
     value++;
   }
+
 }
-  

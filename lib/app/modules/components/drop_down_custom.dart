@@ -21,38 +21,45 @@ class DropDownCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // height: 75,
-        padding: const EdgeInsets.only(top: 7),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10, top: 10, bottom: 5),
-              child: Text(labelText),
-            ),
-            DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                fillColor: Colors.white,
-                filled: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 10, top: 10, bottom: 5),
+            // child: Text(labelText),
+          ),
+          DropdownButtonFormField<String>(
+            decoration: InputDecoration(
+                // border: OutlineInputBorder(),
+                // fillColor: Colors.white,
+                // filled: true,
                 errorText: errorText,
+                labelText: labelText,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(5),
+                  ),
+                ),
+                focusedBorder: InputBorder.none
                 // labelText: labelText,
-              ),
-              items: list.map(
-                (value) {
-                  return DropdownMenuItem<String>(
-                    child: Text(
-                      value,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    value: value,
-                  );
-                },
-              ).toList(),
-              value: value,
-              onChanged: onChanged,
-            ),
-          ],
-        ));
+                ),
+            items: list.map(
+              (value) {
+                return DropdownMenuItem<String>(
+                  child: Text(
+                    value,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  value: value,
+                );
+              },
+            ).toList(),
+            value: value,
+            onChanged: onChanged,
+          ),
+        ],
+      ),
+    );
   }
 }

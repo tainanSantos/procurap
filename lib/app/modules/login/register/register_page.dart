@@ -26,18 +26,18 @@ class _RegisterPageState
         padding: EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            ListTile(
-              title: const Text('Deseja cadastrar seus imóveis o ap?'),
-              leading: Radio(
-                value: false,
-                // groupValue: _character,
-                onChanged: (value) {
-                  setState(() {
-                    // _character = value;
-                  });
-                },
-              ),
-            ),
+            // ListTile(
+            //   title: const Text('Deseja cadastrar seus imóveis o ap?'),
+            //   leading: Radio(
+            //     value: false,
+            //     // groupValue: _character,
+            //     onChanged: (value) {
+            //       setState(() {
+            //         // _character = value;
+            //       });
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),

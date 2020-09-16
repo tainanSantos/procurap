@@ -1,3 +1,5 @@
+import 'package:procurap/app/modules/home/property/list/list_page.dart';
+
 import 'property/list/list_controller.dart';
 import 'property/filter/filter_controller.dart';
 import 'property/details/details_page.dart';
@@ -20,7 +22,8 @@ class HomeModule extends ChildModule {
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
         ModularRouter('details', child: (_, args) => DetailsPage(), transition: TransitionType.rightToLeft),
-        ModularRouter('filter', child: (_, args) => FilterPage(), transition: TransitionType.upToDown),
+        ModularRouter('filter', child: (_, args) => FilterPage(), transition: TransitionType.rightToLeft),
+        ModularRouter('list', child: (_, args) => ListPage(), transition: TransitionType.rightToLeft),
      
       ];
 
