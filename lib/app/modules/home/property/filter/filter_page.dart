@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/drop_down_custom.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'filter_controller.dart';
 
 class FilterPage extends StatefulWidget {
@@ -15,32 +16,40 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(250, 250, 250, 1),
-        title: Text(
-          "Filtrar por",
-          style: TextStyle(color: Colors.blueGrey[900]),
+        backgroundColor: CustomColor.primary2Filter,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text(
+            "Filtros",
+            style: TextStyle(color: Colors.black87),
+          ),
         ),
+        elevation: 0,
+        automaticallyImplyLeading: false,
         actions: [
-          RaisedButton(
-            onPressed: () {},
-            color: Colors.transparent,
-            elevation: 0,
-            child: Text(
-              "APLICAR",
-              style: TextStyle(color: Color.fromRGBO(74, 76, 255, 1)),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: RaisedButton(
+              onPressed: () {
+                Modular.to.pop();
+              },
+              color: Colors.transparent,
+              elevation: 0,
+              child: Text(
+                "Aplicar",
+                style: TextStyle(color: Colors.pink),
+              ),
             ),
           )
         ],
-        iconTheme: IconThemeData(),
       ),
-      // backgroundColor:  Color.fromRGBO(74, 76, 255, 1),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: 15, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             DropDownCustom(
               labelText: "Desejo",
@@ -53,6 +62,7 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   ? null
                   : "O campo destino não pode ser vazio.",
             ),
+            
             DropDownCustom(
               labelText: "Estado",
               list: [
@@ -89,7 +99,7 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   : "O campo destino não pode ser vazio.",
             ),
             DropDownCustom(
-              labelText: "Tipo do Imóvel",
+              labelText: "Categoria",
               list: [
                 'CASA',
                 'APARTAMENTO',
@@ -97,21 +107,8 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                 'CHACARA',
                 'GARAGEM',
                 'GALPÃO',
-                'PONTO COMERIAL'
-              ],
-              onChanged: (value) {},
-              errorText: (controller.value != null)
-                  ? null
-                  : "O campo destino não pode ser vazio.",
-            ),
-            DropDownCustom(
-              labelText: "Quaindidade de quartos",
-              list: [
-                '1',
-                '2',
-                '3',
-                '4 ou +',
-          
+                'PONTO COMERIAL',
+                'TODOS'
               ],
               onChanged: (value) {},
               errorText: (controller.value != null)

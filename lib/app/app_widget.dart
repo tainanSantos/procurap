@@ -15,6 +15,7 @@ class AppWidget extends StatelessWidget {
      
         // primaryColorLight: Colors.white
       ),
+      
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,
        localizationsDelegates: [
@@ -25,4 +26,6 @@ class AppWidget extends StatelessWidget {
     );
   }
 }
+  
+
   

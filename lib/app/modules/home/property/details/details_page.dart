@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
 // class DetailsPage extends StatelessWidget {
 //   @override
@@ -45,7 +46,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Detalhes"),
-        backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+        backgroundColor: CustomColor.primary,
       ),
       body: Gallery(),
     );

@@ -9,7 +9,6 @@ class CardCustom extends StatelessWidget {
 
   const CardCustom({Key key, this.imovel, this.bairro, this.descripitio, this.valueAluguel}) : super(key: key);
   
-
   @override
   Widget build(BuildContext context) {
     return Card(

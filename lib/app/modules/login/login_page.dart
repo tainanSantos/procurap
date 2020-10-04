@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/button_custom.dart';
+import 'package:procurap/app/modules/components/logo_app.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,86 +23,30 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+      // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+      backgroundColor: CustomColor.primary,
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               height: height / 2,
-
               child: Stack(
                 children: [
                   Container(
-                    color: Color.fromRGBO(74, 76, 255, 1),
+                    color: CustomColor.primary,
+                    // color: Color.fromRGBO(74, 76, 255, 1),
                   ),
-                  Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                          padding: EdgeInsets.all(20),
-                          // decoration: const BoxDecoration(
-                          //   borderRadius: BorderRadius.all(Radius.circular(20)),
-                          //     border: Border(
-                          //   top: BorderSide(
-                          //       width: 1.0, color: Colors.white),
-                          //   left: BorderSide(
-                          //       width: 1.0, color: Colors.white),
-                          //   right: BorderSide(
-                          //       width: 1.0, color: Colors.white),
-                          //   bottom: BorderSide(
-                          //       width: 1.0, color: Colors.white),
-                          // )),
-                          height: height / 7,
-                          child: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.end,
-                            children: [
-                              Wrap(
-                                // crossAxisAlignment: CrossAxisAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.end,
+                  // Align(
+                  //   alignment: Alignment.center,
+                  //   child: Icon(Icons.filter_hdr, color: Colors.white, size: 50,),
+                  // ),
 
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.only(bottom: 3),
-                                    child: Text(
-                                      "PROCUR",
-                                      style: TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "AP",
-                                      style: TextStyle(
-                                        fontSize: 30,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                  Align(child: LogoApp()),
 
-                              // Icon(
-                              //   Icons.home,
-                              //   color: Colors.white,
-                              //   size: height / 10,
-                              // ),
-                              // Icon(
-                              //   Icons.search,
-                              //   color: Colors.white,
-                              //   size: 25,
-                              // ),
-                            ],
-                          )
-
-                          // child: Image.asset('assets/images/home.png'),
-                          )),
                   Positioned(
                     left: 30,
                     bottom: 5,
-                    child: Text("LOGIN",
+                    child: Text("Login",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -115,7 +62,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       child: Container(
                         margin: EdgeInsets.only(top: 25),
                         child: Text(
-                          "CADASTRE-SE",
+                          "Cadastre-se",
                           style: TextStyle(
                             color: Colors.white60,
                             fontWeight: FontWeight.bold,
@@ -136,7 +83,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                   topRight: Radius.circular(30),
                 ),
               ),
-              height: height / 2,
+              height: height * 0.5,
               child: SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.all(30),
@@ -171,26 +118,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       SizedBox(
                         height: 40,
                       ),
-                      Container(
-                        height: 50,
-                        width: width,
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(74, 76, 255, 1),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        child: RaisedButton(
-                          color: Colors.transparent,
-                          elevation: 0,
-                          onPressed: () {
-                            Modular.to.pushReplacementNamed("/home");
-                          },
-                          child: Text(
-                            "ENTRAR",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
+                      ButtonCustom(
+                        title: "Entar",
+                        onPressed: () {
+                          Modular.to.pushReplacementNamed("/home");
+                        },
                       ),
                       SizedBox(
                         height: 60,

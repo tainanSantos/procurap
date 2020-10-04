@@ -1,5 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/button_custom.dart';
+import 'package:procurap/app/modules/components/dialog.dart';
+import 'package:procurap/app/modules/home/property/filter/filter_page.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'reset_controller.dart';
 
 class ResetPage extends StatefulWidget {
@@ -11,13 +17,11 @@ class ResetPage extends StatefulWidget {
 }
 
 class _ResetPageState extends ModularState<ResetPage, ResetController> {
-  //use 'controller' variable to access controller
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+        backgroundColor: CustomColor.primary,
         title: Text(widget.title),
       ),
       body: SingleChildScrollView(
@@ -33,59 +37,27 @@ class _ResetPageState extends ModularState<ResetPage, ResetController> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(74, 76, 255, 1),
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: RaisedButton(
-                color: Colors.transparent,
-                elevation: 0,
-                onPressed: () {
-                  _askedToLead();
-                  // Modular.to.pop();
-                  // Modular.to.pushNamed("/login");
-                },
-                child: Text(
-                  "Enviar",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-              ),
-            ),
+            ButtonCustom(
+              title: "Enviar",
+              onPressed: () {
+                AlertDialogCustom.Simple(
+                  context: context,
+                  title:
+                      "Em instantes você receberá um email com informações para resetar a  sua senha.",
+                  onPressed: () {
+                    Modular.to.pop();
+                  },
+                  titleOnpresesd: "Entedi!",
+                );
+
+                Timer(Duration(seconds: 3), () {
+                  Navigator.pop(context);
+                });
+              },
+            )
           ],
         ),
       ),
     );
   }
-
-  Future<void> _askedToLead() async {
-    switch (await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: const Text('Em instantes você receberá um e-mail com instruções para redefinir sua senha.'),
-            children: <Widget>[
-              // SimpleDialogOption(
-              //   onPressed: () {
-              //     Navigator.pop(
-              //       context,
-              //     );
-              //   },
-              //   child: const Text('Treasury department'),
-              // ),
-              SimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                },
-                child: const Text('Ok'),
-              ),
-            ],
-          );
-        })) {
-    }
-  }
-
 }

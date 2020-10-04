@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'register_controller.dart';
 
 class RegisterPage extends StatefulWidget {
-  final String title;
-  const RegisterPage({Key key, this.title = "Cadastro"}) : super(key: key);
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -18,9 +17,9 @@ class _RegisterPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+        backgroundColor: CustomColor.primary,
         elevation: 0,
-        title: Text(widget.title),
+        title: Text("Cadastro"),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),

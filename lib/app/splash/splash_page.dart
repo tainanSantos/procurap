@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/logo_app.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -15,9 +19,12 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   initModule() async {
-    // fazer aqui a verificação do token
-    // se existir manda pra /home se não existir manda pra /login
-    Future.delayed(Duration(milliseconds: 1500)).then((value) {
+    // // fazer aqui a verificação do token
+    // // se existir manda pra /home se não existir manda pra /login
+    // Future.delayed(Duration(milliseconds: 1500)).then((value) {
+    // });
+
+    Timer(Duration(seconds: 2), () {
       Modular.to.popAndPushNamed("/login");
     });
   }
@@ -25,39 +32,10 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+      // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+      backgroundColor: CustomColor.primary,
       body: Center(
-        child: Container(
-          child: Wrap(
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            crossAxisAlignment: WrapCrossAlignment.end,
-
-            children: [
-              Container(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Text(
-                  "PROCUR",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Container(
-                child: Text(
-                  "AP",
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),             
-
-            ],
-          ),
-        ),
+        child: LogoApp(),
       ),
     );
   }

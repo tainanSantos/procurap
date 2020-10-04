@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/show_modal_cutom.dart';
+import 'package:procurap/app/modules/home/property/filter/filter_page.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'list_controller.dart';
 
 class ListPage extends StatefulWidget {
@@ -18,9 +21,21 @@ class _ListPageState extends ModularState<ListPage, ListController> {
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
-        backgroundColor: Colors.blueGrey[800],
-      
+        backgroundColor: CustomColor.primary,
+
         title: Text("Apartamentos"),
+        actions: [
+          FlatButton(
+            child: Text(
+              "Filtros",
+              style: TextStyle(color: CustomColor.primaryAnction),
+            ),
+            onPressed: () {
+              // Modular.to.pushNamed("/home/filter");
+              ShowModalCustom.show(context: context, widget: FilterPage());
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -53,16 +68,9 @@ class _ListPageState extends ModularState<ListPage, ListController> {
               urlImage:
                   "https://s2.glbimg.com/9zr9ECC9A4F0YvrWT5yePB3rRI0=/smart/e.glbimg.com/og/ed/f/original/2015/09/10/apartamento-32m-adriana-fontana-09.jpg",
             ),
-           
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blueGrey[800],
-          child: Icon(Icons.tune),
-          onPressed: () {
-            Modular.to.pushNamed("/home/filter");
-          }),
     );
   }
 
@@ -74,6 +82,7 @@ class _ListPageState extends ModularState<ListPage, ListController> {
           String description,
           bool
               isFavorite // componente para gerencia de estados do botão faorito
+
           }) =>
       GestureDetector(
         onTap: () {

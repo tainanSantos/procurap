@@ -21,11 +21,12 @@ class DropDownCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      child: 
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 10, top: 10, bottom: 5),
+            padding: EdgeInsets.only( top: 0, bottom: 10),
             // child: Text(labelText),
           ),
           DropdownButtonFormField<String>(
@@ -58,6 +59,10 @@ class DropDownCustom extends StatelessWidget {
             value: value,
             onChanged: onChanged,
           ),
+        // Container(
+        //   height: 1,
+        //   color: Colors.black38,
+        // )
         ],
       ),
     );

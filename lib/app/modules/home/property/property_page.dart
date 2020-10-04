@@ -1,5 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/dialog.dart';
+import 'package:procurap/app/modules/components/logo_app.dart';
+import 'package:procurap/app/modules/components/show_modal_cutom.dart';
+import 'package:procurap/app/modules/home/property/components/card_custom_list.dart';
+import 'package:procurap/app/modules/home/property/filter/filter_page.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'property_controller.dart';
 
 class PropertyPage extends StatefulWidget {
@@ -17,204 +25,103 @@ class _PropertyPageState
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
-        backgroundColor: Color.fromRGBO(250, 250, 250, 1),
-        // backgroundColor: Colors.blueGrey[800],
-        elevation: 0,
-        iconTheme: IconThemeData(),
-        leading: Icon(Icons.menu),
-        actions: [
-          IconButton(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: CustomColor.primary,
+          title: LogoApp(),
+          leading: PopupMenuButton(
+            icon: Icon(Icons.menu),
+            itemBuilder: (_) => [
+              PopupMenuItem(child: Text("Divulgar meu imóvel")),
+              PopupMenuItem(child: Text("Sobre")),
+              PopupMenuItem(child: Text("Tutórial")),
+            ],
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                Modular.to.pushNamed("/home/filter");
-              })
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Container(
-              // color: Color.fromRGBO(74, 76, 255, 1),
-              // color: Color.fromRGBO(74, 76, 255, .fromRGBO(74, 76, 255, 1)1),
-              height: height,
-              // width: width,
+                // Modular.to.pushNamed("/home/filter");
+                ShowModalCustom.show(context: context, widget: FilterPage());
+              },
             ),
-            SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(15),
-                    child: Text(
-                      "Encontre seu imóvel\ncom a gente",
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 15, right: 15, top: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Categorias",
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.black87,
-                          size: 15,
-                        )
-                      ],
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Wrap(
-                      children: [
-                        cardCustom(
-                            onTap: () {
-                              Modular.to.pushNamed("/home/list");
-                            },
-                            title: "Apartamentos",
-                            description: "Um lugar par você e sua \nfamília",
-                            urlImage:
-                                "https://abrilcasa.files.wordpress.com/2019/09/1-projeto-transforma-apartamento-em-espaco-integrado-e-atemporal.jpg?quality=95&strip=info&w=1024&h=682"),
-
-                        // SliverToBoxAdapter(child: CardCustom(title: "Casa", description: "Para os melhores momentos", urlImage: "https://lh3.googleusercontent.com/proxy/OolUxyhlOYuqXybeyJZ3-JyXgFsgnoXzzzOcmwGT6-gvyXpmlQp7gHFM-hJoeL3GbJS0GaSIX2SZEcREC7tumSq2WeswDMCMpcxg6VZ5mNKHnU-YOPxWvFICkm6LcLYxbhM")),
-                        cardCustom(
-                            title: "Chacaras",
-                            description:
-                                "Paz, traquilidade e contato com a natureza",
-                            urlImage:
-                                "https://cf.bstatic.com/images/hotel/max1024x768/131/131193691.jpg"),
-                        cardCustom(
-                            title: "Flets",
-                            description: "Conforto e bem-estar",
-                            urlImage:
-                                "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg"),
-                        cardCustom(
-                            title: "Casa",
-                            description: "Conforto e bem-estar",
-                            urlImage:
-                                "https://img-us-1.trovit.com/img1br/1z1_1T1DK1R0l/1z1_1T1DK1R0l.1_11.jpg"),
-                        cardCustom(
-                            title: "Flets",
-                            description: "Conforto e bem-estar",
-                            urlImage:
-                                "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg"),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: width,
-                    height: (height / 2) - 40,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      // borderRadius: BorderRadius.only(
-                      //   topLeft: Radius.circular(30),
-                      //   topRight: Radius.circular(30),
-                      // ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(left: 15),
-                              child: Text(
-                                "Destaques",
-                                style: TextStyle(
-                                    color: Colors.blueGrey[800],
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                size: 15,
-                                color: Colors.blueGrey[800],
-                              ),
-                            )
-                          ],
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Wrap(
-                            children: [
-                              cardDestaque(
-                                  title: "Casa",
-                                  descriptions: "Um quarto, uma sala de estar"),
-                              cardDestaque(
-                                  title: "Ap pequeno",
-                                  descriptions: "Um quarto e cozinha"),
-                              cardDestaque(
-                                  title: "Garagem",
-                                  descriptions: "50 metros quadrados"),
-                              cardDestaque(
-                                  title: "Galpão",
-                                  descriptions: "400 metros quadrados"),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.only(left: 15, top: 20, bottom: 5),
-                          child: Text(
-                            "Divulge com a gente",
-                            style: TextStyle(
-                                color: Colors.blueGrey[800],
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15),
-                          ),
-                        ),
-                        Container(
-                          height: 50,
-                          width: width,
-                          margin: EdgeInsets.only(left: 15, right: 20, top: 5),
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(74, 76, 255, 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: RaisedButton(
-                            color: Colors.transparent,
-                            elevation: 0,
-                            onPressed: () {},
-                            child: Text(
-                              "Quero divulgar um imóvel",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
+            IconButton(
+              icon: Icon(Icons.map),
+              onPressed: () {
+                AlertDialogCustom.Msg(
+                    context: context, title: "Não Implementado", i: 3);
+                Timer(Duration(seconds: 1), () => Modular.to.pop());
+              },
+            )
           ],
         ),
-      ),
-    );
+        body: ListView(
+          children: [
+            CardCustomList(
+              isFavorite: false,
+              type: "Apartamento",
+              addrens: "Serra Talhada - PE",
+              value: "RS 300, 00",
+              description:
+                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
+              urlImage:
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIljcyRfexDpcFcdds0rx99sJHmKNCItyriw&usqp=CAU",
+            ),
+            CardCustomList(
+              type: "Apartamento",
+              addrens: "Serra Talhada - PE",
+              value: "RS 300, 00",
+              description:
+                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
+              urlImage:
+                  "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg",
+            ),
+            CardCustomList(
+              type: "Apartamento",
+              addrens: "Serra Talhada - PE",
+              value: "RS 300, 00",
+              description:
+                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
+              urlImage:
+                  "https://s3.amazonaws.com/static.nidoimovel.com.br/19ca14e7ea6328a42e0eb13d585e4c22/imovel/PJ/PJ51701/c424fb2721f6a524c16404e75bb70a8a.jpg?1591970826",
+            ),
+            CardCustomList(
+              type: "Apartamento",
+              addrens: "Serra Talhada - PE",
+              value: "RS 300, 00",
+              description:
+                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
+              urlImage:
+                  "https://s2.glbimg.com/9zr9ECC9A4F0YvrWT5yePB3rRI0=/smart/e.glbimg.com/og/ed/f/original/2015/09/10/apartamento-32m-adriana-fontana-09.jpg",
+            ),
+          ],
+        ));
   }
+
+  Widget rowTitle(String tittleRow) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.only(left: 15),
+            child: Text(
+              tittleRow,
+              style: TextStyle(
+                color: Colors.blueGrey[800],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Icon(
+              Icons.arrow_forward_ios,
+              size: 15,
+              color: Colors.blueGrey[800],
+            ),
+          )
+        ],
+      );
 
   Widget cardCustom(
           {String title,
@@ -225,17 +132,17 @@ class _PropertyPageState
         onTap: onTap,
         child: Card(
           margin: EdgeInsets.only(left: 15, bottom: 15, top: 15, right: 5),
-          elevation: 5,
+          elevation: 2,
           shape: RoundedRectangleBorder(
             // side: BorderSide(color: Colors.white70, width: 1),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(5),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Material(
                 color: Colors.transparent,
-                elevation: 10,
+                elevation: 2,
                 child: Container(
                   height: (MediaQuery.of(context).size.width / 2) - 20,
                   width: (MediaQuery.of(context).size.width / 1.8) - 10,
@@ -243,7 +150,7 @@ class _PropertyPageState
                     image: DecorationImage(
                         fit: BoxFit.cover, image: NetworkImage(urlImage)),
                     borderRadius: BorderRadius.all(
-                      Radius.circular(10),
+                      Radius.circular(5),
                     ),
                     gradient: LinearGradient(
                       colors: [
@@ -294,16 +201,15 @@ class _PropertyPageState
           elevation: 2,
           margin: EdgeInsets.only(left: 15, bottom: 15, top: 10, right: 5),
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.white70, width: 1),
-            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: Colors.white, width: 1),
+            borderRadius: BorderRadius.circular(5),
           ),
           child: Container(
-            height: (MediaQuery.of(context).size.width / 2) - 120,
+            height: 80,
             width: (MediaQuery.of(context).size.width / 2) - 50,
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 252, 252, 10),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Column(
               // direction: Axis.vertical,
