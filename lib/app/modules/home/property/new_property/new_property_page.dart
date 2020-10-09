@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/components/textfiled_cutom.dart';
+import 'package:procurap/app/modules/home/property/new_property/components/components.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'new_property_controller.dart';
 
@@ -58,14 +59,7 @@ class _NewPropertyPageState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              titleCustom("Anúncio"),
-
-              dropDownButtonField_(
-                  labelText: "Tipo de Anúncio",
-                  list: ["Apenas venda", "Apenas Aluguel", "Venda ou Aluguel"],
-                  helperText: "O que você deseja fazer com seu imóvel?",
-                  onChanged: (value) {}),
-
+           
               titleCustom("Endereço"),
               Observer(
                 builder: (_) => textField(
@@ -348,53 +342,5 @@ class _NewPropertyPageState
     );
   }
 
-  Widget titleCustom(String title) {
-    return Container(
-      padding: EdgeInsets.only(
-        top: 50,
-      ),
-      child: Text(
-        title,
-        style: TextStyle(
-            fontSize: 17,
-            color: Colors.black87,
-            // color: Color.fromRGBO(74, 76, 255, 1),
-            fontWeight: FontWeight.bold),
-      ),
-    );
-  }
 
-  Widget dropDownButtonField_(
-      {List list,
-      String labelText,
-      IconData iconData,
-      Function(String) onChanged,
-      String errorText,
-      String helperText,
-      String value}) {
-    return Container(
-      // height: 75,
-      margin: const EdgeInsets.only(top: 0),
-      child: DropdownButtonFormField<String>(
-        decoration: InputDecoration(
-            // border: OutlineInputBorder(),
-            errorText: errorText,
-            labelText: labelText,
-            helperText: helperText),
-        items: list.map(
-          (value) {
-            return DropdownMenuItem<String>(
-              child: Text(
-                value,
-                overflow: TextOverflow.ellipsis,
-              ),
-              value: value,
-            );
-          },
-        ).toList(),
-        value: value,
-        onChanged: onChanged,
-      ),
-    );
-  }
 }

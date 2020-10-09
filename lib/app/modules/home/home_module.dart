@@ -1,6 +1,12 @@
+import 'package:procurap/app/modules/home/property/new_property/pages/addrens/addrens_page.dart';
+import 'package:procurap/app/modules/home/property/new_property/pages/complemet/complemet_page.dart';
+import 'package:procurap/app/modules/home/property/new_property/pages/photos/photos_page.dart';
+import 'package:procurap/app/modules/home/property/new_property/pages/price/price_page.dart';
+
 import 'user/user_controller.dart';
 import 'property/new_property/new_property_controller.dart';
 import 'property/new_property/new_property_page.dart';
+import 'property/new_property/pages/announcement/announcement_page.dart';
 import 'favorites/favorites_controller.dart';
 import 'package:procurap/app/modules/home/property/list/list_page.dart';
 
@@ -41,6 +47,19 @@ class HomeModule extends ChildModule {
         ModularRouter('newproperty',
             child: (_, args) => NewPropertyPage(),
             transition: TransitionType.rightToLeft),
+        ModularRouter('announcement',
+            child: (_, args) => AnnouncementPage(),
+            transition: TransitionType.fadeIn),
+        ModularRouter('addrens',
+            child: (_, args) => AddrensPage(),
+            transition: TransitionType.fadeIn),
+        ModularRouter('complemet',
+            child: (_, args) => ComplemetPage(),
+            transition: TransitionType.fadeIn),
+        ModularRouter('price',
+            child: (_, args) => PricePage(), transition: TransitionType.fadeIn),
+        ModularRouter('photos',
+            child: (_, args) => PhotosPage(), transition: TransitionType.fadeIn),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

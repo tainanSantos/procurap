@@ -57,14 +57,8 @@ class UserInfo extends StatelessWidget {
           ),
           _line(context),
           ListTile(
-            onTap: () {},
-            title: Text("Anotações"),
-            // trailing: Icon(Icons.note),
-          ),
-          _line(context),
-          ListTile(
             onTap: () {
-              Modular.to.pushNamed("/home/newproperty");
+              Modular.to.pushNamed("/home/announcement");
             },
             title: Text("Novo Anúncio"),
             // trailing: Icon(Icons.add_location),

@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
-
-
 class DetailsPage extends StatefulWidget {
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -12,90 +10,86 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detalhes"),
+        title: Text("Apartamento"),
         backgroundColor: CustomColor.primary,
       ),
-      body: Gallery(),
-    );
-  }
-}
-
-class Gallery extends StatefulWidget {
-  @override
-  _GalleryState createState() => _GalleryState();
-}
-
-class _GalleryState extends State<Gallery> {
-  bool loading;
-  List<String> ids;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    loading = true;
-    ids = [];
-    loadsImages();
-  }
-
-  loadsImages() async {
-    final respnse = await Dio().get("https://picsum.photos/v2/list");
-    List<String> _images = [];
-    print(respnse.data);
-    for (var img in respnse.data) {
-      print(img['id']);
-      _images.add(img['id']);
-    }
-    print("---------------------------------------");
-    print(_images.length);
-    print("---------------------------------------");
-
-    setState(() {
-      loading = false;
-      ids = _images;
-
-      print("-------ssssss--------------------------------");
-      print(ids.length);
-      print("---------------------------------------");
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (loading)
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    return GridView.builder(
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.black,
-                    elevation: 0,
-                  ),
-                  backgroundColor: Colors.black,
-                  body: Center(
-                    child: Image.network(
-                        "https://picsum.photos/id/${ids[index]}/1000/1000"),
-                  ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: Colors.grey,
+              height: height / 3,
+              width: width,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _cardTop(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIljcyRfexDpcFcdds0rx99sJHmKNCItyriw&usqp=CAU"),
+                    _cardTop(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIljcyRfexDpcFcdds0rx99sJHmKNCItyriw&usqp=CAU"),
+                    _cardTop(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIljcyRfexDpcFcdds0rx99sJHmKNCItyriw&usqp=CAU"),
+                    _cardTop(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIljcyRfexDpcFcdds0rx99sJHmKNCItyriw&usqp=CAU"),
+                    // )
+                  ],
                 ),
               ),
-            );
-          },
-          child:
-              Image.network("https://picsum.photos/id/${ids[index]}/1000/1000"),
-        );
-      },
-      itemCount: ids.length,
+            ),
+            SizedBox(height: 10,),
+         
+            // Divider(),
+            ListTile(
+              title: Text(
+                "Aluguel",
+                style: _styleText(),
+              ),
+              trailing: Text(
+                "RS, 250, 00",
+                style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            ),
+            Divider(),
+            ListTile(
+              title: Text(
+                "Valor de Venda",
+                style: _styleText(),
+              ),
+              trailing: Text(
+                "RS, 500.000, 00",
+                style: TextStyle(
+                    color: CustomColor.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            ),
+            Divider(),
+          ],
+        ),
+      ),
     );
   }
+
+  TextStyle _styleText() => TextStyle(
+      color: Colors.grey[700], fontSize: 17);
+
+  Widget _cardTop(String urlImg) => Container(
+        width: MediaQuery.of(context).size.width - 50,
+        padding: EdgeInsets.only(right: 5),
+        child: Image.network(
+          urlImg,
+          fit: BoxFit.cover,
+        ),
+      );
 }

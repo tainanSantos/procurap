@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,14 +10,13 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Slidy',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-     
+        primarySwatch: Colors.blue, fontFamily: 'Robotos',
+
         // primaryColorLight: Colors.white
       ),
-      
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,
-       localizationsDelegates: [
+      localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
@@ -26,6 +24,3 @@ class AppWidget extends StatelessWidget {
     );
   }
 }
-  
-
-  

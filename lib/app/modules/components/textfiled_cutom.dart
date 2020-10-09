@@ -11,7 +11,8 @@ Widget textField(
         TextInputType keyboardType,
         MaskTextInputFormatter inputFormatters,
         TextEditingController controller,
-        bool suffixIcon = false}) =>
+        bool suffixIcon = false,
+        IconData iconData}) =>
     Padding(
       padding: EdgeInsets.only(top: top ?? 5),
       child: TextFormField(
@@ -21,7 +22,7 @@ Widget textField(
         decoration: InputDecoration(
           // border: OutlineInputBorder(),
           helperText: helperText,
-
+          prefixIcon: iconData != null ? Icon(iconData) : null,
           // errorText: errorText,
           errorStyle: TextStyle(color: Colors.blue),
           labelText: labelText,
