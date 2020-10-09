@@ -69,6 +69,22 @@ mixin _$NewPropertyController on _NewPropertyControllerBase, Store {
               name: '_NewPropertyControllerBase.validatCep'))
           .value;
 
+  final _$urlImagesListAtom =
+      Atom(name: '_NewPropertyControllerBase.urlImagesList');
+
+  @override
+  ObservableList<String> get urlImagesList {
+    _$urlImagesListAtom.reportRead();
+    return super.urlImagesList;
+  }
+
+  @override
+  set urlImagesList(ObservableList<String> value) {
+    _$urlImagesListAtom.reportWrite(value, super.urlImagesList, () {
+      super.urlImagesList = value;
+    });
+  }
+
   final _$msgCepAtom = Atom(name: '_NewPropertyControllerBase.msgCep');
 
   @override
@@ -296,6 +312,7 @@ mixin _$NewPropertyController on _NewPropertyControllerBase, Store {
   @override
   String toString() {
     return '''
+urlImagesList: ${urlImagesList},
 msgCep: ${msgCep},
 publicPlace: ${publicPlace},
 neighborhood: ${neighborhood},

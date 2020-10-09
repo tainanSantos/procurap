@@ -21,10 +21,11 @@ class LoginModule extends ChildModule {
         ModularRouter(Modular.initialRoute, child: (_, args) => LoginPage()),
         ModularRouter('/register',
             child: (_, args) => RegisterPage(),
-            transition: TransitionType.rightToLeft),
+            transition: TransitionType.downToUp),
         ModularRouter('/reset',
             child: (_, args) => ResetPage(),
-            transition: TransitionType.rightToLeft),
+            transition: TransitionType.
+            downToUp),
       ];
 
   static Inject get to => Inject<LoginModule>.of();

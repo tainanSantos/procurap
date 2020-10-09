@@ -19,6 +19,9 @@ abstract class _NewPropertyControllerBase with Store {
   List<String> statesBr = listStates;
 
   @observable
+  ObservableList<String> urlImagesList = ObservableList();
+
+  @observable
   String msgCep;
 
   //___________________________________

@@ -7,7 +7,6 @@ import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -24,11 +23,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         controller: controller.pageViewController,
         pageSnapping: true,
         scrollDirection: Axis.horizontal,
-        children: [
-          PropertyPage(),
-          FavoritesPage(),
-          UserPage()
-        ],
+        children: [PropertyPage(), FavoritesPage(), UserPage(), Container()],
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller.pageViewController,
@@ -49,6 +44,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   icon: Icon(Icons.favorite), title: Text("Favoritos")),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person), title: Text("usuário")),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.info), title: Text("Sobre")),
             ],
           );
         },

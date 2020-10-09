@@ -43,7 +43,7 @@ class CardCustomList extends StatelessWidget {
                   child: Text(
                     type,
                     style: TextStyle(
-                      color: Colors.blueGrey,
+                      color: Colors.black54,
                     ),
                   ),
                 ),
@@ -92,7 +92,7 @@ class CardCustomList extends StatelessWidget {
                             child: Text(
                               description,
                               style: TextStyle(
-                                color: Colors.blueGrey,
+                                color: Colors.black54,
                               ),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,

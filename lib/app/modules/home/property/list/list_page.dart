@@ -106,7 +106,7 @@ class _ListPageState extends ModularState<ListPage, ListController> {
                     child: Text(
                       type,
                       style: TextStyle(
-                        color: Colors.blueGrey,
+                        color: Colors.black45,
                       ),
                     ),
                   ),

@@ -2,38 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
-// class DetailsPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Detalhes"),
-//         backgroundColor: Color.fromRGBO(74, 76, 255, 1),
-//       ),
-//       body: Gallery()
-//       // SingleChildScrollView(
-//       //   child: Column(
-//       //     children: [
-//       //       ExpansionTile(
-//       //         title: Text("Imagens do ímóvel"),
-//       //         children: [
 
-//       //         ],
-//       //       ),
-//       //       Row(
-//       //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       //         children: [
-//       //           FlatButton(onPressed: () {}, child: Text("Reservar")),
-//       //           FlatButton(
-//       //               onPressed: () {}, child: Text("Falar com propriétário")),
-//       //         ],
-//       //       ),
-//       //     ],
-//       //   ),
-//       // ),
-//     );
-//   }
-// }
 
 class DetailsPage extends StatefulWidget {
   @override

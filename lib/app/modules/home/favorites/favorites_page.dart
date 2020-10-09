@@ -23,8 +23,8 @@ class _FavoritesPageState
       appBar: AppBar(
         backgroundColor: CustomColor.primary,
         // elevation: 0,
-
-        title: Text("Meus Favoritos"),
+centerTitle: true,
+        title: Text("Favoritos"),
 
         actions: [
           IconButton(

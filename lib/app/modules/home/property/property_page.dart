@@ -30,11 +30,24 @@ class _PropertyPageState
           backgroundColor: CustomColor.primary,
           title: LogoApp(),
           leading: PopupMenuButton(
+            onSelected: (value) {
+              switch (value) {
+                case 1:
+                  Modular.to.pushReplacementNamed("/login");
+
+                  break;
+                case 2:
+                  break;
+                case 3:
+                  break;
+                default:
+              }
+            },
             icon: Icon(Icons.menu),
             itemBuilder: (_) => [
-              PopupMenuItem(child: Text("Divulgar meu imóvel")),
-              PopupMenuItem(child: Text("Sobre")),
-              PopupMenuItem(child: Text("Tutórial")),
+              PopupMenuItem(value: 1, child: Text("Divulgar meu imóvel")),
+              PopupMenuItem(value: 2, child: Text("Sobre")),
+              PopupMenuItem(value: 3, child: Text("Tutórial")),
             ],
           ),
           centerTitle: true,

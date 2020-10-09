@@ -6,6 +6,7 @@ Widget textField(
         Function(String) onChanged,
         String errorText,
         String labelText,
+        String helperText,
         int maxLength,
         TextInputType keyboardType,
         MaskTextInputFormatter inputFormatters,
@@ -16,16 +17,16 @@ Widget textField(
       child: TextFormField(
         controller: controller ?? null,
         onChanged: onChanged,
-        maxLength: maxLength ?? null,
+        // maxLength: maxLength ?? null,
         decoration: InputDecoration(
           // border: OutlineInputBorder(),
+          helperText: helperText,
 
-       
-          errorText: errorText,
+          // errorText: errorText,
+          errorStyle: TextStyle(color: Colors.blue),
           labelText: labelText,
         ),
         keyboardType: keyboardType ?? null,
         inputFormatters: (inputFormatters == null) ? null : [inputFormatters],
       ),
     );
-

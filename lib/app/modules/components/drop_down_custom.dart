@@ -26,7 +26,7 @@ class DropDownCustom extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only( top: 0, bottom: 10),
+            padding: EdgeInsets.only( top: 0, bottom: 0),
             // child: Text(labelText),
           ),
           DropdownButtonFormField<String>(

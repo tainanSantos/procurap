@@ -25,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
     // });
 
     Timer(Duration(seconds: 2), () {
-      Modular.to.popAndPushNamed("/login");
+      Modular.to.popAndPushNamed("/home");
     });
   }
 

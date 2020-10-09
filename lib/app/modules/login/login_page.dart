@@ -92,6 +92,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       TextField(
                         decoration: InputDecoration(
                           labelText: "Usuário",
+                          hintText: "usuario@gmail.com",
                           prefixIcon: Icon(Icons.email),
                         ),
                       ),
@@ -102,6 +103,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         builder: (_) => TextField(
                           obscureText: controller.getVisiblePass,
                           decoration: InputDecoration(
+                            // counterText: "cacca",
+                            // helperText: "sjdjdj",
+                            hintText: "************",
                             labelText: "Senha",
                             prefixIcon: Icon(Icons.vpn_key),
                             suffixIcon: IconButton(

@@ -29,6 +29,7 @@ class _ResetPageState extends ModularState<ResetPage, ResetController> {
         child: Column(
           children: <Widget>[
             TextField(
+              keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: "E-mail",
                 prefixIcon: Icon(Icons.email),
