@@ -17,14 +17,18 @@ samples, guidance on mobile development, and a full API reference.
 
 # Pages
 
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/home1.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/home2.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/favoritos.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/user.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/newp1.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/newp2.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/newp4.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/login.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/newuser.png" width="200"/>
-<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/resetpass.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/1.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/2.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/3.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/4.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/5.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/6.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/7.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/8.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/9.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/10.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/11.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/12.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/13.png" width="200"/>
+<img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/14.png" width="200"/>
           
