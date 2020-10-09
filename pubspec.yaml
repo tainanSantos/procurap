@@ -102,7 +102,7 @@ flutter:
         - asset: assets/fonts/Roboto-ThinItalic.ttf
         - asset: assets/fonts/Roboto-Thin.ttf
     
-  #   - family: Trajan Pro
+  #   - family: Trajan Prodata
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

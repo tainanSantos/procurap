@@ -4,6 +4,7 @@ import 'package:procurap/app/modules/components/button_custom.dart';
 import 'package:procurap/app/modules/home/property/new_property/components/appbar_custom.dart';
 import 'package:procurap/app/modules/home/property/new_property/components/components.dart';
 import 'package:procurap/app/modules/home/property/new_property/new_property_controller.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class AnnouncementPage extends StatefulWidget {
   final String title;
@@ -40,6 +41,7 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
               Modular.to.pushNamed('/home/addrens');
             },
           )
+       
         ],
       ),
     );

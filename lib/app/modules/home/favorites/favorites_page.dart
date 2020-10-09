@@ -63,7 +63,7 @@ centerTitle: true,
               description:
                   "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
               urlImage:
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIljcyRfexDpcFcdds0rx99sJHmKNCItyriw&usqp=CAU",
+                  "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
             ),
           
           ],

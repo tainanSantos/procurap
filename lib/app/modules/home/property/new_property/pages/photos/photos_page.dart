@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -118,8 +120,14 @@ class _PhotosPageState extends State<PhotosPage> {
               // Modular.to.showDialog(child: SnackBar(content: Text("data")));
 
               // vai para a tela de confimação de cadastro
-              Modular.to.showDialog(child: Center(child: CircularProgressIndicator()));
-          
+              Modular.to.pushNamed("/home/details");
+
+              // Modular.to.showDialog(
+              //   child: AlertDialog(
+              //       title: Text("Info"),
+              //       content: Text(
+              //           "Fazer a tela de confirmação. \n nela vai ter todas as informação coletadas no cadastro\n e o usuário só vai ter que conferir tudo e salvar ")),
+              // );
             },
           )
         ],
