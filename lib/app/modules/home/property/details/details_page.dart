@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class DetailsPage extends StatefulWidget {
   @override
   _DetailsPageState createState() => _DetailsPageState();
 }
+
+// página que só vai receber e mostrars as informações
 
 class _DetailsPageState extends State<DetailsPage> {
   @override
@@ -24,7 +27,9 @@ class _DetailsPageState extends State<DetailsPage> {
             actions: [
               IconButton(icon: Icon(Icons.favorite), onPressed: () {}),
               FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  Modular.to.pushNamed("/home/gallery");
+                },
                 child: Row(
                   children: [
                     Icon(
@@ -85,7 +90,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      "RS 250,00",
+                                      "R\$ 250,00",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.teal[700],

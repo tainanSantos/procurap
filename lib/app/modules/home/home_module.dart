@@ -1,3 +1,4 @@
+import 'package:procurap/app/modules/home/property/details/gallery/gallery_page.dart';
 import 'package:procurap/app/modules/home/property/new_property/pages/addrens/addrens_page.dart';
 import 'package:procurap/app/modules/home/property/new_property/pages/complemet/complemet_page.dart';
 import 'package:procurap/app/modules/home/property/new_property/pages/photos/photos_page.dart';
@@ -56,10 +57,14 @@ class HomeModule extends ChildModule {
         ModularRouter('complemet',
             child: (_, args) => ComplemetPage(),
             transition: TransitionType.fadeIn),
+        ModularRouter('gallery',
+            child: (_, args) => GalleryPage(),
+            transition: TransitionType.fadeIn),
         ModularRouter('price',
             child: (_, args) => PricePage(), transition: TransitionType.fadeIn),
         ModularRouter('photos',
-            child: (_, args) => PhotosPage(), transition: TransitionType.fadeIn),
+            child: (_, args) => PhotosPage(),
+            transition: TransitionType.fadeIn),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

@@ -16,22 +16,28 @@ class PricePage extends StatefulWidget {
 
 class _PricePageState extends State<PricePage> {
   final controller = Modular.get<NewPropertyController>();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarCutom(),
       body: containerCustom(
         [
+         
           titleCustom("Preços do Aluguel"),
           Row(
             children: [
               Flexible(
                 flex: 1,
                 child: textField(
-                    // iconData: Icons.attach_money,
-                    labelText: "Preço do aluguel",
-                    keyboardType: TextInputType.number,
-                    helperText: "Infrome o preço do aluguel"),
+                  // iconData: Icons.attach_money,
+                  labelText: "Preço do aluguel",
+                  keyboardType: TextInputType.number,
+                  helperText: "Infrome o preço do aluguel",
+                  prefix: Text("R\$ "),
+                  // prefix: Icon(Icons.attach_money)
+                ),
               ),
               SizedBox(
                 width: 20,
@@ -54,21 +60,24 @@ class _PricePageState extends State<PricePage> {
               // iconData: Icons.attach_money,
               labelText: "Preço do Imóvel",
               keyboardType: TextInputType.number,
-              helperText: "Infome o preço de venda do imóvel (em reais)"),
+              helperText: "Infome o preço de venda do imóvel (em reais)",
+              prefix: Text("R\$ ")),
           SizedBox(
             height: 30,
           ),
           titleCustom("Telefone para Contato"),
           textField(
               // iconData: Icons.phone,
-              labelText: "Contato 1",
+              labelText: "Primeiro Contato",
               keyboardType: TextInputType.number,
-              helperText: "Pode ser fixo ou clelular"),
+              helperText: "Pode ser fixo ou clelular",
+              inputFormatters: controller.maskPhone1),
           textField(
               // iconData: Icons.phone,
-              labelText: "Contato 2",
+              labelText: "Segundo Contato",
               keyboardType: TextInputType.number,
-              helperText: "Pode ser fixo, cellular ou whatsapp"),
+              helperText: "Pode ser fixo, cellular ou whatsapp",
+              inputFormatters: controller.maskPhone2),
           SizedBox(
             height: 20,
           ),

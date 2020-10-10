@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
+import 'package:procurap/app/modules/components/textfiled_cutom.dart';
 import 'package:procurap/app/modules/home/property/new_property/components/components.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'register_controller.dart';
@@ -29,26 +30,26 @@ class _RegisterPageState
         child: ListView(
           children: [
             SizedBox(
-              height: 20,
+              height: 10,
             ),
-            _textField(
+            textField(
                 labelText: "Nome",
-                icon: Icons.person,
+                // icon: Icons.person,
                 helperText: "Informe seu Nome Completo",
                 hintText: "Nome Completo"),
-            _textField(
+            textField(
                 labelText: "E-mail",
-                icon: Icons.email,
+                // icon: Icons.email,
                 helperText: "Iforme seu melhor E-mail",
                 hintText: "xxxxxx@gmail.com"),
-            _textField(
+            textField(
                 labelText: "Senha",
-                icon: Icons.vpn_key,
+                // icon: Icons.vpn_key,
                 helperText: "A senha deve ter no mínimo 8 caracteres.",
                 hintText: "********"),
-            _textField(
+            textField(
                 labelText: "Repetir Senha",
-                icon: Icons.vpn_key,
+                // icon: Icons.vpn_key,
                 helperText: "As senhas devem ser iguais.",
                 hintText: "********"),
             SizedBox(
@@ -85,24 +86,25 @@ class _RegisterPageState
             // ),
             Observer(
               builder: (_) => controller.validatIsOwner ?? false
-                  ? _textField(
+                  ? textField(
                       labelText: "CPF",
-                      icon: Icons.vpn_key,
                       helperText: "Infome seu CPF.",
-                      hintText: "000.000.000-00")
+                      hintText: "000.000.000-00",
+                      inputFormatters: controller.maskCpf
+                    )
                   : Container(),
             ),
             Observer(
               builder: (_) => controller.validatIsRealtor ?? false
                   ? _textField(
                       labelText: "CRM",
-                      icon: Icons.vpn_key,
                       helperText: "Infome seu CRM.",
-                      hintText: "000.000.000")
+                      hintText: "000.000.000",
+                    )
                   : Container(),
             ),
             SizedBox(
-              height: 5,
+              height: 20,
             ),
             ButtonCustom(
               title: "Cadastrar-se",

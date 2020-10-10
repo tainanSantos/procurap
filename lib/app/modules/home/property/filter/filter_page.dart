@@ -62,6 +62,7 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   ? null
                   : "O campo destino não pode ser vazio.",
             ),
+            _myDivider(),
             DropDownCustom(
               labelText: "Estado",
               list: [
@@ -75,6 +76,7 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   ? null
                   : "O campo destino não pode ser vazio.",
             ),
+            _myDivider(),
             DropDownCustom(
               labelText: "Cidade",
               list: ['TABIRA', 'TRIUNFO', 'SERRA TALHADA', 'FLORES', 'ALAGOAS'],
@@ -83,6 +85,7 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   ? null
                   : "O campo destino não pode ser vazio.",
             ),
+            _myDivider(),
             DropDownCustom(
               labelText: "Bairro",
               list: [
@@ -97,6 +100,7 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   ? null
                   : "O campo destino não pode ser vazio.",
             ),
+            _myDivider(),
             DropDownCustom(
               labelText: "Categoria",
               list: [
@@ -117,9 +121,18 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   ? null
                   : "O campo destino não pode ser vazio.",
             ),
+            _myDivider()
+            
           ],
         ),
       ),
     );
   }
+
+  Widget _myDivider() => Container(
+        margin: EdgeInsets.only(bottom: 20),
+        height: 1,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.grey[200],
+      );
 }

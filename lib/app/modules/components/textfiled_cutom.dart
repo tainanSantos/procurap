@@ -12,7 +12,8 @@ Widget textField(
         MaskTextInputFormatter inputFormatters,
         TextEditingController controller,
         bool suffixIcon = false,
-        IconData iconData}) =>
+        IconData iconData,
+        String hintText, Widget prefix }) =>
     Padding(
       padding: EdgeInsets.only(top: top ?? 5),
       child: TextFormField(
@@ -21,6 +22,8 @@ Widget textField(
         // maxLength: maxLength ?? null,
         decoration: InputDecoration(
           // border: OutlineInputBorder(),
+          prefix: prefix,
+          hintText: hintText,
           helperText: helperText,
           prefixIcon: iconData != null ? Icon(iconData) : null,
           // errorText: errorText,

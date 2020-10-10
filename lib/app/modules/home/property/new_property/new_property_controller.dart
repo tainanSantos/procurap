@@ -1,3 +1,4 @@
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -15,6 +16,17 @@ abstract class _NewPropertyControllerBase with Store {
 
   var maskCep = MaskTextInputFormatter(
       mask: "#####-###", filter: {"#": RegExp(r'[0-9]')});
+  var maskPhone1 = MaskTextInputFormatter(
+      mask: "(##) #####-####", filter: {"#": RegExp(r'[0-9]')});
+  var maskPhone2 = MaskTextInputFormatter(
+      mask: "(##) #####-####", filter: {"#": RegExp(r'[0-9]')});
+  var maskPriceProperty = MaskTextInputFormatter(
+      mask: "###########", filter: {"#": RegExp(r'[0-9]')});
+  var maskPriceRent =
+      MaskTextInputFormatter(mask: "##,00", filter: {"#": RegExp(r'[0-9]')});
+
+
+
 
   List<String> statesBr = listStates;
 

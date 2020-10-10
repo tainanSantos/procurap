@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
+
+//Este componente é específico para a class do Filter
+
+
 class DropDownCustom extends StatelessWidget {
   final List list;
   final String labelText;
   final IconData iconData;
   final Function(String) onChanged;
   final String errorText;
+
+  
   final String value;
 
   const DropDownCustom(
@@ -27,13 +33,11 @@ class DropDownCustom extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only( top: 0, bottom: 0),
-            // child: Text(labelText),
           ),
           DropdownButtonFormField<String>(
             decoration: InputDecoration(
-                // border: OutlineInputBorder(),
-                // fillColor: Colors.white,
-                // filled: true,
+              
+                
                 errorText: errorText,
                 labelText: labelText,
                 enabledBorder: OutlineInputBorder(
@@ -59,10 +63,7 @@ class DropDownCustom extends StatelessWidget {
             value: value,
             onChanged: onChanged,
           ),
-        // Container(
-        //   height: 1,
-        //   color: Colors.black38,
-        // )
+  
         ],
       ),
     );
