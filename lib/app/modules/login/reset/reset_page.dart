@@ -31,9 +31,10 @@ class _ResetPageState extends ModularState<ResetPage, ResetController> {
             TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: "E-mail",
-                prefixIcon: Icon(Icons.email),
-              ),
+                  labelText: "E-mail",
+                  hintText: "xxxxxxxx@gmail.com",
+                  prefixIcon: Icon(Icons.email),
+                  helperText: "Informe o email que você usa no App"),
             ),
             SizedBox(
               height: 20,

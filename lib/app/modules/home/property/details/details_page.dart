@@ -13,11 +13,12 @@ class _DetailsPageState extends State<DetailsPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.height;
 
-    return Scaffold(      body: CustomScrollView(
+    return Scaffold(
+      body: CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: CustomColor.primary,
-            expandedHeight: 200,
+            expandedHeight: 250,
             floating: true,
             pinned: true,
             actions: [
@@ -58,13 +59,13 @@ class _DetailsPageState extends State<DetailsPage> {
                         padding: EdgeInsets.only(left: 5, right: 5),
                         child: ListTile(
                           // leading: Icon(Icons.home),
-                          title: Text("Apartamento Simples"),
+                          title: Text("Apartamento Padrão"),
                           // subtitle: Text("Apartamento de frete para o mar"),
                         ),
                       ),
                       Divider(),
                       Padding(
-                        padding: const EdgeInsets.only(right: 20, left: 5),
+                        padding: const EdgeInsets.only(right: 25, left: 5),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +87,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     Text(
                                       "RS 250,00",
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 20,
                                           color: Colors.teal[700],
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -152,11 +153,27 @@ class _DetailsPageState extends State<DetailsPage> {
                         height: 10,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: Text(
-                          "Logradouro: Afonsso de Souza; Número: 450; Bairro: Bom Jesus; Compemento: Depois do Trevo 125; Cidade: Serra Talhada; Estado: Pernambuco.",
-                        ),
-                      )
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Column(
+                            children: [
+                              _addrensDetails(
+                                  "Logradouro:", "Afonsso de Souza"),
+                              _addrensDetails("Número:", "450"),
+                              _addrensDetails("Bairro:", "Bom Jesus"),
+                              _addrensDetails(
+                                  "Compemento:", "Depois do Trevo 125"),
+                              _addrensDetails("Cidade:", "Serra Talhada"),
+                              _addrensDetails("Estado:", "Pernambuco"),
+
+                              // Row(
+                              //   children: [
+                              //     Text(
+                              //       "Logradouro: Afonsso de Souza; \nNúmero: 450; \nBairro: Bom Jesus; \nCompemento: Depois do Trevo 125; \nCidade: Serra Talhada; \nEstado: Pernambuco.",
+                              //     ),
+                              //   ],
+                              // )
+                            ],
+                          ))
                     ],
                   ),
                   SizedBox(
@@ -195,8 +212,23 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
-  TextStyle _style() => TextStyle(
-      fontWeight: FontWeight.bold, fontSize: 18, color: Colors.teal[700]);
+  Widget _addrensDetails(String title, String value) => Row(
+        children: [
+          Text(title),
+          SizedBox(
+            width: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4, top: 4),
+            child: Text(
+              value,
+              style: TextStyle(fontSize: 15, color: Colors.teal[700]),
+            ),
+          )
+        ],
+      );
+
+  TextStyle _style() => TextStyle(fontSize: 18, color: Colors.teal[700]);
 
   Widget _cardTop(String urlImg) => Container(
         width: MediaQuery.of(context).size.width - 50,

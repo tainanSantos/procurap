@@ -62,7 +62,6 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   ? null
                   : "O campo destino não pode ser vazio.",
             ),
-            
             DropDownCustom(
               labelText: "Estado",
               list: [
@@ -101,14 +100,17 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
             DropDownCustom(
               labelText: "Categoria",
               list: [
-                'CASA',
-                'APARTAMENTO',
-                'QUITINETE',
-                'CHACARA',
-                'GARAGEM',
-                'GALPÃO',
-                'PONTO COMERIAL',
-                'TODOS'
+                "Apartamento padrão",
+                "Casas",
+                "Casas de praia e de campo",
+                "Coberturas",
+                "Depósitos",
+                "Flats",
+                "Lofts",
+                "Lojas",
+                "Kitnet",
+                "Mansões",
+                "Sala"
               ],
               onChanged: (value) {},
               errorText: (controller.value != null)

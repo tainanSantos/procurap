@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/logo_app.dart';
 import 'package:procurap/app/modules/home/favorites/favorites_page.dart';
 import 'package:procurap/app/modules/home/property/property_page.dart';
 import 'package:procurap/app/modules/home/user/user_page.dart';
@@ -23,7 +24,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         controller: controller.pageViewController,
         pageSnapping: true,
         scrollDirection: Axis.horizontal,
-        children: [PropertyPage(), FavoritesPage(), UserPage(), Container()],
+        children: [PropertyPage(), FavoritesPage(), UserPage(), Container(
+          child: Center(child: Container(padding: EdgeInsets.all(10), color: CustomColor.primary,child: LogoApp()),),)],
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller.pageViewController,
