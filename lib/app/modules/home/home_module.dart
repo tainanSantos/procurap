@@ -3,6 +3,8 @@ import 'package:procurap/app/modules/home/property/new_property/pages/addrens/ad
 import 'package:procurap/app/modules/home/property/new_property/pages/complemet/complemet_page.dart';
 import 'package:procurap/app/modules/home/property/new_property/pages/photos/photos_page.dart';
 import 'package:procurap/app/modules/home/property/new_property/pages/price/price_page.dart';
+import 'package:procurap/app/shared/repository/address_repository.dart';
+import 'package:procurap/app/shared/services/custom_dio.dart';
 
 import 'user/user_controller.dart';
 import 'property/new_property/new_property_controller.dart';
@@ -31,6 +33,11 @@ class HomeModule extends ChildModule {
         $FilterController,
         $PropertyController,
         $HomeController,
+
+        Bind((i) => NewPropertyController(i.get<AddressRepository>())),
+        Bind((i)=> AddressRepository())
+
+
       ];
 
   @override

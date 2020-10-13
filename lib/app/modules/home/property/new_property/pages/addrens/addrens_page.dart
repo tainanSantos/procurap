@@ -18,10 +18,11 @@ class AddrensPage extends StatefulWidget {
 class _AddrensPageState extends State<AddrensPage> {
   final cityController = new TextEditingController();
   final neighborhoodController = new TextEditingController();
-  final streetController = new TextEditingController();
-  String state;
+  final stateController = new TextEditingController();
+  final publicPlaceController = new TextEditingController();
+  final complementController = new TextEditingController();
 
-  String _caminho;
+  String state;
 
   final controller = Modular.get<NewPropertyController>();
   @override
@@ -33,7 +34,8 @@ class _AddrensPageState extends State<AddrensPage> {
         Observer(
           builder: (_) => textField(
             maxLength: 150,
-            controller: streetController,
+            
+            controller: publicPlaceController,
             labelText: "Logradouro",
             helperText: "Nome da rua ou nome da propriedade (Ruiais)",
             onChanged: controller.setPublicPlace,
@@ -64,7 +66,9 @@ class _AddrensPageState extends State<AddrensPage> {
                   labelText: "Complemento",
                   helperText: "Ponto de Referência",
                   errorText: controller.validatComplement,
+                  controller: complementController,
                   onChanged: controller.setComplement,
+                  
                 ),
               ),
             ),
@@ -104,15 +108,18 @@ class _AddrensPageState extends State<AddrensPage> {
                     helperText: "CEP da localidade ou Cidade",
                     onChanged: (value) async {
                       if (value.length == 9) {
-                        controller.cep = value;
-                        await controller.getCep();
-                        setState(() {
+                        await controller.setCep(value);
+                        // setState(() {
                           this.neighborhoodController.text =
                               controller.neighborhood;
                           this.cityController.text = controller.city;
                           this.state = controller.state;
-                          this.streetController.text = controller.publicPlace;
-                        });
+                          this.complementController.text =
+                              controller.complement;
+                          this.state = controller.state;
+                          this.publicPlaceController.text =
+                              controller.publicPlace;
+                        // });
                       }
                     },
                     inputFormatters: controller.maskCep),
@@ -131,7 +138,7 @@ class _AddrensPageState extends State<AddrensPage> {
                   helperText: "UF do Estado",
                   onChanged: controller.setstate,
                   // errorText: controller.validatState,
-                  value: state,
+                  value: controller.state,
                 ),
               ),
             ),
@@ -143,6 +150,7 @@ class _AddrensPageState extends State<AddrensPage> {
             controller: cityController,
             labelText: "Cidade",
             errorText: controller.validatCity,
+
             helperText: "Nome da Cidade",
             onChanged: controller.setCity,
             // initialValue: cityController,

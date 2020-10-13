@@ -61,7 +61,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 5, right: 5),
+                        padding: EdgeInsets.only(left: 5, right: 5, top: 5),
                         child: ListTile(
                           // leading: Icon(Icons.home),
                           title: Text("Apartamento Padrão"),

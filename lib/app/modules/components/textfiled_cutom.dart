@@ -20,13 +20,14 @@ Widget textField(
         controller: controller ?? null,
         onChanged: onChanged,
         // maxLength: maxLength ?? null,
+        
         decoration: InputDecoration(
           // border: OutlineInputBorder(),
           prefix: prefix,
           hintText: hintText,
           helperText: helperText,
           prefixIcon: iconData != null ? Icon(iconData) : null,
-          // errorText: errorText,
+          errorText: errorText,
           errorStyle: TextStyle(color: Colors.blue),
           labelText: labelText,
         ),

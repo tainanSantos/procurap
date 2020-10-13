@@ -2,6 +2,8 @@ import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/shared/models/address_model.dart';
+import 'package:procurap/app/shared/repository/address_repository.dart';
 
 part 'new_property_controller.g.dart';
 
@@ -25,8 +27,9 @@ abstract class _NewPropertyControllerBase with Store {
   var maskPriceRent =
       MaskTextInputFormatter(mask: "##,00", filter: {"#": RegExp(r'[0-9]')});
 
+  final AddressRepository addressRepository;
 
-
+  _NewPropertyControllerBase(this.addressRepository);
 
   List<String> statesBr = listStates;
 
@@ -78,8 +81,19 @@ abstract class _NewPropertyControllerBase with Store {
   setstate(String value) => this.state = value;
 
   @action
-  setCep(String value) {
+  Future setCep(String value) async {
     this.cep = value;
+    if (cep.length == 9) {
+      AddressModel addres =
+          await addressRepository.getByCep(this.cep.replaceAll('-', ''));
+      if (addres.cep != null) {
+        this.city = addres.localidade;
+        this.state = addres.uf;
+        this.complement = addres.complemento;
+        this.neighborhood = addres.bairro;
+        this.publicPlace = addres.logradouro;
+      }
+    }
   }
 
   @computed

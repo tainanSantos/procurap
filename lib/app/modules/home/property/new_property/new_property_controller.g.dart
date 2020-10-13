@@ -7,7 +7,7 @@ part of 'new_property_controller.dart';
 // **************************************************************************
 
 final $NewPropertyController = BindInject(
-  (i) => NewPropertyController(),
+  (i) => NewPropertyController(i<AddressRepository>()),
   singleton: true,
   lazy: true,
 );
@@ -222,6 +222,13 @@ mixin _$NewPropertyController on _NewPropertyControllerBase, Store {
     });
   }
 
+  final _$setCepAsyncAction = AsyncAction('_NewPropertyControllerBase.setCep');
+
+  @override
+  Future<dynamic> setCep(String value) {
+    return _$setCepAsyncAction.run(() => super.setCep(value));
+  }
+
   final _$getCepAsyncAction = AsyncAction('_NewPropertyControllerBase.getCep');
 
   @override
@@ -293,17 +300,6 @@ mixin _$NewPropertyController on _NewPropertyControllerBase, Store {
         .startAction(name: '_NewPropertyControllerBase.setstate');
     try {
       return super.setstate(value);
-    } finally {
-      _$_NewPropertyControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setCep(String value) {
-    final _$actionInfo = _$_NewPropertyControllerBaseActionController
-        .startAction(name: '_NewPropertyControllerBase.setCep');
-    try {
-      return super.setCep(value);
     } finally {
       _$_NewPropertyControllerBaseActionController.endAction(_$actionInfo);
     }
