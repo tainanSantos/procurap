@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:procurap/app/modules/home/pages/user/components/user_info.dart';
+import 'package:procurap/app/modules/home/pages/user/pages/user_info.dart';
 import 'user_controller.dart';
 
 class UserPage extends StatefulWidget {

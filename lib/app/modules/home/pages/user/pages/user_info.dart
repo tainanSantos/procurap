@@ -45,13 +45,17 @@ class UserInfo extends StatelessWidget {
             height: 20,
           ),
           ListTile(
-            onTap: () {},
-            title: Text("Meus imóveis"),
+            onTap: () {
+              Modular.to.pushNamed("/home/my_propertys");
+            },
+            title: Text("Imóveis"),
             // trailing: Icon(Icons.business),
           ),
           _line(context),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Modular.to.pushReplacementNamed("/rent");
+            },
             title: Text("Alugueis"),
             // trailing: Icon(Icons.attach_money),
           ),

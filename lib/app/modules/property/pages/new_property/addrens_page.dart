@@ -6,6 +6,7 @@ import 'package:procurap/app/modules/components/textfiled_cutom.dart';
 import 'package:procurap/app/modules/property/components/appbar_custom.dart';
 import 'package:procurap/app/modules/property/components/components.dart';
 import 'package:procurap/app/modules/property/property_controller.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class AddrensPage extends StatefulWidget {
   final String title;
@@ -161,6 +162,7 @@ class _AddrensPageState extends State<AddrensPage> {
         ),
         ButtonCustom(
           title: "Próximo",
+          color: CustomColor.primary2,
           onPressed: () {
             Modular.to.pushNamed('/property/complemet');
           },

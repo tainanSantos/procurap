@@ -1,3 +1,4 @@
+import 'package:procurap/app/modules/rent/rent_module.dart';
 import 'package:procurap/app/modules/splash/splash_module.dart';
 
 import 'app_controller.dart';
@@ -20,6 +21,7 @@ class AppModule extends MainModule {
         ModularRouter('/login', module: LoginModule()),
         ModularRouter('/home', module: HomeModule()),
         ModularRouter('/property', module: PropertyModule()),
+        ModularRouter('/rent', module: RentModule()),
       ];
 
   @override

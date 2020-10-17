@@ -7,6 +7,7 @@ import 'package:procurap/app/modules/components/button_custom.dart';
 import 'package:procurap/app/modules/property/components/appbar_custom.dart';
 import 'package:procurap/app/modules/property/components/components.dart';
 import 'package:procurap/app/modules/property/property_controller.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class PhotosPage extends StatefulWidget {
   final String title;
@@ -115,6 +116,7 @@ class _PhotosPageState extends State<PhotosPage> {
           ),
           ButtonCustom(
             title: "Proximo",
+            color: CustomColor.primary2,
             onPressed: () {
               // Modular.to.showDialog(child: SnackBar(content: Text("data")));
 

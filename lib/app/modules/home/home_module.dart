@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:procurap/app/modules/home/pages/property/details/details_page.dart';
 import 'package:procurap/app/modules/home/pages/property/filter/filter_page.dart';
 import 'package:procurap/app/modules/home/pages/property/list/list_page.dart';
+import 'package:procurap/app/modules/home/pages/user/pages/my_propertys.dart';
 
 import 'package:procurap/app/modules/home/pages/user/user_controller.dart';
 import 'package:procurap/app/modules/home/pages/favorites/favorites_controller.dart';
@@ -23,15 +24,14 @@ import 'home_page.dart';
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
-    
         $UserController,
         $FavoritesController,
         $ListController,
         $FilterController,
         $PropertyController,
         $HomeController,
-        Bind((i)=>FilterRepository(i.get<CustomDio>())),
-        Bind((i)=>CustomDio()),
+        Bind((i) => FilterRepository(i.get<CustomDio>())),
+        Bind((i) => CustomDio()),
       ];
 
   @override
@@ -46,6 +46,10 @@ class HomeModule extends ChildModule {
         ModularRouter('list',
             child: (_, args) => ListPage(),
             transition: TransitionType.rightToLeft),
+        ModularRouter(
+          'my_propertys',
+          child: (_, args) => MyPropertys(),
+        ),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

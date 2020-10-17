@@ -5,6 +5,7 @@ import 'package:procurap/app/modules/components/textfiled_cutom.dart';
 import 'package:procurap/app/modules/property/components/appbar_custom.dart';
 import 'package:procurap/app/modules/property/components/components.dart';
 import 'package:procurap/app/modules/property/property_controller.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class PricePage extends StatefulWidget {
   final String title;
@@ -82,6 +83,7 @@ class _PricePageState extends State<PricePage> {
             height: 20,
           ),
           ButtonCustom(
+            color: CustomColor.primary2,
             title: "Próximo",
             onPressed: () {
               Modular.to.pushNamed("/property/photos");

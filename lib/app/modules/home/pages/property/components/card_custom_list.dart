@@ -8,6 +8,7 @@ class CardCustomList extends StatelessWidget {
   final String value;
   final String description;
   final bool isFavorite;
+  final bool isFavoriteVisible;
 
   const CardCustomList(
       {Key key,
@@ -16,7 +17,8 @@ class CardCustomList extends StatelessWidget {
       this.urlImage,
       this.value,
       this.description,
-      this.isFavorite = false})
+      this.isFavorite = false,
+      this.isFavoriteVisible = false})
       : super(key: key); // componente para gerencia de estados do botão faorito
 
   @override
@@ -101,14 +103,17 @@ class CardCustomList extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: IconButton(
-                        icon: Icon(Icons.favorite,
-                            color: isFavorite ? Colors.pink : Colors.grey),
-                        onPressed: () {},
-                      ),
-                    )
+                    (!isFavoriteVisible)
+                        ? Container(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton(
+                              icon: Icon(Icons.favorite,
+                                  color:
+                                      isFavorite ? Colors.pink : Colors.grey),
+                              onPressed: () {},
+                            ),
+                          )
+                        : Container()
                   ],
                 )
               ],
