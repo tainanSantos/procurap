@@ -27,7 +27,7 @@ Widget textField(
           hintText: hintText,
           helperText: helperText,
           prefixIcon: iconData != null ? Icon(iconData) : null,
-          errorText: errorText,
+          // errorText: errorText,
           errorStyle: TextStyle(color: Colors.blue),
           labelText: labelText,
         ),

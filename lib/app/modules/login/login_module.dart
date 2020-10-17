@@ -1,8 +1,8 @@
-import 'reset/reset_controller.dart';
-import 'package:procurap/app/modules/login/register/register_page.dart';
-import 'package:procurap/app/modules/login/reset/reset_page.dart';
+import 'package:procurap/app/modules/login/pages/register/register_page.dart';
+import 'package:procurap/app/modules/login/pages/reset/reset_controller.dart';
+import 'package:procurap/app/modules/login/pages/reset/reset_page.dart';
 
-import 'register/register_controller.dart';
+import 'package:procurap/app/modules/login/pages/register/register_controller.dart';
 import 'login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

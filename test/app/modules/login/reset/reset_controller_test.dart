@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular_test.dart';    
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:procurap/app/modules/login/reset/reset_controller.dart';
 import 'package:procurap/app/modules/login/login_module.dart';
 
 void main() {
