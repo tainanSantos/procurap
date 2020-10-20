@@ -23,32 +23,16 @@ class _FavoritesPageState
       appBar: AppBar(
         backgroundColor: CustomColor.primary,
         // elevation: 0,
-centerTitle: true,
+        centerTitle: true,
         title: Text("Favoritos"),
 
         actions: [
           IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                ShowModalCustom.show(context: context, widget: FilterPage());
-              }),
-          IconButton(
-              icon: Icon(Icons.delete_outline),
-              onPressed: () {
-                AlertDialogCustom.Action(
-                  context: context,
-                  title: "Excluir Favoritos",
-                  msg: "Deseja realmente excluir toda sua lista de Favorito?",
-                  onPressed: () {
-                    // Modular.to.pop();
-                  },
-                  text: "Sim",
-                  onPressedCancel: () {
-                    Modular.to.pop();
-                  },
-                  textCancel: "Não"
-                );
-              })
+            icon: Icon(Icons.search),
+            onPressed: () {
+              ShowModalCustom.show(context: context, widget: FilterPage());
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -65,7 +49,6 @@ centerTitle: true,
               urlImage:
                   "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
             ),
-          
           ],
         ),
       ),

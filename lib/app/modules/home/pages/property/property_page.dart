@@ -59,14 +59,14 @@ class _PropertyPageState
                 ShowModalCustom.show(context: context, widget: FilterPage());
               },
             ),
-            IconButton(
-              icon: Icon(Icons.map),
-              onPressed: () {
-                AlertDialogCustom.Msg(
-                    context: context, title: "Não Implementado", i: 3);
-                Timer(Duration(seconds: 1), () => Modular.to.pop());
-              },
-            )
+            // IconButton(
+            //   icon: Icon(Icons.map),
+            //   onPressed: () {
+            //     AlertDialogCustom.Msg(
+            //         context: context, title: "Não Implementado", i: 3);
+            //     Timer(Duration(seconds: 1), () => Modular.to.pop());
+            //   },
+            // )
           ],
         ),
         body: ListView(

@@ -3,9 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
 import 'package:procurap/app/modules/components/textfiled_cutom.dart';
-import 'package:procurap/app/modules/property/components/appbar_custom.dart';
-import 'package:procurap/app/modules/property/components/components.dart';
-import 'package:procurap/app/modules/property/property_controller.dart';
+import 'package:procurap/app/modules/home/modules/property/components/appbar_custom.dart';
+import 'package:procurap/app/modules/home/modules/property/components/components.dart';
+import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class AddrensPage extends StatefulWidget {
@@ -32,6 +32,57 @@ class _AddrensPageState extends State<AddrensPage> {
       appBar: appBarCutom(),
       body: containerCustom([
         titleCustom("Infrome o endereço do imóvel."),
+         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: Observer(
+                builder: (_) => textField(
+                    maxLength: 9,
+                    labelText: "CEP",
+                    keyboardType: TextInputType.number,
+                    errorText: controller.validatCep,
+                    helperText: "CEP da localidade ou Cidade",
+                    onChanged: (value) async {
+                      if (value.length == 9) {
+                        await controller.setCep(value);
+                        // setState(() {
+                          this.neighborhoodController.text =
+                              controller.neighborhood;
+                          this.cityController.text = controller.city;
+                          this.state = controller.state;
+                          this.complementController.text =
+                              controller.complement;
+                          this.state = controller.state;
+                          this.publicPlaceController.text =
+                              controller.publicPlace;
+                        // });
+                      }
+                    },
+                    inputFormatters: controller.maskCep),
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Observer(
+              builder: (_) => Expanded(
+                flex: 1,
+                child: dropDownButtonField_(
+                  // iconData: Icons.info_outline,
+                  list: controller.statesBr,
+                  labelText: "Estado",
+                  helperText: "UF do Estado",
+                  onChanged: controller.setstate,
+                  // errorText: controller.validatState,
+                  value: controller.state,
+                ),
+              ),
+            ),
+          ],
+        ),
+       
         Observer(
           builder: (_) => textField(
             maxLength: 150,
@@ -95,56 +146,7 @@ class _AddrensPageState extends State<AddrensPage> {
           height: 5,
         ),
 
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: Observer(
-                builder: (_) => textField(
-                    maxLength: 9,
-                    labelText: "CEP",
-                    keyboardType: TextInputType.number,
-                    errorText: controller.validatCep,
-                    helperText: "CEP da localidade ou Cidade",
-                    onChanged: (value) async {
-                      if (value.length == 9) {
-                        await controller.setCep(value);
-                        // setState(() {
-                          this.neighborhoodController.text =
-                              controller.neighborhood;
-                          this.cityController.text = controller.city;
-                          this.state = controller.state;
-                          this.complementController.text =
-                              controller.complement;
-                          this.state = controller.state;
-                          this.publicPlaceController.text =
-                              controller.publicPlace;
-                        // });
-                      }
-                    },
-                    inputFormatters: controller.maskCep),
-              ),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Observer(
-              builder: (_) => Expanded(
-                flex: 1,
-                child: dropDownButtonField_(
-                  // iconData: Icons.info_outline,
-                  list: controller.statesBr,
-                  labelText: "Estado",
-                  helperText: "UF do Estado",
-                  onChanged: controller.setstate,
-                  // errorText: controller.validatState,
-                  value: controller.state,
-                ),
-              ),
-            ),
-          ],
-        ),
+       
         Observer(
           builder: (_) => textField(
             maxLength: 150,
@@ -164,7 +166,7 @@ class _AddrensPageState extends State<AddrensPage> {
           title: "Próximo",
           color: CustomColor.primary2,
           onPressed: () {
-            Modular.to.pushNamed('/property/complemet');
+            Modular.to.pushNamed('/home/property/complemet');
           },
         )
         // SizedBox(

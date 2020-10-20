@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
 import 'package:procurap/app/modules/components/textfiled_cutom.dart';
-import 'package:procurap/app/modules/property/components/components.dart';
+import 'package:procurap/app/modules/home/modules/property/components/components.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'register_controller.dart';
 
@@ -20,7 +20,7 @@ class _RegisterPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro"),
+        title: Text("Cadastro Usuário"),
         backgroundColor: CustomColor.primary,
         elevation: 0,
       ),
@@ -87,6 +87,7 @@ class _RegisterPageState
             Observer(
               builder: (_) => controller.validatIsOwner ?? false
                   ? textField(
+                    keyboardType: TextInputType.number,
                       labelText: "CPF",
                       helperText: "Infome seu CPF.",
                       hintText: "000.000.000-00",

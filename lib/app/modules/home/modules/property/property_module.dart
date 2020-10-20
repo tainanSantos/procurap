@@ -1,8 +1,9 @@
-import 'package:procurap/app/modules/property/pages/new_property/addrens_page.dart';
-import 'package:procurap/app/modules/property/pages/new_property/announcement_page.dart';
-import 'package:procurap/app/modules/property/pages/new_property/complemet_page.dart';
-import 'package:procurap/app/modules/property/pages/new_property/photos_page.dart';
-import 'package:procurap/app/modules/property/pages/new_property/price_page.dart';
+import 'package:procurap/app/modules/home/modules/property/pages/new_property/addrens_page.dart';
+import 'package:procurap/app/modules/home/modules/property/pages/new_property/announcement_page.dart';
+import 'package:procurap/app/modules/home/modules/property/pages/new_property/complemet_page.dart';
+import 'package:procurap/app/modules/home/modules/property/pages/new_property/photos_page.dart';
+import 'package:procurap/app/modules/home/modules/property/pages/new_property/price_page.dart';
+
 import 'package:procurap/app/shared/repository/address_repository.dart';
 
 import 'property_controller.dart';

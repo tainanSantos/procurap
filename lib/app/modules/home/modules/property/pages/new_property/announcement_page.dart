@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
-import 'package:procurap/app/modules/property/components/components.dart';
-import 'package:procurap/app/modules/property/property_controller.dart';
+import 'package:procurap/app/modules/home/modules/property/components/appbar_custom.dart';
+import 'package:procurap/app/modules/home/modules/property/components/components.dart';
+import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class AnnouncementPage extends StatefulWidget {
-  final String title;
-  const AnnouncementPage({Key key, this.title = "Announcement"})
-      : super(key: key);
+
 
   @override
   _AnnouncementPageState createState() => _AnnouncementPageState();
@@ -18,21 +17,8 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
   final controller = Modular.get<PropertyController>();
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        Modular.to.pushReplacementNamed('/home');
-
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: CustomColor.primary2,
-          title: Text("Cadastro Imóvel"),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Modular.to.pushReplacementNamed('/home');
-              }),
-        ),
+    return  Scaffold(
+        appBar: appBarCutom(),
         body: containerCustom(
           [
             titleCustom("Como deseja anunciar o imóvel?"),
@@ -41,7 +27,7 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
             ),
             dropDownButtonField_(
                 labelText: "Tipo de Anúncio",
-                list: ["Apenas venda", "Apenas Aluguel", "Venda ou Aluguel"],
+                list: ["Apenas Venda", "Apenas Aluguel", "Venda ou Aluguel"],
                 helperText: "O que você deseja fazer com seu imóvel?",
                 onChanged: (value) {}),
             SizedBox(
@@ -51,12 +37,12 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
               title: "Próximo",
               color: CustomColor.primary2,
               onPressed: () {
-                Modular.to.pushNamed('/property/addrens');
+                Modular.to.pushNamed('/home/property/addrens');
               },
             )
           ],
         ),
-      ),
+      
     );
   }
 }

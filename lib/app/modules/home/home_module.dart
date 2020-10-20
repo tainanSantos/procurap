@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:procurap/app/modules/home/modules/property/property_module.dart';
+import 'package:procurap/app/modules/home/modules/rent/rent_module.dart';
 
 import 'package:procurap/app/modules/home/pages/property/details/details_page.dart';
 import 'package:procurap/app/modules/home/pages/property/filter/filter_page.dart';
@@ -49,7 +51,12 @@ class HomeModule extends ChildModule {
         ModularRouter(
           'my_propertys',
           child: (_, args) => MyPropertys(),
+          transition: TransitionType.fadeIn
         ),
+
+        ModularRouter('/property', module: PropertyModule()),
+        ModularRouter('/rent', module: RentModule()),
+        
       ];
 
   static Inject get to => Inject<HomeModule>.of();

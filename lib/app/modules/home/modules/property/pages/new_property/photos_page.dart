@@ -4,9 +4,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
-import 'package:procurap/app/modules/property/components/appbar_custom.dart';
-import 'package:procurap/app/modules/property/components/components.dart';
-import 'package:procurap/app/modules/property/property_controller.dart';
+import 'package:procurap/app/modules/home/modules/property/components/appbar_custom.dart';
+import 'package:procurap/app/modules/home/modules/property/components/components.dart';
+import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class PhotosPage extends StatefulWidget {
@@ -121,7 +121,7 @@ class _PhotosPageState extends State<PhotosPage> {
               // Modular.to.showDialog(child: SnackBar(content: Text("data")));
 
               // vai para a tela de confimação de cadastro
-              Modular.to.pushNamed("/property/details");
+              Modular.to.pushNamed("/home/property/details");
 
               // Modular.to.showDialog(
               //   child: AlertDialog(

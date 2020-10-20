@@ -29,7 +29,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           FavoritesPage(),
           UserPage(),
           Container(
-            color: CustomColor.primary,
+            color: CustomColor.primaryAnction,
             child: Center(
               child: Container(padding: EdgeInsets.all(10), child: LogoApp()),
             ),

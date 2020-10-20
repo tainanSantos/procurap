@@ -54,15 +54,15 @@ class UserInfo extends StatelessWidget {
           _line(context),
           ListTile(
             onTap: () {
-              Modular.to.pushReplacementNamed("/rent");
+              Modular.to.pushNamed("/home/rent");
             },
-            title: Text("Alugueis"),
+            title: Text("Aluguéis"),
             // trailing: Icon(Icons.attach_money),
           ),
           _line(context),
           ListTile(
             onTap: () {
-              Modular.to.pushReplacementNamed("/property/announcement");
+              Modular.to.pushNamed("/home/property/announcement");
             },
             title: Text("Novo Anúncio"),
             // trailing: Icon(Icons.add_location),
