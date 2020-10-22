@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Endereco, Imovel, TipoImovel, TipoAnuncio, Parcela, TipoContato, Contato, Imagem
+from .models import Endereco, Imovel, TipoImovel, TipoAnuncio, Parcela, TipoContato, Contato, Imagem, TipoHospedagem
 
 # Register your models here.
 
@@ -41,6 +41,13 @@ class ContatoAdmin(admin.ModelAdmin):
 @admin.register(Imagem)
 class ImagemAdmin(admin.ModelAdmin):
     list_display = ('url',)
+
+
+
+
+@admin.register(TipoHospedagem)
+class TipoHospedagemAdmin(admin.ModelAdmin):
+    list_display = ('nome', )
 
 # @admin.register(TipoUsuarioApp)
 # class TipoUsuarioAppAdmin(admin.ModelAdmin):

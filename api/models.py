@@ -65,10 +65,19 @@ class Imovel(models.Model):
         verbose_name_plural = 'Imoveis'
         ordering = ['id']
 
+class TipoHospedagem(models.Model):
+    nome = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome
+
+
+
 
 #  devesse mensalmente gerar uma entidade dessas
 class Parcela(models.Model):
     imovel = models.ForeignKey(Imovel, related_name='Imoveis', on_delete=models.CASCADE, blank=False)
+    tipo_ospedagem = models.ForeignKey(TipoHospedagem, on_delete=models.CASCADE)
     valor = models.DecimalField(max_digits=9, decimal_places=2)
     date_vencimento = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=False)
