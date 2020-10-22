@@ -43,8 +43,6 @@ class ImagemAdmin(admin.ModelAdmin):
     list_display = ('url',)
 
 
-
-
 @admin.register(TipoHospedagem)
 class TipoHospedagemAdmin(admin.ModelAdmin):
     list_display = ('nome', )

@@ -55,6 +55,7 @@ class ContatoSerializer(serializers.ModelSerializer):
             'valor',
         )
 
+
 class TipoImovelSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoImovel
@@ -63,6 +64,7 @@ class TipoImovelSerializer(serializers.ModelSerializer):
             'nome',
         )
 
+
 class TipoAnuncioSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoAnuncio
@@ -70,7 +72,6 @@ class TipoAnuncioSerializer(serializers.ModelSerializer):
             'id',
             'nome',
         )
-
 
 
 class ParcelaSerializer(serializers.ModelSerializer):
@@ -84,7 +85,6 @@ class ParcelaSerializer(serializers.ModelSerializer):
             'date_vencimento',
             'status',
         )
-
 
 
 class TipoHospedagemSerializer(serializers.ModelSerializer):

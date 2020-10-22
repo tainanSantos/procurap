@@ -40,6 +40,7 @@ router.register('tipo_hospedagens', TipoHospedagemViewSet)
 
 
 urlpatterns = [
+
     path('enderecos/', EnderecosAPIView.as_view(), name='enderecos'),
     path('enderecos/<int:pk>/', EdnderecoAPIView.as_view(), name='endereco'),
 

@@ -65,13 +65,12 @@ class Imovel(models.Model):
         verbose_name_plural = 'Imoveis'
         ordering = ['id']
 
+
 class TipoHospedagem(models.Model):
     nome = models.CharField(max_length=50)
 
     def __str__(self):
         return self.nome
-
-
 
 
 #  devesse mensalmente gerar uma entidade dessas
@@ -85,7 +84,6 @@ class Parcela(models.Model):
 
 class TipoContato(models.Model):
     nome = models.CharField(max_length=255, default='Email')
-
     def __str__(self):
         return self.nome
 
