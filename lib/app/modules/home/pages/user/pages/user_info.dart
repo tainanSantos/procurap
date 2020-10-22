@@ -104,7 +104,7 @@ class UserInfo extends StatelessWidget {
                       ),
                       Container(
                         width: 200,
-                        height: 40,
+                        height: 50,
                         child: RaisedButton(
                           color: CustomColor.primary,
                           shape: RoundedRectangleBorder(
@@ -124,7 +124,7 @@ class UserInfo extends StatelessWidget {
                       ),
                       Container(
                         width: 200,
-                        height: 40,
+                        height: 50,
                         child: RaisedButton(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
