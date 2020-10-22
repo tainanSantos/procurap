@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:procurap/app/modules/components/dialog.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class UserInfo extends StatelessWidget {
   @override
@@ -73,14 +75,87 @@ class UserInfo extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              AlertDialogCustom.Action(
-                  context: context,
-                  title: "Sair",
-                  msg: "Deseja Realmente sair da aplicação?",
-                  onPressed: () {},
-                  text: "Sim",
-                  onPressedCancel: () {},
-                  textCancel: "Não");
+              showModalBottomSheet(
+                context: context,
+                backgroundColor: Colors.transparent,
+                builder: (_) => Container(
+                  height: 210,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10))),
+                  padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(10)),
+                        height: 5,
+                        width: 35,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("Deseja realmente sair do aplicativo?"),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        width: 200,
+                        height: 40,
+                        child: RaisedButton(
+                          color: CustomColor.primary,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: CustomColor.primary, width: 2),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          onPressed: () {
+                            exit(0);
+                          },
+                          child: Text("SIM",
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: 200,
+                        height: 40,
+                        child: RaisedButton(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: CustomColor.primary, width: 1),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "NÃO",
+                            style: TextStyle(color: CustomColor.primary),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      )
+                    ],
+                  ),
+                ),
+              );
+              // AlertDialogCustom.Action(
+              //     context: context,
+              //     title: "Sair",
+              //     msg: "Deseja Realmente sair da aplicação?",
+              //     onPressed: () {},
+              //     text: "Sim",
+              //     onPressedCancel: () {},
+              //     textCancel: "Não");
             },
             // leading: Icon(Icons.exit_to_app),
             title: Text("Sair"),

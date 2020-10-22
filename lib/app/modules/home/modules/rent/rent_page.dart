@@ -6,8 +6,6 @@ import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'rent_controller.dart';
 
 class RentPage extends StatefulWidget {
-  final String title;
-  const RentPage({Key key, this.title = "Meus Aluguéis"}) : super(key: key);
 
   @override
   _RentPageState createState() => _RentPageState();
@@ -20,19 +18,21 @@ class _RentPageState extends ModularState<RentPage, RentController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColor.primary2,
+        elevation: 0,
+                backgroundColor: CustomColor.primary2Filter,
+        iconTheme: IconThemeData(),
+        title: Text("Meus Aluguéis", style: TextStyle(color: Colors.grey[900]),),
         actions: [
           PopupMenuButton(
             onSelected: (value) {},
             itemBuilder: (a) => [
               PopupMenuItem(
-                child: Text("Atrasados"),
+                child: Text("Pendentes"),
               ),
-              PopupMenuItem(child: Text("Em dia"))
+              PopupMenuItem(child: Text("Em dias"))
             ],
           )
         ],
-        title: Text(widget.title),
       ),
       body: Column(
         children: <Widget>[
@@ -51,9 +51,9 @@ class _RentPageState extends ModularState<RentPage, RentController> {
           ),
           CardRent(
             function: () {},
-            dateVencimento: "20/10/2020",
+            dateVencimento: "20/11/2020",
             tipoImovel: "Apartamento padão",
-            inquilino: "João de Lima Silva",
+            inquilino: "Marcia de Lima Silva",
           ),
         ],
       ),

@@ -28,12 +28,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           PropertyPage(),
           FavoritesPage(),
           UserPage(),
-          Container(
-            color: CustomColor.primaryAnction,
-            child: Center(
-              child: Container(padding: EdgeInsets.all(10), child: LogoApp()),
-            ),
-          )
+          // Container(
+          //   color: CustomColor.primaryAnction,
+          //   child: Center(
+          //     child: Container(padding: EdgeInsets.all(10), child: LogoApp()),
+          //   ),
+          // )
         ],
       ),
       bottomNavigationBar: AnimatedBuilder(
@@ -55,8 +55,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   icon: Icon(Icons.favorite), title: Text("Favoritos")),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person), title: Text("usuário")),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.info), title: Text("Sobre")),
+              // BottomNavigationBarItem(
+              //     icon: Icon(Icons.info), title: Text("Sobre")),
             ],
           );
         },

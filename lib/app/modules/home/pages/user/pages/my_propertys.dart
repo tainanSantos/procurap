@@ -7,8 +7,10 @@ class MyPropertys extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColor.primary2,
-        title: Text("Meus Imóveis"),
+        elevation: 0,
+        backgroundColor: CustomColor.primary2Filter,
+        iconTheme: IconThemeData(),
+        title: Text("Meus Imóveis", style: TextStyle(color: Colors.grey[900]),),
       ),
       body: ListView(
         children: [
