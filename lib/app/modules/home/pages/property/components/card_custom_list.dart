@@ -27,15 +27,9 @@ class CardCustomList extends StatelessWidget {
       onTap: () {
         Modular.to.pushNamed("/home/details");
       },
-      child: Card(
-        margin: EdgeInsets.all(7),
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          // side: BorderSide(color: Colors.white70, width: 1),
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Container(
+      child: Container(
           width: MediaQuery.of(context).size.width,
+          // color: Colors.white,
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,9 +38,7 @@ class CardCustomList extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 15, top: 15),
                   child: Text(
                     type,
-                    style: TextStyle(
-                      color: Colors.black54,
-                    ),
+                    style: TextStyle(color: Colors.grey, fontSize: 13),
                   ),
                 ),
                 Padding(
@@ -54,7 +46,7 @@ class CardCustomList extends StatelessWidget {
                   child: Text(
                     addrens,
                     style: TextStyle(
-                      color: Colors.blueGrey[900],
+                      color: Colors.grey[900],
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 5,
@@ -63,10 +55,11 @@ class CardCustomList extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 180,
+                  height: 170,
                   width: MediaQuery.of(context).size.width,
                   child: Image.network(
-                    urlImage,
+                    urlImage ??
+                        "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -83,8 +76,7 @@ class CardCustomList extends StatelessWidget {
                             child: Text(
                               value,
                               style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.blueGrey[900],
+                                  color: Colors.grey[900],
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -94,7 +86,8 @@ class CardCustomList extends StatelessWidget {
                             child: Text(
                               description,
                               style: TextStyle(
-                                color: Colors.black54,
+                                fontSize: 13,
+                                color: Colors.grey,
                               ),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,
@@ -103,24 +96,28 @@ class CardCustomList extends StatelessWidget {
                         ],
                       ),
                     ),
-                    (!isFavoriteVisible)
-                        ? Container(
-                            padding: const EdgeInsets.all(8.0),
-                            child: IconButton(
-                              icon: Icon(Icons.favorite,
-                                  color:
-                                      isFavorite ? Colors.pink : Colors.grey),
-                              onPressed: () {},
-                            ),
-                          )
-                        : Container()
+                    
+                    // (!isFavoriteVisible)
+                    //     ? Container(
+                    //         padding: const EdgeInsets.all(8.0),
+                    //         child: IconButton(
+                    //           icon: Icon(Icons.favorite,
+                    //               color:
+                    //                   isFavorite ? Colors.pink : Colors.grey),
+                    //           onPressed: () {},
+                    //         ),
+                    //       )
+                    //     : Container()
                   ],
-                )
+                ),
+                SizedBox(height: 15,),
+                Divider()
+                
               ],
             ),
           ),
         ),
-      ),
+      
     );
   }
 }

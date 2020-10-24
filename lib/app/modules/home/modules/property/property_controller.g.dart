@@ -7,7 +7,12 @@ part of 'property_controller.dart';
 // **************************************************************************
 
 final $PropertyController = BindInject(
-  (i) => PropertyController(i<AddressRepository>()),
+  (i) => PropertyController(
+      i<AddressRepository>(),
+      i<TipoAnuncioRepository>(),
+      i<EnderecoRepository>(),
+      i<TipoImovelRepository>(),
+      i<TipoHospedagemRepository>()),
   singleton: true,
   lazy: true,
 );
@@ -19,6 +24,33 @@ final $PropertyController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PropertyController on _PropertyControllerBase, Store {
+  Computed<bool> _$valTipoAnuncioComputed;
+
+  @override
+  bool get valTipoAnuncio =>
+      (_$valTipoAnuncioComputed ??= Computed<bool>(() => super.valTipoAnuncio,
+              name: '_PropertyControllerBase.valTipoAnuncio'))
+          .value;
+  Computed<bool> _$valTipoImovelComputed;
+
+  @override
+  bool get valTipoImovel =>
+      (_$valTipoImovelComputed ??= Computed<bool>(() => super.valTipoImovel,
+              name: '_PropertyControllerBase.valTipoImovel'))
+          .value;
+  Computed<bool> _$valiTipoHospedagemComputed;
+
+  @override
+  bool get valiTipoHospedagem => (_$valiTipoHospedagemComputed ??=
+          Computed<bool>(() => super.valiTipoHospedagem,
+              name: '_PropertyControllerBase.valiTipoHospedagem'))
+      .value;
+  Computed<bool> _$valQtdComputed;
+
+  @override
+  bool get valQtd => (_$valQtdComputed ??= Computed<bool>(() => super.valQtd,
+          name: '_PropertyControllerBase.valQtd'))
+      .value;
   Computed<String> _$validatPublicPlaceComputed;
 
   @override
@@ -69,6 +101,53 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
               name: '_PropertyControllerBase.validatCep'))
           .value;
 
+  final _$tipoAnunciosAtom = Atom(name: '_PropertyControllerBase.tipoAnuncios');
+
+  @override
+  ObservableFuture<ObservableList<TipoAnuncioModel>> get tipoAnuncios {
+    _$tipoAnunciosAtom.reportRead();
+    return super.tipoAnuncios;
+  }
+
+  @override
+  set tipoAnuncios(ObservableFuture<ObservableList<TipoAnuncioModel>> value) {
+    _$tipoAnunciosAtom.reportWrite(value, super.tipoAnuncios, () {
+      super.tipoAnuncios = value;
+    });
+  }
+
+  final _$tipoImoveisAtom = Atom(name: '_PropertyControllerBase.tipoImoveis');
+
+  @override
+  ObservableFuture<ObservableList<TipoImovelModel>> get tipoImoveis {
+    _$tipoImoveisAtom.reportRead();
+    return super.tipoImoveis;
+  }
+
+  @override
+  set tipoImoveis(ObservableFuture<ObservableList<TipoImovelModel>> value) {
+    _$tipoImoveisAtom.reportWrite(value, super.tipoImoveis, () {
+      super.tipoImoveis = value;
+    });
+  }
+
+  final _$tipoHospedagensAtom =
+      Atom(name: '_PropertyControllerBase.tipoHospedagens');
+
+  @override
+  ObservableFuture<ObservableList<TipoHospedagemModel>> get tipoHospedagens {
+    _$tipoHospedagensAtom.reportRead();
+    return super.tipoHospedagens;
+  }
+
+  @override
+  set tipoHospedagens(
+      ObservableFuture<ObservableList<TipoHospedagemModel>> value) {
+    _$tipoHospedagensAtom.reportWrite(value, super.tipoHospedagens, () {
+      super.tipoHospedagens = value;
+    });
+  }
+
   final _$urlImagesListAtom =
       Atom(name: '_PropertyControllerBase.urlImagesList');
 
@@ -82,6 +161,112 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
   set urlImagesList(ObservableList<String> value) {
     _$urlImagesListAtom.reportWrite(value, super.urlImagesList, () {
       super.urlImagesList = value;
+    });
+  }
+
+  final _$tipoAnuncioAtom = Atom(name: '_PropertyControllerBase.tipoAnuncio');
+
+  @override
+  TipoAnuncioModel get tipoAnuncio {
+    _$tipoAnuncioAtom.reportRead();
+    return super.tipoAnuncio;
+  }
+
+  @override
+  set tipoAnuncio(TipoAnuncioModel value) {
+    _$tipoAnuncioAtom.reportWrite(value, super.tipoAnuncio, () {
+      super.tipoAnuncio = value;
+    });
+  }
+
+  final _$tipoImovelAtom = Atom(name: '_PropertyControllerBase.tipoImovel');
+
+  @override
+  TipoImovelModel get tipoImovel {
+    _$tipoImovelAtom.reportRead();
+    return super.tipoImovel;
+  }
+
+  @override
+  set tipoImovel(TipoImovelModel value) {
+    _$tipoImovelAtom.reportWrite(value, super.tipoImovel, () {
+      super.tipoImovel = value;
+    });
+  }
+
+  final _$tipoHospedagemAtom =
+      Atom(name: '_PropertyControllerBase.tipoHospedagem');
+
+  @override
+  TipoHospedagemModel get tipoHospedagem {
+    _$tipoHospedagemAtom.reportRead();
+    return super.tipoHospedagem;
+  }
+
+  @override
+  set tipoHospedagem(TipoHospedagemModel value) {
+    _$tipoHospedagemAtom.reportWrite(value, super.tipoHospedagem, () {
+      super.tipoHospedagem = value;
+    });
+  }
+
+  final _$numBanheiroAtom = Atom(name: '_PropertyControllerBase.numBanheiro');
+
+  @override
+  int get numBanheiro {
+    _$numBanheiroAtom.reportRead();
+    return super.numBanheiro;
+  }
+
+  @override
+  set numBanheiro(int value) {
+    _$numBanheiroAtom.reportWrite(value, super.numBanheiro, () {
+      super.numBanheiro = value;
+    });
+  }
+
+  final _$numGaragenAtom = Atom(name: '_PropertyControllerBase.numGaragen');
+
+  @override
+  int get numGaragen {
+    _$numGaragenAtom.reportRead();
+    return super.numGaragen;
+  }
+
+  @override
+  set numGaragen(int value) {
+    _$numGaragenAtom.reportWrite(value, super.numGaragen, () {
+      super.numGaragen = value;
+    });
+  }
+
+  final _$numQuartosAtom = Atom(name: '_PropertyControllerBase.numQuartos');
+
+  @override
+  int get numQuartos {
+    _$numQuartosAtom.reportRead();
+    return super.numQuartos;
+  }
+
+  @override
+  set numQuartos(int value) {
+    _$numQuartosAtom.reportWrite(value, super.numQuartos, () {
+      super.numQuartos = value;
+    });
+  }
+
+  final _$numConzinhaAtom = Atom(name: '_PropertyControllerBase.numConzinha');
+
+  @override
+  int get numConzinha {
+    _$numConzinhaAtom.reportRead();
+    return super.numConzinha;
+  }
+
+  @override
+  set numConzinha(int value) {
+    _$numConzinhaAtom.reportWrite(value, super.numConzinha, () {
+      super.numConzinha = value;
     });
   }
 
@@ -238,6 +423,83 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
       ActionController(name: '_PropertyControllerBase');
 
   @override
+  dynamic setTipoImovelModel(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setTipoImovelModel');
+    try {
+      return super.setTipoImovelModel(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTipoAnuncioModel(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setTipoAnuncioModel');
+    try {
+      return super.setTipoAnuncioModel(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTipoHospedagemModel(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setTipoHospedagemModel');
+    try {
+      return super.setTipoHospedagemModel(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setNumBanheiro(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setNumBanheiro');
+    try {
+      return super.setNumBanheiro(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setNumGaragem(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setNumGaragem');
+    try {
+      return super.setNumGaragem(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setNumqQuarto(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setNumqQuarto');
+    try {
+      return super.setNumqQuarto(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setNumCozinha(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setNumCozinha');
+    try {
+      return super.setNumCozinha(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setPublicPlace(String value) {
     final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
         name: '_PropertyControllerBase.setPublicPlace');
@@ -304,9 +566,30 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
   }
 
   @override
+  dynamic setCep_(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setCep_');
+    try {
+      return super.setCep_(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+tipoAnuncios: ${tipoAnuncios},
+tipoImoveis: ${tipoImoveis},
+tipoHospedagens: ${tipoHospedagens},
 urlImagesList: ${urlImagesList},
+tipoAnuncio: ${tipoAnuncio},
+tipoImovel: ${tipoImovel},
+tipoHospedagem: ${tipoHospedagem},
+numBanheiro: ${numBanheiro},
+numGaragen: ${numGaragen},
+numQuartos: ${numQuartos},
+numConzinha: ${numConzinha},
 msgCep: ${msgCep},
 publicPlace: ${publicPlace},
 neighborhood: ${neighborhood},
@@ -316,6 +599,10 @@ city: ${city},
 state: ${state},
 cep: ${cep},
 upload: ${upload},
+valTipoAnuncio: ${valTipoAnuncio},
+valTipoImovel: ${valTipoImovel},
+valiTipoHospedagem: ${valiTipoHospedagem},
+valQtd: ${valQtd},
 validatPublicPlace: ${validatPublicPlace},
 validatNeighborhood: ${validatNeighborhood},
 validatNumber: ${validatNumber},

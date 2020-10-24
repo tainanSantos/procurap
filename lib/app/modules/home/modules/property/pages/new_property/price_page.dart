@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
 import 'package:procurap/app/modules/components/textfiled_cutom.dart';
@@ -18,21 +19,20 @@ class PricePage extends StatefulWidget {
 class _PricePageState extends State<PricePage> {
   final controller = Modular.get<PropertyController>();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarCutom(),
       body: containerCustom(
         [
-         
-          titleCustom("Preços do Aluguel"),
+          titleForm(value: "Preços"),
           Row(
             children: [
               Flexible(
                 flex: 1,
                 child: textField(
                   // iconData: Icons.attach_money,
+                  top: 5,
                   labelText: "Preço do aluguel",
                   keyboardType: TextInputType.number,
                   helperText: "Infrome o preço do aluguel",
@@ -46,51 +46,54 @@ class _PricePageState extends State<PricePage> {
               Flexible(
                 flex: 1,
                 child: dropDownButtonField_(
-                    labelText: "Tempo",
-                    list: ["Diária", "Semanal", "Mensal", "Anual"],
-                    helperText: "Tempo de Uso.",
-                    onChanged: (value) {}),
+                  labelText: "Tempo",
+                  list: controller.tipoHospedagens.value != null
+                      ? controller.tipoHospedagens.value
+                          .map((element) => element.nome)
+                          .toList()
+                      : [],
+                  // list: ["Diária", "Semanal", "Mensal", "Anual"],
+                  helperText: "Tempo de uso.",
+                  onChanged: controller.setTipoHospedagemModel,
+                ),
               ),
             ],
           ),
-          SizedBox(
-            height: 30,
-          ),
-          titleCustom("Preços do Imóvel"),
           textField(
-              // iconData: Icons.attach_money,
-              labelText: "Preço do Imóvel",
-              keyboardType: TextInputType.number,
-              helperText: "Infome o preço de venda do imóvel (em reais)",
-              prefix: Text("R\$ ")),
+            // iconData: Icons.attach_money,
+            labelText: "Preço do imóvel",
+            keyboardType: TextInputType.number,
+            helperText: "Infome o preço de venda do imóvel (em reais)",
+            prefix: Text("R\$ "),
+          ),
           SizedBox(
             height: 30,
           ),
-          titleCustom("Telefone para Contato"),
+          titleForm(value: "Telefones para Contato"),
           textField(
               // iconData: Icons.phone,
-              labelText: "Primeiro Contato",
+              labelText: "1ª Contato",
               keyboardType: TextInputType.number,
-              helperText: "Pode ser fixo ou clelular",
+              helperText: "Pode ser fixo, cellular ou whatsapp",
               inputFormatters: controller.maskPhone1),
           textField(
               // iconData: Icons.phone,
-              labelText: "Segundo Contato",
+              labelText: "2ª Contato",
               keyboardType: TextInputType.number,
               helperText: "Pode ser fixo, cellular ou whatsapp",
               inputFormatters: controller.maskPhone2),
-          SizedBox(
-            height: 20,
-          ),
-          ButtonCustom(
-            color: CustomColor.primary2,
-            title: "Próximo",
-            onPressed: () {
-              Modular.to.pushNamed("/home/property/photos");
-            },
-          )
         ],
       ),
+      floatingActionButton: Observer(
+        builder: (_) => ButtonCustom(
+            radius: 0,
+            title: "Próximo",
+            onPressed: () async {
+              Modular.to.pushNamed('/home/property/photos');
+            }),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }

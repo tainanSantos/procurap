@@ -16,12 +16,12 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColor.primary2Filter,
+        backgroundColor: CustomColor.primary,
         title: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Text(
             "Filtros",
-            style: TextStyle(color: Colors.black87),
+            // style: TextStyle(color: Colors.black87,),
           ),
         ),
         elevation: 0,
@@ -49,7 +49,7 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 10,
+              height: 30,
             ),
             DropDownCustom(
               labelText: "Desejo",
@@ -122,7 +122,6 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
                   : "O campo destino não pode ser vazio.",
             ),
             _myDivider()
-            
           ],
         ),
       ),

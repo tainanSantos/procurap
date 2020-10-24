@@ -18,6 +18,7 @@ class CustomDio {
 
   _onRequest(RequestOptions options) async {
     print("REQUEST >>> ${options.data}");
+    options.headers['Authorization'] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MDA1NTEzLCJqdGkiOiIwMmY5YWJiNjI1ZWE0NDYwYTkyZWQzYWVkZTQ5ZmUzYyIsInVzZXJfaWQiOjF9.-ONsQ0XS3kXjLSy6OpgcwAfFGrVuWlfFMu9nRDW9Zwg";
     return options;
   }
 

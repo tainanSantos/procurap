@@ -3,8 +3,13 @@ import 'package:procurap/app/modules/home/modules/property/pages/new_property/an
 import 'package:procurap/app/modules/home/modules/property/pages/new_property/complemet_page.dart';
 import 'package:procurap/app/modules/home/modules/property/pages/new_property/photos_page.dart';
 import 'package:procurap/app/modules/home/modules/property/pages/new_property/price_page.dart';
+import 'package:procurap/app/modules/home/repository/endereco_repository.dart';
+import 'package:procurap/app/modules/home/repository/tipo_anuncio_repository.dart';
+import 'package:procurap/app/modules/home/repository/tipo_hospedagem_repository.dart';
+import 'package:procurap/app/modules/home/repository/tipo_imovel_repository.dart';
 
 import 'package:procurap/app/shared/repository/address_repository.dart';
+import 'package:procurap/app/shared/services/custom_dio.dart';
 
 import 'property_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -14,8 +19,18 @@ import 'property_page.dart';
 class PropertyModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => PropertyController(i.get<AddressRepository>())),
-        Bind((i)=> AddressRepository())
+        Bind((i) => PropertyController(
+            i.get<AddressRepository>(),
+            i.get<TipoAnuncioRepository>(),
+            i.get<EnderecoRepository>(),
+            i.get<TipoImovelRepository>(),
+            i.get<TipoHospedagemRepository>())),
+        Bind((i) => AddressRepository()),
+        Bind((i) => EnderecoRepository()),
+        Bind((i) => TipoHospedagemRepository(i.get<CustomDio>())),
+        Bind((i) => TipoAnuncioRepository(i.get<CustomDio>())),
+        Bind((i) => TipoImovelRepository(i.get<CustomDio>())),
+        Bind((i) => CustomDio())
       ];
 
   @override

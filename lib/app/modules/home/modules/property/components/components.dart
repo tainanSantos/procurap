@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:procurap/app/shared/utils/curom_color.dart';
 
-Widget titleCustom(String title, {double top}) {
-  return Container(
-    padding: EdgeInsets.only(
-      top: top ?? 10,
-    ),
-    child: Text(
-      title,
-      style: TextStyle(
-          fontSize: 17,
-          color: Colors.black87,
-          // color: Color.fromRGBO(74, 76, 255, 1),
-          fontWeight: FontWeight.bold),
-    ),
-  );
-}
+Widget titleForm({String value, IconData data}) => Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 2, top: 10),
+          child: Text(
+            value,
+            style: TextStyle(
+                fontSize: 17,
+                color: CustomColor.primary,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        data == null ? Container() : Icon(data, color: CustomColor.primary)
+      ],
+    );
 
 Widget dropDownButtonField_(
     {List list,
@@ -23,14 +27,14 @@ Widget dropDownButtonField_(
     Function(String) onChanged,
     String errorText,
     String helperText,
-    String value}) {
+    String value,
+    IconData icon}) {
   return Container(
     // height: 75,
     margin: const EdgeInsets.only(top: 0),
     child: DropdownButtonFormField<String>(
-      
       decoration: InputDecoration(
-        
+          prefixIcon: (icon != null) ? Icon(Icons.business) : null,
           // border: OutlineInputBorder(),
           errorText: errorText,
           labelText: labelText,
@@ -53,8 +57,7 @@ Widget dropDownButtonField_(
 }
 
 Widget containerCustom(List<Widget> listW) => SingleChildScrollView(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: listW),
+      padding: EdgeInsets.all(25),
+      child:
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: listW),
     );

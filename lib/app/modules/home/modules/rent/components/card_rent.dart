@@ -96,7 +96,7 @@ class CardRent extends StatelessWidget {
           },
         );
       },
-      child: Card(
+      child: Container(
         margin: EdgeInsets.all(5),
         child: Container(
           padding: EdgeInsets.all(20),
@@ -107,7 +107,7 @@ class CardRent extends StatelessWidget {
                 tipoImovel,
                 style: TextStyle(
                     fontSize: 17,
-                    color: Colors.grey[900],
+                    color: Colors.grey[800],
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -164,6 +164,9 @@ class CardRent extends StatelessWidget {
                         ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),

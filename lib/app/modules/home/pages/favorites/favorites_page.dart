@@ -24,15 +24,15 @@ class _FavoritesPageState
         backgroundColor: CustomColor.primary,
         // elevation: 0,
         centerTitle: true,
-        title: Text("Favoritos"),
+        title: Text("Meus favoritos"),
 
         actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              ShowModalCustom.show(context: context, widget: FilterPage());
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.search),
+          //   onPressed: () {
+          //     ShowModalCustom.show(context: context, widget: FilterPage());
+          //   },
+          // ),
         ],
       ),
       body: SingleChildScrollView(

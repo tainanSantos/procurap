@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -25,45 +24,55 @@ class _PhotosPageState extends State<PhotosPage> {
       appBar: appBarCutom(),
       body: containerCustom(
         [
-          titleCustom("Adcione Fotos do Imóvel"),
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(child: Text("Adcionar Imagens do Imóvel")),
-              IconButton(
+          // titleCustom("Imagens"),
+          ListTile(
+            contentPadding: EdgeInsets.all(0),
+            title: Text(
+              "Adcionar imagens",
+              style: TextStyle(
+                  fontSize: 16,
+                  color: CustomColor.primary,
+                  fontWeight: FontWeight.bold),
+            ),
+            // subtitle: Text("Adcine imagens do imóvel"),
+            trailing: Wrap(
+              children: [
+                IconButton(
+                    icon: Icon(
+                      Icons.photo_library,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () async {
+                      var gallery = await ImagePicker.platform.pickImage(
+                        source: ImageSource.gallery,
+                      );
+                      if (gallery.path != null)
+                        controller.urlImagesList.add(gallery.path);
+                      print("CAMINHO DA IMAGEMS >>> ${gallery.path}");
+                    }),
+                IconButton(
                   icon: Icon(
-                    Icons.photo_library,
+                    Icons.camera_alt,
                     color: Colors.grey,
                   ),
                   onPressed: () async {
-                    var gallery = await ImagePicker.platform.pickImage(
-                      source: ImageSource.gallery,
+                    var picture = await ImagePicker.platform.pickImage(
+                      source: ImageSource.camera,
                     );
-                    if (gallery.path != null)
-                      controller.urlImagesList.add(gallery.path);
-                    print("CAMINHO DA IMAGEMS >>> ${gallery.path}");
-                  }),
-              IconButton(
-                icon: Icon(
-                  Icons.camera_alt,
-                  color: Colors.grey,
-                ),
-                onPressed: () async {
-                  var picture = await ImagePicker.platform.pickImage(
-                    source: ImageSource.camera,
-                  );
 
-                  if (picture.path != null)
-                    controller.urlImagesList.add(picture.path);
-                },
-              ),
-            ],
+                    if (picture.path != null)
+                      controller.urlImagesList.add(picture.path);
+                  },
+                ),
+              ],
+            ),
           ),
+
           Observer(
             builder: (_) => Container(
               color: Colors.grey[200],
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2,
+              height: MediaQuery.of(context).size.height / 1.5,
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3),
@@ -114,25 +123,23 @@ class _PhotosPageState extends State<PhotosPage> {
           SizedBox(
             height: 20,
           ),
-          ButtonCustom(
-            title: "Proximo",
-            color: CustomColor.primary2,
-            onPressed: () {
-              // Modular.to.showDialog(child: SnackBar(content: Text("data")));
-
-              // vai para a tela de confimação de cadastro
-              Modular.to.pushNamed("/home/property/details");
-
-              // Modular.to.showDialog(
-              //   child: AlertDialog(
-              //       title: Text("Info"),
-              //       content: Text(
-              //           "Fazer a tela de confirmação. \n nela vai ter todas as informação coletadas no cadastro\n e o usuário só vai ter que conferir tudo e salvar ")),
-              // );
-            },
-          )
         ],
       ),
+      floatingActionButton: Observer(
+        builder: (_) => ButtonCustom(
+            radius: 0,
+            title: "Próximo",
+            onPressed: () async {
+              Modular.to.pop();
+              Modular.to.pop();
+              Modular.to.pop();
+              Modular.to.pop();
+              Modular.to.pop();
+              // Modular.to.pushReplacementNamed('/home');
+            }),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }

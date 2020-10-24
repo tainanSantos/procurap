@@ -16,7 +16,7 @@ import 'package:procurap/app/modules/home/pages/property/filter/filter_controlle
 import 'package:procurap/app/modules/home/pages/property/details/details_page.dart';
 import 'package:procurap/app/modules/home/pages/property/filter/filter_page.dart';
 import 'package:procurap/app/modules/home/pages/property/property_controller.dart';
-import 'package:procurap/app/modules/home/repositorys/filter_repository.dart';
+import 'package:procurap/app/modules/home/repository/filter_repository.dart';
 import 'package:procurap/app/shared/services/custom_dio.dart';
 import 'home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';

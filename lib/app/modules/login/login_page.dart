@@ -36,13 +36,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                     color: CustomColor.primary,
                     // color: Color.fromRGBO(74, 76, 255, 1),
                   ),
-                  // Align(
-                  //   alignment: Alignment.center,
-                  //   child: Icon(Icons.filter_hdr, color: Colors.white, size: 50,),
-                  // ),
-
                   Align(child: LogoApp()),
-
                   Positioned(
                     left: 30,
                     bottom: 5,
@@ -76,14 +70,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
               ),
             ),
             Container(
+              // margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
+                    // topLeft: Radius.circular(20),
+                    // topRight: Radius.circular(20),
+                    // bottomLeft: Radius.circular(10),
+                    // bottomRight: Radius.circular(10),
+                    ),
               ),
-              height: height * 0.5,
+              height: (height * 0.5),
               child: SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.all(30),
@@ -129,7 +126,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         },
                       ),
                       SizedBox(
-                        height: 60,
+                        height: 30,
                       ),
                       GestureDetector(
                         onTap: () {

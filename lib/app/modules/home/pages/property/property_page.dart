@@ -25,91 +25,104 @@ class _PropertyPageState
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: CustomColor.primary,
-          title: LogoApp(),
-          leading: PopupMenuButton(
-            onSelected: (value) {
-              switch (value) {
-                case 1:
-                  Modular.to.pushReplacementNamed("/login");
+      appBar: AppBar(
+        backgroundColor: CustomColor.primary,
+        title: LogoApp(),
+        leading: PopupMenuButton(
+          onSelected: (value) {
+            switch (value) {
+              case 1:
+                Modular.to.pushReplacementNamed("/login");
 
-                  break;
-                case 2:
-                  break;
-                case 3:
-                  break;
-                default:
-              }
-            },
-            icon: Icon(Icons.menu),
-            itemBuilder: (_) => [
-              PopupMenuItem(value: 1, child: Text("Divulgar meu imóvel")),
-              PopupMenuItem(value: 2, child: Text("Sobre")),
-              PopupMenuItem(value: 3, child: Text("Tutórial")),
-            ],
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                // Modular.to.pushNamed("/home/filter");
-                ShowModalCustom.show(context: context, widget: FilterPage());
-              },
-            ),
-            // IconButton(
-            //   icon: Icon(Icons.map),
-            //   onPressed: () {
-            //     AlertDialogCustom.Msg(
-            //         context: context, title: "Não Implementado", i: 3);
-            //     Timer(Duration(seconds: 1), () => Modular.to.pop());
-            //   },
-            // )
+                break;
+              case 2:
+                break;
+              case 3:
+                break;
+              default:
+            }
+          },
+          icon: Icon(Icons.menu),
+          itemBuilder: (_) => [
+            PopupMenuItem(value: 1, child: Text("Divulgar meu imóvel")),
+            PopupMenuItem(value: 2, child: Text("Sobre")),
+            PopupMenuItem(value: 3, child: Text("Tutórial")),
           ],
         ),
-        body: ListView(
-          children: [
-            CardCustomList(
-              isFavorite: false,
-              type: "Apartamento",
-              addrens: "Serra Talhada - PE",
-              value: "RS 300, 00",
-              description:
-                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
-              urlImage:
-                  "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
-            ),
-            CardCustomList(
-              type: "Apartamento",
-              addrens: "Serra Talhada - PE",
-              value: "RS 300, 00",
-              description:
-                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
-              urlImage:
-                  "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg",
-            ),
-            CardCustomList(
-              type: "Apartamento",
-              addrens: "Serra Talhada - PE",
-              value: "RS 300, 00",
-              description:
-                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
-              urlImage:
-                  "https://s3.amazonaws.com/static.nidoimovel.com.br/19ca14e7ea6328a42e0eb13d585e4c22/imovel/PJ/PJ51701/c424fb2721f6a524c16404e75bb70a8a.jpg?1591970826",
-            ),
-            CardCustomList(
-              type: "Apartamento",
-              addrens: "Serra Talhada - PE",
-              value: "RS 300, 00",
-              description:
-                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
-              urlImage:
-                  "https://s2.glbimg.com/9zr9ECC9A4F0YvrWT5yePB3rRI0=/smart/e.glbimg.com/og/ed/f/original/2015/09/10/apartamento-32m-adriana-fontana-09.jpg",
-            ),
-          ],
-        ));
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // Modular.to.pushNamed("/home/filter");
+              ShowModalCustom.show(
+                context: context,
+                widget: FilterPage(),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.map),
+            onPressed: () {
+              ShowModalCustom.show(
+                context: context,
+                widget: Container(
+                  height: 50,
+                  color: Colors.red,
+                  child: Center(
+                    child: Text(
+                      "Não implementado.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              );
+
+              // AlertDialogCustom.Msg(
+              //     context: context, title: "Não Implementado", i: 3);
+              // Timer(Duration(seconds: 1), () => Modular.to.pop());
+            },
+          )
+        ],
+      ),
+      body: ListView(
+        children: [
+          CardCustomList(
+            isFavorite: false,
+            type: "Apartamento",
+            addrens: "Serra Talhada - PE",
+            value: "RS 300, 00",
+            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
+            urlImage:
+                "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
+          ),
+          CardCustomList(
+            type: "Apartamento",
+            addrens: "Serra Talhada - PE",
+            value: "RS 300, 00",
+            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros  ",
+            urlImage:
+                "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg",
+          ),
+          CardCustomList(
+            type: "Apartamento",
+            addrens: "Serra Talhada - PE",
+            value: "RS 300, 00",
+            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros",
+            urlImage:
+                "https://s3.amazonaws.com/static.nidoimovel.com.br/19ca14e7ea6328a42e0eb13d585e4c22/imovel/PJ/PJ51701/c424fb2721f6a524c16404e75bb70a8a.jpg?1591970826",
+          ),
+          CardCustomList(
+            type: "Apartamento",
+            addrens: "Serra Talhada - PE",
+            value: "RS 300, 00",
+            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
+            urlImage:
+                "https://s2.glbimg.com/9zr9ECC9A4F0YvrWT5yePB3rRI0=/smart/e.glbimg.com/og/ed/f/original/2015/09/10/apartamento-32m-adriana-fontana-09.jpg",
+          ),
+        ],
+      ),
+    );
   }
 
   Widget rowTitle(String tittleRow) => Row(

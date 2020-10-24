@@ -1,17 +1,23 @@
+import 'package:flutter/foundation.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/home/repository/endereco_repository.dart';
+import 'package:procurap/app/modules/home/repository/tipo_anuncio_repository.dart';
+import 'package:procurap/app/modules/home/repository/tipo_hospedagem_repository.dart';
+import 'package:procurap/app/modules/home/repository/tipo_imovel_repository.dart';
 import 'package:procurap/app/shared/models/address_model.dart';
+import 'package:procurap/app/shared/models/tipo_anuncio_model.dart';
+import 'package:procurap/app/shared/models/tipo_hospedagem_model.dart';
+import 'package:procurap/app/shared/models/tipo_imovel_model.dart';
 import 'package:procurap/app/shared/repository/address_repository.dart';
 
 part 'property_controller.g.dart';
-
 
 @Injectable()
 class PropertyController = _PropertyControllerBase with _$PropertyController;
 
 abstract class _PropertyControllerBase with Store {
-
   var maskCep = MaskTextInputFormatter(
       mask: "#####-###", filter: {"#": RegExp(r'[0-9]')});
   var maskPhone1 = MaskTextInputFormatter(
@@ -24,17 +30,133 @@ abstract class _PropertyControllerBase with Store {
       MaskTextInputFormatter(mask: "##,00", filter: {"#": RegExp(r'[0-9]')});
 
   final AddressRepository addressRepository;
+  final TipoAnuncioRepository tipoAnuncioRepository;
+  final EnderecoRepository enderecoRepository;
+  final TipoImovelRepository tipoImovelRepository;
+  final TipoHospedagemRepository tipoHospedagemRepository;
 
-  _PropertyControllerBase(this.addressRepository);
+  @observable
+  ObservableFuture<ObservableList<TipoAnuncioModel>> tipoAnuncios;
+
+  @observable
+  ObservableFuture<ObservableList<TipoImovelModel>> tipoImoveis;
+
+  @observable
+  ObservableFuture<ObservableList<TipoHospedagemModel>> tipoHospedagens;
+
+  _PropertyControllerBase(
+    this.addressRepository,
+    this.tipoAnuncioRepository,
+    this.enderecoRepository,
+    this.tipoImovelRepository,
+    this.tipoHospedagemRepository,
+  ) {
+    // this.enderecoRepository.getAll();
+    this.tipoAnuncios = this.tipoAnuncioRepository.getAll().asObservable();
+    this.tipoImoveis = this.tipoImovelRepository.getAll().asObservable();
+    this.tipoHospedagens =
+        this.tipoHospedagemRepository.getAll().asObservable();
+  }
 
   List<String> statesBr = listStates;
 
   @observable
   ObservableList<String> urlImagesList = ObservableList();
 
+  // ___________________________________________________________________________
+
+  @observable
+  TipoAnuncioModel tipoAnuncio;
+
+  @observable
+  TipoImovelModel tipoImovel;
+
+  @observable
+  TipoHospedagemModel tipoHospedagem;
+
+  @observable
+  int numBanheiro;
+
+  @observable
+  int numGaragen;
+
+  @observable
+  int numQuartos;
+
+  @observable
+  int numConzinha;
+
+  @action
+  setTipoImovelModel(String value) {
+    for (var item in this.tipoImoveis.value) {
+      if (item.nome == value) {
+        this.tipoImovel = item;
+      }
+    }
+  }
+
+  @action
+  setTipoAnuncioModel(String value) {
+    for (var item in this.tipoAnuncios.value) {
+      if (item.nome == value) {
+        this.tipoAnuncio = item;
+      }
+    }
+  }
+
+  @action
+  setTipoHospedagemModel(String value) {
+    for (var item in this.tipoHospedagens.value) {
+      if (item.nome == value) {
+        this.tipoHospedagem = item;
+      }
+    }
+  }
+
+  @action
+  setNumBanheiro(String value) => this.numBanheiro = int.parse(value);
+
+  @action
+  setNumGaragem(String value) => this.numGaragen = int.parse(value);
+
+  @action
+  setNumqQuarto(String value) => this.numQuartos = int.parse(value);
+
+  @action
+  setNumCozinha(String value) => this.numConzinha = int.parse(value);
+
+  @computed
+  bool get valTipoAnuncio => (this.tipoAnuncio != null);
+
+  @computed
+  bool get valTipoImovel => (this.tipoImovel != null);
+
+  @computed
+  bool get valiTipoHospedagem => (this.tipoHospedagem != null);
+
+  // @computed
+  // bool get valTiNumBanhero => (this.numBanheiro != null);
+
+  // @computed
+  // bool get valTiNumGaragen => (this.numGaragen != null);
+
+  // @computed
+  // bool get valTiNumQuaos => (this.numQuartos != null);
+
+  // @computed
+  // bool get valTiNumCozinha => (this.numConzinha != null);
+
+  @computed
+  bool get valQtd =>
+      this.numConzinha != null &&
+      this.numQuartos != null &&
+      this.numGaragen != null &&
+      this.numBanheiro != null;
+
+  // ___________________________________________________________________________
+
   @observable
   String msgCep;
-
   //___________________________________
 
   @observable
@@ -75,6 +197,9 @@ abstract class _PropertyControllerBase with Store {
 
   @action
   setstate(String value) => this.state = value;
+
+  @action
+  setCep_(String value) => this.cep = value;
 
   @action
   Future setCep(String value) async {
@@ -142,30 +267,24 @@ abstract class _PropertyControllerBase with Store {
 
   @computed
   String get validatCep {
-    if (this.cep == null || this.cep.isEmpty) {
+    if (this.cep == null || this.cep.isEmpty)
       return "O campo CEP é Obrigatório";
-    }
+    if (this.cep.length < 9) return "CEP inválido";
     return this.msgCep;
   }
 
+  bool get validateEndereco =>
+      this.validatCep == null &&
+      this.validatState == null &&
+      this.validatPublicPlace == null &&
+      this.validatNeighborhood == null &&
+      this.validatComplement == null &&
+      this.validatNumber == null &&
+      this.validatCity == null;
+
   @action
   Future<bool> getCep() async {
-    print("Fazendo requisição!!!");
     this.upload = false;
-
-    // var data = await this.addressRepository.findByCep(this.cep);
-
-    // if (data != null) {
-    //   print("O retorno não é mnulo!!!!");
-    //   setCity(data['city'].isEmpty ? this.city : data['city']);
-    //   setstate(data['state'].isEmpty ? this.state : data['state']);
-    //   this.msgCep = null;
-    // } else {
-    //   this.msgCep = "Digite um CEP válido";
-    // }
-
-    // this.upload = true;
-    // return true;
   }
 
   void removeMask() {

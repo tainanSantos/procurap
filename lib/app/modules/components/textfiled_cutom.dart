@@ -13,14 +13,15 @@ Widget textField(
         TextEditingController controller,
         bool suffixIcon = false,
         IconData iconData,
-        String hintText, Widget prefix }) =>
+        String hintText,
+        Widget prefix}) =>
     Padding(
-      padding: EdgeInsets.only(top: top ?? 5),
+      padding: EdgeInsets.only(top: top ?? 0),
       child: TextFormField(
         controller: controller ?? null,
         onChanged: onChanged,
         // maxLength: maxLength ?? null,
-        
+
         decoration: InputDecoration(
           // border: OutlineInputBorder(),
           prefix: prefix,

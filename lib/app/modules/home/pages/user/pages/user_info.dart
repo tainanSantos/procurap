@@ -64,7 +64,7 @@ class UserInfo extends StatelessWidget {
           _line(context),
           ListTile(
             onTap: () {
-              Modular.to.pushNamed("/home/property/announcement");
+              Modular.to.pushNamed("/home/property/addrens");
             },
             title: Text("Novo Anúncio"),
             // trailing: Icon(Icons.add_location),
@@ -78,73 +78,85 @@ class UserInfo extends StatelessWidget {
               showModalBottomSheet(
                 context: context,
                 backgroundColor: Colors.transparent,
-                builder: (_) => Container(
-                  height: 210,
-                  decoration: BoxDecoration(
+                builder: (_) => Padding(
+                  padding: const EdgeInsets.all(0.0),
+                  child: Container(
+                    height: 140,
+                    decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10))),
-                  padding: EdgeInsets.only(left: 30, right: 30, top: 10),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 5,
-                        width: 35,
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text("Deseja realmente sair do aplicativo?"),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: 200,
-                        height: 50,
-                        child: RaisedButton(
-                          color: CustomColor.primary,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                color: CustomColor.primary, width: 2),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onPressed: () {
-                            exit(0);
-                          },
-                          child: Text("SIM",
-                              style: TextStyle(color: Colors.white)),
+                      // borderRadius: BorderRadius.all(Radius.circular(10))
+                      // borderRadius: BorderRadius.only(
+                      //   topLeft: Radius.circular(10),
+                      //   topRight: Radius.circular(10),
+                      // ),
+                    ),
+                    padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(10)),
+                          height: 5,
+                          width: 35,
                         ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        width: 200,
-                        height: 50,
-                        child: RaisedButton(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                color: CustomColor.primary, width: 1),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            "NÃO",
-                            style: TextStyle(color: CustomColor.primary),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text("Deseja realmente sair do aplicativo?"),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 180,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 40,
+                                child: RaisedButton(
+                                  elevation: 0,
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: Colors.grey[800], width: 2),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "NÃO",
+                                    style: TextStyle(color: Colors.grey[800]),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 80,
+                                height: 40,
+                                child: RaisedButton(
+                                  color: CustomColor.primary,
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: CustomColor.primary, width: 2),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  onPressed: () {
+                                    exit(0);
+                                  },
+                                  child: Text("SIM",
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      )
-                    ],
+                        SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );
