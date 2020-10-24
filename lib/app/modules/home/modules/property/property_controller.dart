@@ -86,6 +86,18 @@ abstract class _PropertyControllerBase with Store {
   @observable
   int numConzinha;
 
+  @observable
+  double aluguel;
+
+  @observable
+  double precoImovel;
+
+  @observable
+  String telFixo;
+
+  @observable
+  String telCelular;
+
   @action
   setTipoImovelModel(String value) {
     for (var item in this.tipoImoveis.value) {
@@ -125,6 +137,18 @@ abstract class _PropertyControllerBase with Store {
   @action
   setNumCozinha(String value) => this.numConzinha = int.parse(value);
 
+  @action
+  setAluguel(String value) => this.aluguel = double.parse(value);
+
+  @action
+  setPrecoImovel(String value) => this.aluguel = double.parse(value);
+
+  @action
+  setTelFixo(String value) => this.telFixo = value;
+
+  @action
+  setTelCelular(String value) => this.telCelular = value;
+
   @computed
   bool get valTipoAnuncio => (this.tipoAnuncio != null);
 
@@ -152,6 +176,10 @@ abstract class _PropertyControllerBase with Store {
       this.numQuartos != null &&
       this.numGaragen != null &&
       this.numBanheiro != null;
+
+  
+  @computed
+  
 
   // ___________________________________________________________________________
 
