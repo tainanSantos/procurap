@@ -77,10 +77,12 @@ class _PricePageState extends State<PricePage> {
               Flexible(
                 flex: 1,
                 child: textField(
-                    labelText: "1ª Contato",
-                    keyboardType: TextInputType.number,
-                    helperText: "Telefone fixo",
-                    inputFormatters: controller.maskPhone1),
+                  labelText: "1ª Contato",
+                  keyboardType: TextInputType.number,
+                  helperText: "Telefone fixo",
+                  inputFormatters: controller.maskPhone1,
+                  onChanged: controller.setTelFixo,
+                ),
               ),
               SizedBox(
                 width: 20,
@@ -88,11 +90,13 @@ class _PricePageState extends State<PricePage> {
               Flexible(
                 flex: 1,
                 child: textField(
-                    // iconData: Icons.phone,
-                    labelText: "2ª Contato",
-                    keyboardType: TextInputType.number,
-                    helperText: "Telefone celular",
-                    inputFormatters: controller.maskPhone2),
+                  // iconData: Icons.phone,
+                  labelText: "2ª Contato",
+                  keyboardType: TextInputType.number,
+                  helperText: "Telefone celular",
+                  inputFormatters: controller.maskPhone2,
+                  onChanged: controller.setTelCelular,
+                ),
               ),
             ],
           )
@@ -102,9 +106,11 @@ class _PricePageState extends State<PricePage> {
         builder: (_) => ButtonCustom(
             radius: 0,
             title: "Próximo",
-            onPressed: () async {
-              Modular.to.pushNamed('/home/property/photos');
-            }),
+            onPressed: (controller.valTelCelular && controller.valTelFixo)
+                ? () {
+                    Modular.to.pushNamed('/home/property/photos');
+                  }
+                : null),
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,

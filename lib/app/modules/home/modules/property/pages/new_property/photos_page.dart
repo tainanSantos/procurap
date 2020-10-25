@@ -9,32 +9,28 @@ import 'package:procurap/app/modules/home/modules/property/property_controller.d
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class PhotosPage extends StatefulWidget {
-  final String title;
-  const PhotosPage({Key key, this.title = "Photos"}) : super(key: key);
-
   @override
   _PhotosPageState createState() => _PhotosPageState();
 }
 
 class _PhotosPageState extends State<PhotosPage> {
   final controller = Modular.get<PropertyController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarCutom(),
       body: containerCustom(
         [
-          // titleCustom("Imagens"),
           ListTile(
             contentPadding: EdgeInsets.all(0),
             title: Text(
               "Adcionar imagens",
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 17,
                   color: CustomColor.primary,
                   fontWeight: FontWeight.bold),
             ),
-            // subtitle: Text("Adcine imagens do imóvel"),
             trailing: Wrap(
               children: [
                 IconButton(
@@ -67,7 +63,6 @@ class _PhotosPageState extends State<PhotosPage> {
               ],
             ),
           ),
-
           Observer(
             builder: (_) => Container(
               color: Colors.grey[200],
@@ -79,8 +74,6 @@ class _PhotosPageState extends State<PhotosPage> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      // print(
-                      //     "Apertou na imagem ${controller.urlImagesList[index]}");
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => Scaffold(
@@ -127,16 +120,16 @@ class _PhotosPageState extends State<PhotosPage> {
       ),
       floatingActionButton: Observer(
         builder: (_) => ButtonCustom(
-            radius: 0,
-            title: "Próximo",
-            onPressed: () async {
-              Modular.to.pop();
-              Modular.to.pop();
-              Modular.to.pop();
-              Modular.to.pop();
-              Modular.to.pop();
-              // Modular.to.pushReplacementNamed('/home');
-            }),
+          radius: 0,
+          title: "Próximo",
+          onPressed: () {
+            Modular.to.pop();
+            Modular.to.pop();
+            Modular.to.pop();
+            Modular.to.pop();
+            Modular.to.pop();
+          },
+        ),
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,

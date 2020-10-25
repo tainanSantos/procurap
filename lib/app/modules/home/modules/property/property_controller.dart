@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -44,6 +43,9 @@ abstract class _PropertyControllerBase with Store {
   @observable
   ObservableFuture<ObservableList<TipoHospedagemModel>> tipoHospedagens;
 
+  @observable
+  List<String> urlImagesList;
+
   _PropertyControllerBase(
     this.addressRepository,
     this.tipoAnuncioRepository,
@@ -51,7 +53,7 @@ abstract class _PropertyControllerBase with Store {
     this.tipoImovelRepository,
     this.tipoHospedagemRepository,
   ) {
-    // this.enderecoRepository.getAll();
+    this.urlImagesList = List<String>();
     this.tipoAnuncios = this.tipoAnuncioRepository.getAll().asObservable();
     this.tipoImoveis = this.tipoImovelRepository.getAll().asObservable();
     this.tipoHospedagens =
@@ -59,9 +61,6 @@ abstract class _PropertyControllerBase with Store {
   }
 
   List<String> statesBr = listStates;
-
-  @observable
-  ObservableList<String> urlImagesList = ObservableList();
 
   // ___________________________________________________________________________
 
@@ -158,18 +157,6 @@ abstract class _PropertyControllerBase with Store {
   @computed
   bool get valiTipoHospedagem => (this.tipoHospedagem != null);
 
-  // @computed
-  // bool get valTiNumBanhero => (this.numBanheiro != null);
-
-  // @computed
-  // bool get valTiNumGaragen => (this.numGaragen != null);
-
-  // @computed
-  // bool get valTiNumQuaos => (this.numQuartos != null);
-
-  // @computed
-  // bool get valTiNumCozinha => (this.numConzinha != null);
-
   @computed
   bool get valQtd =>
       this.numConzinha != null &&
@@ -177,10 +164,18 @@ abstract class _PropertyControllerBase with Store {
       this.numGaragen != null &&
       this.numBanheiro != null;
 
-  
   @computed
-  
+  bool get valTelFixo => (this.telFixo == null || this.telFixo.isEmpty)
+      ? false
+      : ((this.telFixo.length < 15) ? false : true);
 
+  @computed
+  bool get valTelCelular => (this.telCelular == null || this.telCelular.isEmpty)
+      ? false
+      : (this.telCelular.length < 15)
+          ? false
+          : true;
+          
   // ___________________________________________________________________________
 
   @observable

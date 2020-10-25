@@ -13,8 +13,7 @@ class TipoAnuncioRepository {
   Future<ObservableList<TipoAnuncioModel>> getAll() async {
     print("A gente chegou aqui");
     try {
-      this._response =
-          await this._dio.instance.get("http://10.0.2.2:8090/api/v1/tipo_anuncios/");
+      this._response = await this._dio.instance.get("${Urls.TIPO_ANUNCIOS}/");
       // return this._response.data;
       print("A gente chegou aqui 2 ");
 
