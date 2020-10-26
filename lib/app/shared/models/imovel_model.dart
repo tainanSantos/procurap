@@ -9,6 +9,7 @@ class ImovelModel {
   int numVagas;
   int numQuartos;
   String precoImovel;
+  String precoAluguel;
 
   ImovelModel(
       {this.id,
@@ -20,7 +21,8 @@ class ImovelModel {
       this.numConzinhas,
       this.numVagas,
       this.numQuartos,
-      this.precoImovel});
+      this.precoImovel,
+      this.precoAluguel});
 
   ImovelModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,6 +35,7 @@ class ImovelModel {
     numVagas = json['num_vagas'];
     numQuartos = json['num_quartos'];
     precoImovel = json['preco_imovel'];
+    precoAluguel = json['preco_aluguel'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +50,7 @@ class ImovelModel {
     data['num_vagas'] = this.numVagas;
     data['num_quartos'] = this.numQuartos;
     data['preco_imovel'] = this.precoImovel;
+    data['preco_aluguel'] = this.precoAluguel;
     return data;
   }
 }

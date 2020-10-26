@@ -26,7 +26,7 @@ class PropertyModule extends ChildModule {
             i.get<TipoImovelRepository>(),
             i.get<TipoHospedagemRepository>())),
         Bind((i) => AddressRepository()),
-        Bind((i) => EnderecoRepository()),
+        Bind((i) => EnderecoRepository(i.get<CustomDio>())),
         Bind((i) => TipoHospedagemRepository(i.get<CustomDio>())),
         Bind((i) => TipoAnuncioRepository(i.get<CustomDio>())),
         Bind((i) => TipoImovelRepository(i.get<CustomDio>())),

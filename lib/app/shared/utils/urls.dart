@@ -1,6 +1,7 @@
 class Urls {
   static const String IP = '10.0.2.2';
-  static const String URL = 'http://${IP}:8090/api/v1';
+  // static const String IP = '192.168.0.104';
+  static const String URL = 'http://${IP}:8091/api/v1';
   static const String ENDERECO = '$URL/enderecos';
   static const String IMOVEL = '$URL/imoveis';
   static const String TIPO_IMOVEIS = '$URL/tipo_imoveis';

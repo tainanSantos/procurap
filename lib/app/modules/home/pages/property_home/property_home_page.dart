@@ -1,22 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/components/logo_app.dart';
 import 'package:procurap/app/modules/components/show_modal_cutom.dart';
-import 'package:procurap/app/modules/home/pages/property/components/card_custom_list.dart';
-import 'package:procurap/app/modules/home/pages/property/filter/filter_page.dart';
+import 'package:procurap/app/modules/home/pages/property_home/components/card_custom_list.dart';
+import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
+import 'package:procurap/app/shared/models/imovel_model.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
-import 'property_controller.dart';
+import 'property_home_controller.dart';
 
-class PropertyPage extends StatefulWidget {
+class PropertyHomePage extends StatefulWidget {
   @override
-  _PropertyPageState createState() => _PropertyPageState();
+  _PropertyHomePageState createState() => _PropertyHomePageState();
 }
 
-class _PropertyPageState
-    extends ModularState<PropertyPage, PropertyController> {
+class _PropertyHomePageState
+    extends ModularState<PropertyHomePage, PropertyHomeController> {
   //use 'controller' variable to access controller
 
   @override
@@ -25,107 +27,111 @@ class _PropertyPageState
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: CustomColor.primary,
-        title: LogoApp(),
-        leading: PopupMenuButton(
-          onSelected: (value) {
-            switch (value) {
-              case 1:
-                Modular.to.pushReplacementNamed("/login");
+        appBar: AppBar(
+          backgroundColor: CustomColor.primary,
+          title: LogoApp(),
+          leading: PopupMenuButton(
+            onSelected: (value) {
+              switch (value) {
+                case 1:
+                  Modular.to.pushReplacementNamed("/login");
 
-                break;
-              case 2:
-                break;
-              case 3:
-                break;
-              default:
-            }
-          },
-          icon: Icon(Icons.menu),
-          itemBuilder: (_) => [
-            PopupMenuItem(value: 1, child: Text("Divulgar meu imóvel")),
-            PopupMenuItem(value: 2, child: Text("Sobre")),
-            PopupMenuItem(value: 3, child: Text("Tutórial")),
-          ],
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Modular.to.pushNamed("/home/filter");
-              ShowModalCustom.show(
-                context: context,
-                widget: FilterPage(),
-              );
+                  break;
+                case 2:
+                  break;
+                case 3:
+                  break;
+                default:
+              }
             },
+            icon: Icon(Icons.menu),
+            itemBuilder: (_) => [
+              PopupMenuItem(value: 1, child: Text("Divulgar meu imóvel")),
+              PopupMenuItem(value: 2, child: Text("Sobre")),
+              PopupMenuItem(value: 3, child: Text("Tutórial")),
+            ],
           ),
-          IconButton(
-            icon: Icon(Icons.map),
-            onPressed: () {
-              ShowModalCustom.show(
-                context: context,
-                widget: Container(
-                  height: 50,
-                  color: Colors.red,
-                  child: Center(
-                    child: Text(
-                      "Não implementado.",
-                      style: TextStyle(color: Colors.white),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                // Modular.to.pushNamed("/home/filter");
+                ShowModalCustom.show(
+                  context: context,
+                  widget: FilterPage(),
+                );
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.map),
+              onPressed: () {
+                ShowModalCustom.show(
+                  context: context,
+                  widget: Container(
+                    height: 50,
+                    color: Colors.red,
+                    child: Center(
+                      child: Text(
+                        "Não implementado.",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
+                );
+
+                // AlertDialogCustom.Msg(
+                //     context: context, title: "Não Implementado", i: 3);
+                // Timer(Duration(seconds: 1), () => Modular.to.pop());
+              },
+            )
+          ],
+        ),
+        body: Observer(
+          builder: (_) {
+            if (controller.imovelModels.error != null) {
+              return Center(
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("Erro ao carregar"),
                 ),
               );
+            }
+            if (controller.imovelModels.value == null) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (controller.imovelModels.value.length == 0) {
+              return Center(
+                child: Text("Nenhum imóvek cadastrado"),
+              );
+            }
 
-              // AlertDialogCustom.Msg(
-              //     context: context, title: "Não Implementado", i: 3);
-              // Timer(Duration(seconds: 1), () => Modular.to.pop());
-            },
-          )
-        ],
-      ),
-      // body: 
+            List<ImovelModel> imoveis = controller.imovelModels.value;
 
-      
-      // ListView(
-      //   children: [
-      //     CardCustomList(
-      //       isFavorite: false,
-      //       type: "Apartamento",
-      //       addrens: "Serra Talhada - PE",
-      //       value: "RS 300, 00",
-      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
-      //       urlImage:
-      //           "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
-      //     ),
-      //     CardCustomList(
-      //       type: "Apartamento",
-      //       addrens: "Serra Talhada - PE",
-      //       value: "RS 300, 00",
-      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros  ",
-      //       urlImage:
-      //           "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg",
-      //     ),
-      //     CardCustomList(
-      //       type: "Apartamento",
-      //       addrens: "Serra Talhada - PE",
-      //       value: "RS 300, 00",
-      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros",
-      //       urlImage:
-      //           "https://s3.amazonaws.com/static.nidoimovel.com.br/19ca14e7ea6328a42e0eb13d585e4c22/imovel/PJ/PJ51701/c424fb2721f6a524c16404e75bb70a8a.jpg?1591970826",
-      //     ),
-      //     CardCustomList(
-      //       type: "Apartamento",
-      //       addrens: "Serra Talhada - PE",
-      //       value: "RS 300, 00",
-      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
-      //       urlImage:
-      //           "https://s2.glbimg.com/9zr9ECC9A4F0YvrWT5yePB3rRI0=/smart/e.glbimg.com/og/ed/f/original/2015/09/10/apartamento-32m-adriana-fontana-09.jpg",
-      //     ),
-      //   ],
-      // ),
-    );
+            return ListView.builder(
+              itemCount: imoveis.length,
+              itemBuilder: (context, index) {
+                return CardCustomList(
+                  onTap: () {
+                    controller.setImovelModel(imoveis[index]);
+                    controller.setEnderecoModel(
+                        controller.getEndereco(imoveis[index].id));
+                    Modular.to.pushNamed("/home/details");
+                  },
+                  // isFavorite: false,
+                  // type: controller.getTipoImovel(imoveis[index].id),
+                  // addrens: controller.getEndereco(imoveis[index].id).cidade,
+                  // value: "RS ${imoveis[index].precoAluguel}",
+                  // description:
+                  //     "${imoveis[index].numQuartos} quarto(s), ${imoveis[index].numVagas} garagem(ns), ${imoveis[index].numBanheiros} banheiro(s), ${imoveis[index].numConzinhas} cozinha(s) ",
+                  // urlImage: controller.getImgsImovel(imoveis[index].id)[0],
+                );
+              },
+            );
+          },
+        ));
   }
 
   Widget rowTitle(String tittleRow) => Row(
@@ -181,12 +187,6 @@ class _PropertyPageState
                     borderRadius: BorderRadius.all(
                       Radius.circular(5),
                     ),
-                    // gradient: LinearGradient(
-                    //   colors: [
-                    //     Colors.blueGrey,
-                    //     Colors.blueGrey[700],
-                    //   ],
-                    // ),
                   ),
                 ),
               ),

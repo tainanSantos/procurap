@@ -57,7 +57,7 @@ Widget dropDownButtonField_(
 }
 
 Widget containerCustom(List<Widget> listW) => SingleChildScrollView(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(25),
       child:
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: listW),
     );

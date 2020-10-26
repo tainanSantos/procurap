@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/logo_app.dart';
 import 'package:procurap/app/modules/home/pages/favorites/favorites_page.dart';
-import 'package:procurap/app/modules/home/pages/property/property_page.dart';
+import 'package:procurap/app/modules/home/pages/property_home/property_home_page.dart';
 import 'package:procurap/app/modules/home/pages/user/user_page.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'home_controller.dart';
@@ -25,7 +25,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         pageSnapping: true,
         scrollDirection: Axis.horizontal,
         children: [
-          PropertyPage(),
+          PropertyHomePage(),
           FavoritesPage(),
           UserPage(),
           // Container(

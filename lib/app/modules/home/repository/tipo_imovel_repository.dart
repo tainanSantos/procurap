@@ -10,8 +10,8 @@ class TipoImovelRepository {
   final CustomDio _dio;
   TipoImovelRepository(this._dio);
 
-  Future<ObservableList<TipoImovelModel>> getAll() async {
-    print("A gente chegou aqui");
+  Future<ObservableList<TipoImovelModel>> findAll() async {
+    print("A gente chegou aqui IMOVEL");
     try {
       this._response = await this._dio.instance.get("${Urls.TIPO_IMOVEIS}/");
       // return this._response.data;

@@ -10,7 +10,7 @@ class TipoHospedagemRepository {
 
   TipoHospedagemRepository(this._dio);
 
-  Future<ObservableList<TipoHospedagemModel>> getAll() async {
+  Future<ObservableList<TipoHospedagemModel>> findAll() async {
     try {
       this._response = await this
           ._dio

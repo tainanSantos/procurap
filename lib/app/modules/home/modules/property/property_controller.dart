@@ -44,7 +44,7 @@ abstract class _PropertyControllerBase with Store {
   ObservableFuture<ObservableList<TipoHospedagemModel>> tipoHospedagens;
 
   @observable
-  List<String> urlImagesList;
+  ObservableList<String> urlImagesList;
 
   _PropertyControllerBase(
     this.addressRepository,
@@ -53,11 +53,11 @@ abstract class _PropertyControllerBase with Store {
     this.tipoImovelRepository,
     this.tipoHospedagemRepository,
   ) {
-    this.urlImagesList = List<String>();
-    this.tipoAnuncios = this.tipoAnuncioRepository.getAll().asObservable();
-    this.tipoImoveis = this.tipoImovelRepository.getAll().asObservable();
+    this.urlImagesList = ObservableList<String>();
+    this.tipoAnuncios = this.tipoAnuncioRepository.findAll().asObservable();
+    this.tipoImoveis = this.tipoImovelRepository.findAll().asObservable();
     this.tipoHospedagens =
-        this.tipoHospedagemRepository.getAll().asObservable();
+        this.tipoHospedagemRepository.findAll().asObservable();
   }
 
   List<String> statesBr = listStates;
@@ -140,13 +140,16 @@ abstract class _PropertyControllerBase with Store {
   setAluguel(String value) => this.aluguel = double.parse(value);
 
   @action
-  setPrecoImovel(String value) => this.aluguel = double.parse(value);
+  setPrecoImovel(String value) => this.precoImovel = double.parse(value);
 
   @action
   setTelFixo(String value) => this.telFixo = value;
 
   @action
   setTelCelular(String value) => this.telCelular = value;
+
+  @action
+  addUrlImage(String value) => this.urlImagesList.add(value);
 
   @computed
   bool get valTipoAnuncio => (this.tipoAnuncio != null);
@@ -175,7 +178,7 @@ abstract class _PropertyControllerBase with Store {
       : (this.telCelular.length < 15)
           ? false
           : true;
-          
+
   // ___________________________________________________________________________
 
   @observable

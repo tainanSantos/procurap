@@ -4,8 +4,8 @@ import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/components/drop_down_custom.dart';
 import 'package:procurap/app/modules/components/show_modal_cutom.dart';
 import 'package:procurap/app/modules/home/home_page.dart';
-import 'package:procurap/app/modules/home/pages/property/components/card_custom_list.dart';
-import 'package:procurap/app/modules/home/pages/property/filter/filter_page.dart';
+import 'package:procurap/app/modules/home/pages/property_home/components/card_custom_list.dart';
+import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'favorites_controller.dart';
 
@@ -39,16 +39,16 @@ class _FavoritesPageState
         // padding: EdgeInsets.only(top: 20),
         child: Column(
           children: [
-            CardCustomList(
-              isFavorite: true,
-              type: "Apartamento",
-              addrens: "Serra Talhada - PE",
-              value: "RS 300, 00",
-              description:
-                  "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
-              urlImage:
-                  "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
-            ),
+            // CardCustomList(
+            //   isFavorite: true,
+            //   type: "Apartamento",
+            //   addrens: "Serra Talhada - PE",
+            //   value: "RS 300, 00",
+            //   description:
+            //       "4 quartos, 1 sala, 1 garagem, 2 banheiros,1 garagem, 2 banheiros, ",
+            //   urlImage:
+            //       "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
+            // ),
           ],
         ),
       ),

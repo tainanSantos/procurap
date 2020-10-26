@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:procurap/app/modules/home/pages/property/components/card_custom_list.dart';
+import 'package:procurap/app/modules/home/pages/property_home/components/card_custom_list.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class MyPropertys extends StatelessWidget {

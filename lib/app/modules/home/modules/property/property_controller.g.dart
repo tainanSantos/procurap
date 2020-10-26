@@ -3,21 +3,6 @@
 part of 'property_controller.dart';
 
 // **************************************************************************
-// InjectionGenerator
-// **************************************************************************
-
-final $PropertyController = BindInject(
-  (i) => PropertyController(
-      i<AddressRepository>(),
-      i<TipoAnuncioRepository>(),
-      i<EnderecoRepository>(),
-      i<TipoImovelRepository>(),
-      i<TipoHospedagemRepository>()),
-  singleton: true,
-  lazy: true,
-);
-
-// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
@@ -166,13 +151,13 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
       Atom(name: '_PropertyControllerBase.urlImagesList');
 
   @override
-  List<String> get urlImagesList {
+  ObservableList<String> get urlImagesList {
     _$urlImagesListAtom.reportRead();
     return super.urlImagesList;
   }
 
   @override
-  set urlImagesList(List<String> value) {
+  set urlImagesList(ObservableList<String> value) {
     _$urlImagesListAtom.reportWrite(value, super.urlImagesList, () {
       super.urlImagesList = value;
     });
@@ -612,6 +597,17 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
         name: '_PropertyControllerBase.setTelCelular');
     try {
       return super.setTelCelular(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addUrlImage(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.addUrlImage');
+    try {
+      return super.addUrlImage(value);
     } finally {
       _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
     }

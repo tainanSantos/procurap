@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
 import 'package:procurap/app/modules/components/dialog.dart';
-import 'package:procurap/app/modules/home/pages/property/filter/filter_page.dart';
+import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'reset_controller.dart';
 

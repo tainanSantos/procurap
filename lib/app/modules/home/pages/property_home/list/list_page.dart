@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/show_modal_cutom.dart';
-import 'package:procurap/app/modules/home/pages/property/components/card_custom_list.dart';
-import 'package:procurap/app/modules/home/pages/property/filter/filter_page.dart';
+import 'package:procurap/app/modules/home/pages/property_home/components/card_custom_list.dart';
+import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'list_controller.dart';
 

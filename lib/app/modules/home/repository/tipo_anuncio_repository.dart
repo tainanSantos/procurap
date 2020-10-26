@@ -10,12 +10,11 @@ class TipoAnuncioRepository {
   final CustomDio _dio;
   TipoAnuncioRepository(this._dio);
 
-  Future<ObservableList<TipoAnuncioModel>> getAll() async {
-    print("A gente chegou aqui");
+  Future<ObservableList<TipoAnuncioModel>> findAll() async {
+    print("A gente chegou aqui >>> TIPO ANUNCIO");
     try {
       this._response = await this._dio.instance.get("${Urls.TIPO_ANUNCIOS}/");
       // return this._response.data;
-      print("A gente chegou aqui 2 ");
 
       ObservableList<TipoAnuncioModel> tipoAnuncios =
           ObservableList<TipoAnuncioModel>();
@@ -23,7 +22,6 @@ class TipoAnuncioRepository {
         TipoAnuncioModel tipo = TipoAnuncioModel.fromJson(json);
         tipoAnuncios.add(tipo);
       }
-      print("A gente chegou aqui 3 ");
       return tipoAnuncios;
     } catch (error) {
       print("Deu erro");

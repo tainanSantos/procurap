@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:mobx/mobx.dart';
 import 'package:procurap/app/shared/models/endereco_model.dart';
 import 'package:procurap/app/shared/services/custom_dio.dart';
 import 'package:procurap/app/shared/utils/urls.dart';
@@ -6,20 +7,29 @@ import 'package:procurap/app/shared/utils/urls.dart';
 class EnderecoRepository {
   Response _response;
 
-  Future<EnderecoModel> getAll() async {
-    Dio _dio = Dio();
+  final CustomDio _dio;
+
+  EnderecoRepository(this._dio);
+
+  Future<ObservableList<EnderecoModel>> findAll() async {
     try {
-      this._response =
-          await _dio.get("http://10.0.2.2:8090/api/v1/enderecos/");
-      print( this._response.data);
-
+      this._response = await _dio.instance.get("${Urls.ENDERECO}");
+      var listEnderecos = ObservableList<EnderecoModel>();
+      for (var item in this._response.data) {
+        listEnderecos.add(EnderecoModel.fromJson(item));
+      }
+      return listEnderecos;
     } catch (erro) {
-      print("Deu erro");
-      print(erro.respose.data);
+      return erro.respose.data;
     }
+  }
 
-    print("Aqui a gente chegou 3");
-
-    return null;
+  Future<EnderecoModel> findById(int id) async {
+    try {
+      this._response = await _dio.instance.get("${Urls.ENDERECO}/${id}");
+      return EnderecoModel.fromJson(this._response.data);
+    } catch (erro) {
+      return erro.respose.data;
+    }
   }
 }

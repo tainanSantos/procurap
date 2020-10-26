@@ -17,65 +17,73 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBarCutom(),
-      body: containerCustom(
-        [
-          titleForm(
-            value: "Categoria do anúncio",
-          ),
+    return WillPopScope(
+      onWillPop: () {
+        Modular.to.pop();
 
-          Observer(
-            builder: (_) => dropDownButtonField_(
-              labelText: "Anúncio",
-              list: (controller.tipoAnuncios.value != null)
-                  ? controller.tipoAnuncios.value
-                      .map((element) => element.nome)
-                      .toList()
-                  : [],
-              helperText: "Selecione a opção desejada.",
-              onChanged: controller.setTipoAnuncioModel,
+        controller.tipoAnuncio = null;
+        controller.tipoImovel = null;
+      },
+      child: Scaffold(
+        appBar: appBarCutom(),
+        body: containerCustom(
+          [
+            titleForm(
+              value: "Categoria do anúncio",
             ),
-          ),
 
-          SizedBox(
-            height: 30,
-          ),
-
-          // titleCustom("Qual é o tipo do seu imóvel?"),
-          titleForm(value: "Categoria do imóvel"),
-
-          Observer(
-            builder: (_) => dropDownButtonField_(
-              labelText: "Imóvel",
-              // icon: Icons.apartment_sharp,
-              helperText: "Selecione a opção desejada.",
-              list: (controller.tipoImoveis.value != null)
-                  ? controller.tipoImoveis.value
-                      .map((element) => element.nome)
-                      .toList()
-                  : [],
-              onChanged: controller.setTipoImovelModel,
+            Observer(
+              builder: (_) => dropDownButtonField_(
+                labelText: "Anúncio",
+                list: (controller.tipoAnuncios.value != null)
+                    ? controller.tipoAnuncios.value
+                        .map((element) => element.nome)
+                        .toList()
+                    : [],
+                helperText: "Selecione a opção desejada.",
+                onChanged: controller.setTipoAnuncioModel,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-        ],
-      ),
-      floatingActionButton: Observer(
-        builder: (_) => ButtonCustom(
-          radius: 0,
-          title: "Próximo",
-          onPressed: controller.valTipoAnuncio && controller.valTipoImovel
-              ? () {
-                  Modular.to.pushNamed('/home/property/complemet');
-                }
-              : null,
+
+            SizedBox(
+              height: 30,
+            ),
+
+            // titleCustom("Qual é o tipo do seu imóvel?"),
+            titleForm(value: "Categoria do imóvel"),
+
+            Observer(
+              builder: (_) => dropDownButtonField_(
+                labelText: "Imóvel",
+                // icon: Icons.apartment_sharp,
+                helperText: "Selecione a opção desejada.",
+                list: (controller.tipoImoveis.value != null)
+                    ? controller.tipoImoveis.value
+                        .map((element) => element.nome)
+                        .toList()
+                    : [],
+                onChanged: controller.setTipoImovelModel,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+          ],
         ),
+        floatingActionButton: Observer(
+          builder: (_) => ButtonCustom(
+            radius: 0,
+            title: "Próximo",
+            onPressed: controller.valTipoAnuncio && controller.valTipoImovel
+                ? () {
+                    Modular.to.pushNamed('/home/property/complemet');
+                  }
+                : null,
+          ),
+        ),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniCenterDocked,
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }
