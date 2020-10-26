@@ -85,43 +85,46 @@ class _PropertyPageState
           )
         ],
       ),
-      body: ListView(
-        children: [
-          CardCustomList(
-            isFavorite: false,
-            type: "Apartamento",
-            addrens: "Serra Talhada - PE",
-            value: "RS 300, 00",
-            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
-            urlImage:
-                "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
-          ),
-          CardCustomList(
-            type: "Apartamento",
-            addrens: "Serra Talhada - PE",
-            value: "RS 300, 00",
-            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros  ",
-            urlImage:
-                "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg",
-          ),
-          CardCustomList(
-            type: "Apartamento",
-            addrens: "Serra Talhada - PE",
-            value: "RS 300, 00",
-            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros",
-            urlImage:
-                "https://s3.amazonaws.com/static.nidoimovel.com.br/19ca14e7ea6328a42e0eb13d585e4c22/imovel/PJ/PJ51701/c424fb2721f6a524c16404e75bb70a8a.jpg?1591970826",
-          ),
-          CardCustomList(
-            type: "Apartamento",
-            addrens: "Serra Talhada - PE",
-            value: "RS 300, 00",
-            description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
-            urlImage:
-                "https://s2.glbimg.com/9zr9ECC9A4F0YvrWT5yePB3rRI0=/smart/e.glbimg.com/og/ed/f/original/2015/09/10/apartamento-32m-adriana-fontana-09.jpg",
-          ),
-        ],
-      ),
+      // body: 
+
+      
+      // ListView(
+      //   children: [
+      //     CardCustomList(
+      //       isFavorite: false,
+      //       type: "Apartamento",
+      //       addrens: "Serra Talhada - PE",
+      //       value: "RS 300, 00",
+      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
+      //       urlImage:
+      //           "https://lrvimoveis.com.br/wp-content/uploads/2015/11/perspectiva-da-varanda-gourmet-do-graca-lummini-570x314.jpg",
+      //     ),
+      //     CardCustomList(
+      //       type: "Apartamento",
+      //       addrens: "Serra Talhada - PE",
+      //       value: "RS 300, 00",
+      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros  ",
+      //       urlImage:
+      //           "https://images.homify.com/c_fill,f_auto,q_0,w_740/v1512476699/p/photo/image/2348043/reforma-apartamento-studio-batataes-odvo-06.jpg",
+      //     ),
+      //     CardCustomList(
+      //       type: "Apartamento",
+      //       addrens: "Serra Talhada - PE",
+      //       value: "RS 300, 00",
+      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros",
+      //       urlImage:
+      //           "https://s3.amazonaws.com/static.nidoimovel.com.br/19ca14e7ea6328a42e0eb13d585e4c22/imovel/PJ/PJ51701/c424fb2721f6a524c16404e75bb70a8a.jpg?1591970826",
+      //     ),
+      //     CardCustomList(
+      //       type: "Apartamento",
+      //       addrens: "Serra Talhada - PE",
+      //       value: "RS 300, 00",
+      //       description: "4 quartos, 1 garagem, 2 banheiros, 2 banheiros ",
+      //       urlImage:
+      //           "https://s2.glbimg.com/9zr9ECC9A4F0YvrWT5yePB3rRI0=/smart/e.glbimg.com/og/ed/f/original/2015/09/10/apartamento-32m-adriana-fontana-09.jpg",
+      //     ),
+      //   ],
+      // ),
     );
   }
 

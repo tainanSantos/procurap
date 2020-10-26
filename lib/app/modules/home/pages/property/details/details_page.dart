@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -8,9 +9,9 @@ class DetailsPage extends StatefulWidget {
   _DetailsPageState createState() => _DetailsPageState();
 }
 
-// página que só vai receber e mostrars as informações
-
 class _DetailsPageState extends State<DetailsPage> {
+  final propertyController = Modular.get<PropertyController>();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -25,7 +26,7 @@ class _DetailsPageState extends State<DetailsPage> {
             floating: true,
             pinned: true,
             actions: [
-              IconButton(icon: Icon(Icons.favorite), onPressed: () {}),
+              // IconButton(icon: Icon(Icons.favorite), onPressed: () {}),
               FlatButton(
                 onPressed: () {
                   Modular.to.pushNamed("/home/gallery");
@@ -64,7 +65,9 @@ class _DetailsPageState extends State<DetailsPage> {
                         padding: EdgeInsets.only(left: 5, right: 5, top: 5),
                         child: ListTile(
                           // leading: Icon(Icons.home),
-                          title: Text("Apartamento Padrão"),
+                          title: Text(
+                            "${propertyController.tipoImovel.nome}",
+                          ),
                           // subtitle: Text("Apartamento de frete para o mar"),
                         ),
                       ),
@@ -90,13 +93,49 @@ class _DetailsPageState extends State<DetailsPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      "R\$ 250,00",
+                                      "R\$ ${propertyController.aluguel}0",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.teal[700],
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Text("/mês")
+                                    Text(
+                                        "/${propertyController.tipoHospedagem.nome}")
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 25, left: 5),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: ListTile(
+                                title: Text(
+                                  "Venda",
+                                ),
+                                leading: Icon(Icons.monetization_on),
+                              ),
+                              width: MediaQuery.of(context).size.width / 2,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "R\$ ${propertyController.precoImovel}0",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.teal[700],
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    // Text("/${propertyController.precoImovel}")
                                   ],
                                 ),
                               ],
@@ -115,7 +154,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           leading: Icon(Icons.airline_seat_individual_suite),
                           title: Text("Quartos"),
                           trailing: Text(
-                            "2",
+                            "${propertyController.numQuartos}",
                             style: _style(),
                           ),
                         ),
@@ -123,15 +162,15 @@ class _DetailsPageState extends State<DetailsPage> {
                           leading: Icon(Icons.restaurant),
                           title: Text("Cosinhas"),
                           trailing: Text(
-                            "1",
+                            "${propertyController.numConzinha}",
                             style: _style(),
                           ),
                         ),
                         ListTile(
                           leading: Icon(Icons.directions_car),
-                          title: Text("Garagens/Vagas"),
+                          title: Text("Garagens/vagas"),
                           trailing: Text(
-                            "2",
+                            "${propertyController.numGaragen}",
                             style: _style(),
                           ),
                         ),
@@ -139,7 +178,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           leading: Icon(Icons.accessibility),
                           title: Text("Banheiros"),
                           trailing: Text(
-                            "2",
+                            "${propertyController.numBanheiro}",
                             style: _style(),
                           ),
                         ),
@@ -161,14 +200,20 @@ class _DetailsPageState extends State<DetailsPage> {
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
+                              _addrensDetails("Logradouro:",
+                                  "${propertyController.publicPlace}"),
                               _addrensDetails(
-                                  "Logradouro:", "Afonsso de Souza"),
-                              _addrensDetails("Número:", "450"),
-                              _addrensDetails("Bairro:", "Bom Jesus"),
+                                  "Número:", "${propertyController.number}"),
+                              _addrensDetails("Bairro:",
+                                  "${propertyController.neighborhood}"),
+                              _addrensDetails("Compemento:",
+                                  "${propertyController.complement}"),
                               _addrensDetails(
-                                  "Compemento:", "Depois do Trevo 125"),
-                              _addrensDetails("Cidade:", "Serra Talhada"),
-                              _addrensDetails("Estado:", "Pernambuco"),
+                                  "Cidade:", "${propertyController.city}"),
+                              _addrensDetails(
+                                  "Estado:", "${propertyController.state}"),
+                              _addrensDetails(
+                                  "CEP:", "${propertyController.cep}"),
 
                               // Row(
                               //   children: [
@@ -186,28 +231,89 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                   Divider(),
                   Padding(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.only(left: 5, top: 5),
                     child: ListTile(
+                      title: Text("Telefones para contato"),
                       leading: Icon(Icons.contact_phone),
-                      subtitle: Text("(87) 98888-9999"),
-                      title: Text("Contato"),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.only(left: 5),
                     child: ListTile(
-                      leading: Icon(Icons.contact_phone),
-                      subtitle: Text("(87) 99999-9999"),
-                      title: Text("Contato"),
+                      subtitle: Text(
+                        "${propertyController.telFixo}",
+                        style: TextStyle(color: Colors.teal[700]),
+                      ),
+                      title: Text("1ª Contato"),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: ListTile(
+                      subtitle: Text(
+                        "${propertyController.telCelular}",
+                        style: TextStyle(color: Colors.teal[700]),
+                      ),
+                      title: Text("2ª Contato"),
                     ),
                   ),
                   Divider(),
-                  Padding(
-                    padding: EdgeInsets.all(20),
-                    child: RaisedButton(
-                        onPressed: () {},
-                        child: Text("Quero reservar este imóvel")),
-                  )
+                  (propertyController != null)
+                      ? Container(
+                          padding: EdgeInsets.all(20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  height: 40,
+                                  width: width,
+                                  child: RaisedButton.icon(
+                                    icon: Icon(Icons.edit),
+                                    onPressed: () {
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                    },
+                                    label: Text("Editar"),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 30,
+                              ),
+                              Flexible(
+                                child: Container(
+                                  height: 40,
+                                  width: width,
+                                  child: RaisedButton.icon(
+                                    color: CustomColor.primary,
+                                    icon: Icon(
+                                      Icons.save,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      // Lembrar de salvar antes
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                    },
+                                    label: Text("Salvar",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        )),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
             ),
@@ -239,9 +345,14 @@ class _DetailsPageState extends State<DetailsPage> {
         width: MediaQuery.of(context).size.width - 50,
         // height: MediaQuery.of(context).size.height/3,
         // padding: EdgeInsets.only(right: 5),
-        child: Image.network(
-          urlImg,
-          fit: BoxFit.cover,
-        ),
+        child: propertyController == null
+            ? Image.network(
+                urlImg,
+                fit: BoxFit.cover,
+              )
+            : Image.asset(
+                "${propertyController.urlImagesList[0]}",
+                fit: BoxFit.cover,
+              ),
       );
 }

@@ -7,7 +7,7 @@ part of 'property_controller.dart';
 // **************************************************************************
 
 final $PropertyController = BindInject(
-  (i) => PropertyController(),
+  (i) => PropertyController(i<ImovelRepository>()),
   singleton: true,
   lazy: true,
 );
@@ -19,39 +19,25 @@ final $PropertyController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PropertyController on _PropertyControllerBase, Store {
-  final _$valueAtom = Atom(name: '_PropertyControllerBase.value');
+  final _$imovelModelsAtom = Atom(name: '_PropertyControllerBase.imovelModels');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ObservableFuture<ObservableList<ImovelModel>> get imovelModels {
+    _$imovelModelsAtom.reportRead();
+    return super.imovelModels;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set imovelModels(ObservableFuture<ObservableList<ImovelModel>> value) {
+    _$imovelModelsAtom.reportWrite(value, super.imovelModels, () {
+      super.imovelModels = value;
     });
-  }
-
-  final _$_PropertyControllerBaseActionController =
-      ActionController(name: '_PropertyControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
-        name: '_PropertyControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+imovelModels: ${imovelModels}
     ''';
   }
 }
