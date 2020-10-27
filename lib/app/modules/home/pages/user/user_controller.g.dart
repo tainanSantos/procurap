@@ -19,18 +19,26 @@ final $UserController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$UserController on _UserControllerBase, Store {
-  final _$valueAtom = Atom(name: '_UserControllerBase.value');
+  Computed<bool> _$getTokenComputed;
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  bool get getToken =>
+      (_$getTokenComputed ??= Computed<bool>(() => super.getToken,
+              name: '_UserControllerBase.getToken'))
+          .value;
+
+  final _$tokenAtom = Atom(name: '_UserControllerBase.token');
+
+  @override
+  bool get token {
+    _$tokenAtom.reportRead();
+    return super.token;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set token(bool value) {
+    _$tokenAtom.reportWrite(value, super.token, () {
+      super.token = value;
     });
   }
 
@@ -38,11 +46,11 @@ mixin _$UserController on _UserControllerBase, Store {
       ActionController(name: '_UserControllerBase');
 
   @override
-  void increment() {
+  dynamic setToken(dynamic value) {
     final _$actionInfo = _$_UserControllerBaseActionController.startAction(
-        name: '_UserControllerBase.increment');
+        name: '_UserControllerBase.setToken');
     try {
-      return super.increment();
+      return super.setToken(value);
     } finally {
       _$_UserControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -51,7 +59,8 @@ mixin _$UserController on _UserControllerBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+token: ${token},
+getToken: ${getToken}
     ''';
   }
 }

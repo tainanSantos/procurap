@@ -1,13 +1,13 @@
-import 'dart:async';
-
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/home/repository/contato_repository.dart';
 import 'package:procurap/app/modules/home/repository/endereco_repository.dart';
 import 'package:procurap/app/modules/home/repository/imagem_repository.dart';
 import 'package:procurap/app/modules/home/repository/imovel_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_anuncio_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_hospedagem_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_imovel_repository.dart';
+import 'package:procurap/app/shared/models/contato_model.dart';
 import 'package:procurap/app/shared/models/endereco_model.dart';
 import 'package:procurap/app/shared/models/imagem_model.dart';
 import 'package:procurap/app/shared/models/imovel_model.dart';
@@ -29,6 +29,7 @@ abstract class _PropertyHomeControllerBase with Store {
   final TipoImovelRepository tipoImovelRepository;
   final TipoHospedagemRepository tipoHospedagemRepository;
   final ImagemRepository imagemRepository;
+  final ContatoRepository contatoRepository;
 
   @observable
   ObservableFuture<ObservableList<ImovelModel>> imovelModels;
@@ -49,6 +50,9 @@ abstract class _PropertyHomeControllerBase with Store {
   ObservableFuture<ObservableList<EnderecoModel>> enderecos;
 
   @observable
+  ObservableFuture<ObservableList<ContatoModel>> contatos;
+
+  @observable
   ImovelModel imovelModel;
 
   @observable
@@ -64,6 +68,7 @@ abstract class _PropertyHomeControllerBase with Store {
     this.tipoHospedagemRepository,
     this.imovelRepository,
     this.imagemRepository,
+    this.contatoRepository,
   ) {
     this.imovelModels = this.imovelRepository.findAll().asObservable();
 
@@ -73,6 +78,7 @@ abstract class _PropertyHomeControllerBase with Store {
         this.tipoHospedagemRepository.findAll().asObservable();
     this.imagens = this.imagemRepository.findAll().asObservable();
     this.enderecos = this.enderecoRepository.findAll().asObservable();
+    this.contatos = this.contatoRepository.findAll().asObservable();
   }
 
   @action
@@ -94,7 +100,7 @@ abstract class _PropertyHomeControllerBase with Store {
 
   @action
   String getTipoImovel(int id) {
-    if (this.imagens != null)
+    if (this.tipoImoveis != null)
       for (var item in this.tipoImoveis.value)
         if (item.id == id) return item.nome;
   }
@@ -103,5 +109,15 @@ abstract class _PropertyHomeControllerBase with Store {
   EnderecoModel getEndereco(int id) {
     if (this.enderecos != null)
       for (var item in this.enderecos.value) if (item.id == id) return item;
+  }
+
+  List<String> getContatos(int id) {
+    if (this.contatos != null) {
+      var conts = List<String>();
+      for (var item in this.contatos.value) {
+        if (item.imovel == id) conts.add(item.valor);
+      }
+      return conts;
+    }
   }
 }

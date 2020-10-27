@@ -130,7 +130,7 @@ class _PhotosPageState extends State<PhotosPage> {
             title: "Próximo",
             onPressed: controller.urlImagesList.isNotEmpty
                 ? () {
-                    Modular.to.pushNamed("/home/details");
+                    Modular.to.pushNamed("/home/details_crud");
                   }
                 : null,
           ),

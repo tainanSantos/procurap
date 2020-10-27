@@ -121,7 +121,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                       ),
                       ButtonCustom(
                         title: "Entar",
-                        onPressed: () {
+                        onPressed: () async {
+                          
+                         await controller.auth
+                              .login(controller.usuario, controller.senha);
                           Modular.to.pushReplacementNamed("/home");
                         },
                       ),

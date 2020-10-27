@@ -1,111 +1,55 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
-import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
-import 'package:procurap/app/modules/home/pages/property_home/property_home_controller.dart';
-import 'package:procurap/app/shared/models/contato_model.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
-class DetailsPage extends StatefulWidget {
-  @override
-  _DetailsPageState createState() => _DetailsPageState();
-}
+class Details extends StatelessWidget {
+  final String imgUrl;
+  final String tipoImovel;
+  final String aluguel;
+  final String precoImovel;
+  final int quartos;
+  final int cozinhas;
+  final int garagem;
+  final int banheiros;
+  final String cep;
+  final String estado;
+  final String logradouro;
+  final String bairro;
+  final String complemento;
+  final String numero;
+  final String cidade;
+  final String telCelular;
+  final String telFixo;
+  final Function function;
 
-class _DetailsPageState extends State<DetailsPage> {
-  // final propertyHomeController = Modular.get<PropertyHomeController>();
-
-  String _imgUrl;
-  String _tipoImovel;
-  String _aluguel;
-  String _precoImovel;
-  int _quartos;
-  int _cozinhas;
-  int _garagem;
-  int _banheiros;
-  String _cep;
-  String _estado;
-  String _logradouro;
-  String _bairro;
-  String _complemento;
-  String _numero;
-  String _cidade;
-  String _telCelular;
-  String _telFixo;
-
-  var propertyHomeC;
-  var propertyNew;
-
-  @override
-  void initState() {
-    super.initState();
-
-    print("_______________________");
-    // print(Navigator.);
-
-    // if (Modular.navigator.path == "/home/details") {
-    //   this.propertyHomeC = Modular.get<PropertyHomeController>();
-    //   int id = propertyHomeC.imovelModel.id;
-    //   var imovel = propertyHomeC.imovelModel;
-    //   var endereco = propertyHomeC.enderecoModel;
-    //   this._imgUrl = propertyHomeC.getImgsImovel(id)[0];
-    //   this._tipoImovel = propertyHomeC.getTipoImovel(id);
-    //   List<String> conts = propertyHomeC.getContatos(id);
-
-    //   this._aluguel = imovel.precoAluguel;
-    //   this._precoImovel = imovel.precoImovel;
-    //   this._quartos = imovel.numQuartos;
-    //   this._cozinhas = imovel.numConzinhas;
-    //   this._garagem = imovel.numVagas;
-    //   this._banheiros = imovel.numBanheiros;
-    //   this._cep = endereco.cep;
-    //   this._estado = endereco.estado;
-    //   this._logradouro = endereco.logradouro;
-    //   this._bairro = endereco.bairro;
-    //   this._complemento = endereco.complemento;
-    //   this._numero = endereco.numero;
-    //   this._cidade = endereco.cidade;
-    //   this._telFixo = conts[0];
-    //   this._telCelular = conts[1];
-    // } else {
-    this.propertyNew = Modular.get<PropertyController>();
-    this._imgUrl = propertyNew.urlImagesList.value[0];
-    this._tipoImovel = propertyHomeC.tipoImovel.nome;
-
-    this._aluguel = this.propertyHomeC.aluguel;
-    this._precoImovel = this.propertyHomeC.precoImovel;
-    this._quartos = this.propertyHomeC.numQuartos;
-    this._cozinhas = this.propertyHomeC.numConzinhas;
-    this._garagem = this.propertyHomeC.numVagas;
-    this._banheiros = this.propertyHomeC.numBanheiros;
-    this._cep = this.propertyHomeC.cep;
-    this._estado = this.propertyHomeC.estado;
-    this._logradouro = this.propertyHomeC.logradouro;
-    this._bairro = this.propertyHomeC.bairro;
-    this._complemento = this.propertyHomeC.complemento;
-    this._numero = this.propertyHomeC.numero;
-    this._cidade = this.propertyHomeC.cidade;
-    this._telFixo = this.propertyHomeC.telFixo;
-    this._telCelular = this.propertyHomeC.telCelular;
-
-    print(this.propertyNew);
-    // }
-  }
-
-  // getContactos(PropertyHomeController control) async {
-  //   // ObservableList<ContatoModel> conts =
-  //   //     await control.contatoRepository.findById(control.imovelModel.id);
-  //   // this._telCelular = conts[0].valor;
-  //   // this._telFixo = conts[1].valor;
-  // }
+  const Details(
+      {Key key,
+      this.imgUrl,
+      this.tipoImovel,
+      this.aluguel,
+      this.precoImovel,
+      this.quartos,
+      this.cozinhas,
+      this.garagem,
+      this.banheiros,
+      this.cep,
+      this.estado,
+      this.logradouro,
+      this.bairro,
+      this.complemento,
+      this.numero,
+      this.cidade,
+      this.telCelular,
+      this.telFixo,
+      this.function})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.height;
 
-    return 
-    Scaffold(
+    return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -136,19 +80,25 @@ class _DetailsPageState extends State<DetailsPage> {
               )
             ],
             flexibleSpace: FlexibleSpaceBar(
-                background: Container(
-              width: MediaQuery.of(context).size.width - 50,
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: this._imgUrl == null
-                    ? "https://cdn.alldecorboutique.com.br/wp-content/uploads/2018/08/233110.jpg"
-                    : this._imgUrl,
-                placeholder: (context, url) => Container(
-                    child: Center(child: CircularProgressIndicator())),
-                errorWidget: (context, url, error) =>
-                    Container(child: Center(child: Icon(Icons.error))),
+              background: Container(
+                width: MediaQuery.of(context).size.width - 50,
+                child: (function == null)
+                    ? CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: this.imgUrl == null
+                            ? "https://cdn.alldecorboutique.com.br/wp-content/uploads/2018/08/233110.jpg"
+                            : this.imgUrl,
+                        placeholder: (context, url) => Container(
+                            child: Center(child: CircularProgressIndicator())),
+                        errorWidget: (context, url, error) =>
+                            Container(child: Center(child: Icon(Icons.error))),
+                      )
+                    : Image.asset(
+                        imgUrl,
+                        fit: BoxFit.cover,
+                      ),
               ),
-            )),
+            ),
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
@@ -162,7 +112,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         padding: EdgeInsets.only(left: 5, right: 5, top: 5),
                         child: ListTile(
                           title: Text(
-                            this._tipoImovel,
+                            this.tipoImovel,
                           ),
                         ),
                       ),
@@ -188,7 +138,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      "R\$ ${this._aluguel}",
+                                      "R\$ ${this.aluguel}",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.teal[700],
@@ -223,7 +173,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      "R\$ ${this._precoImovel}",
+                                      "R\$ ${this.precoImovel}",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.teal[700],
@@ -248,7 +198,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           leading: Icon(Icons.airline_seat_individual_suite),
                           title: Text("Quartos"),
                           trailing: Text(
-                            "${this._quartos}",
+                            "${this.quartos}",
                             style: _style(),
                           ),
                         ),
@@ -256,7 +206,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           leading: Icon(Icons.restaurant),
                           title: Text("Cosinhas"),
                           trailing: Text(
-                            "${this._cozinhas}",
+                            "${this.cozinhas}",
                             style: _style(),
                           ),
                         ),
@@ -264,7 +214,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           leading: Icon(Icons.directions_car),
                           title: Text("Garagens/vagas"),
                           trailing: Text(
-                            "${this._garagem}",
+                            "${this.garagem}",
                             style: _style(),
                           ),
                         ),
@@ -272,7 +222,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           leading: Icon(Icons.accessibility),
                           title: Text("Banheiros"),
                           trailing: Text(
-                            "${this._banheiros}",
+                            "${this.banheiros}",
                             style: _style(),
                           ),
                         ),
@@ -295,14 +245,14 @@ class _DetailsPageState extends State<DetailsPage> {
                           child: Column(
                             children: [
                               _addrensDetails(
-                                  "Logradouro:", "${this._logradouro}"),
-                              _addrensDetails("Número:", "${this._numero}"),
-                              _addrensDetails("Bairro:", "${this._bairro}"),
+                                  "Logradouro:", "${this.logradouro}"),
+                              _addrensDetails("Número:", "${this.numero}"),
+                              _addrensDetails("Bairro:", "${this.bairro}"),
                               _addrensDetails(
-                                  "Compemento:", "${this._complemento}"),
-                              _addrensDetails("Cidade:", "${this._cidade}"),
-                              _addrensDetails("Estado:", "${this._estado}"),
-                              _addrensDetails("CEP:", "${this._cep}"),
+                                  "Compemento:", "${this.complemento}"),
+                              _addrensDetails("Cidade:", "${this.cidade}"),
+                              _addrensDetails("Estado:", "${this.estado}"),
+                              _addrensDetails("CEP:", "${this.cep}"),
 
                               // Row(
                               //   children: [
@@ -330,7 +280,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     padding: EdgeInsets.only(left: 5),
                     child: ListTile(
                       subtitle: Text(
-                        this._telFixo,
+                        this.telFixo,
                         style: TextStyle(color: Colors.teal[700]),
                       ),
                       title: Text("1ª Contato"),
@@ -340,14 +290,14 @@ class _DetailsPageState extends State<DetailsPage> {
                     padding: EdgeInsets.only(left: 5),
                     child: ListTile(
                       subtitle: Text(
-                        this._telCelular,
+                        this.telCelular,
                         style: TextStyle(color: Colors.teal[700]),
                       ),
                       title: Text("2ª Contato"),
                     ),
                   ),
                   Divider(),
-                  (propertyHomeC == null)
+                  (function != null)
                       ? Container(
                           padding: EdgeInsets.all(20),
                           child: Row(
@@ -385,6 +335,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     ),
                                     onPressed: () {
                                       // Lembrar de salvar antes
+                                      // Criar a extenção do controller aqui e e salvar os dados
                                       Modular.to.pop();
                                       Modular.to.pop();
                                       Modular.to.pop();
@@ -410,7 +361,6 @@ class _DetailsPageState extends State<DetailsPage> {
         ],
       ),
     );
-
   }
 
   Widget _addrensDetails(String title, String value) => Row(

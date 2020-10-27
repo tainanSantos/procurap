@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -20,6 +18,13 @@ class PropertyHomePage extends StatefulWidget {
 class _PropertyHomePageState
     extends ModularState<PropertyHomePage, PropertyHomeController> {
   //use 'controller' variable to access controller
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +92,8 @@ class _PropertyHomePageState
             )
           ],
         ),
-        body: Observer(
+        body:  
+        Observer(
           builder: (_) {
             if (controller.imovelModels.error != null) {
               return Center(
@@ -107,7 +113,16 @@ class _PropertyHomePageState
                 child: Text("Nenhum imóvek cadastrado"),
               );
             }
-
+            // if (controller.imovelModels.value == null ||
+            //   controller.tipoAnuncios.value == null ||
+            //   controller.tipoImoveis.value == null ||
+            //   controller.tipoHospedagens == null ||
+            //   controller.imagens.value == null ||
+            //   controller.enderecos == null) {
+            // return Center(
+            //   child: CircularProgressIndicator(),
+            // );
+            // }
             List<ImovelModel> imoveis = controller.imovelModels.value;
 
             return ListView.builder(
@@ -118,15 +133,15 @@ class _PropertyHomePageState
                     controller.setImovelModel(imoveis[index]);
                     controller.setEnderecoModel(
                         controller.getEndereco(imoveis[index].id));
-                    Modular.to.pushNamed("/home/details");
+                    Modular.to.pushNamed("/home/details_home");
                   },
-                  // isFavorite: false,
-                  // type: controller.getTipoImovel(imoveis[index].id),
-                  // addrens: controller.getEndereco(imoveis[index].id).cidade,
-                  // value: "RS ${imoveis[index].precoAluguel}",
-                  // description:
-                  //     "${imoveis[index].numQuartos} quarto(s), ${imoveis[index].numVagas} garagem(ns), ${imoveis[index].numBanheiros} banheiro(s), ${imoveis[index].numConzinhas} cozinha(s) ",
-                  // urlImage: controller.getImgsImovel(imoveis[index].id)[0],
+                  isFavorite: false,
+                  type: controller.getTipoImovel(imoveis[index].id),
+                  addrens: controller.getEndereco(imoveis[index].id).cidade,
+                  value: "RS ${imoveis[index].precoAluguel}",
+                  description:
+                      "${imoveis[index].numQuartos} quarto(s), ${imoveis[index].numVagas} garagem(ns), ${imoveis[index].numBanheiros} banheiro(s), ${imoveis[index].numConzinhas} cozinha(s) ",
+                  urlImage: controller.getImgsImovel(imoveis[index].id)[0],
                 );
               },
             );

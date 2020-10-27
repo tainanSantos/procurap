@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:procurap/app/modules/home/modules/property/property_module.dart';
 import 'package:procurap/app/modules/home/modules/rent/rent_module.dart';
+import 'package:procurap/app/modules/home/pages/property_home/details/details_crud.dart';
+import 'package:procurap/app/modules/home/pages/property_home/details/details_home.dart';
 
 import 'package:procurap/app/modules/home/pages/property_home/details/details_page.dart';
 import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
@@ -16,6 +18,7 @@ import 'package:procurap/app/modules/home/pages/property_home/filter/filter_cont
 import 'package:procurap/app/modules/home/pages/property_home/details/details_page.dart';
 import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
 import 'package:procurap/app/modules/home/pages/property_home/property_home_controller.dart';
+import 'package:procurap/app/modules/home/repository/contato_repository.dart';
 import 'package:procurap/app/modules/home/repository/endereco_repository.dart';
 import 'package:procurap/app/modules/home/repository/filter_repository.dart';
 import 'package:procurap/app/modules/home/repository/imagem_repository.dart';
@@ -45,8 +48,10 @@ class HomeModule extends ChildModule {
               i.get<TipoHospedagemRepository>(),
               i.get<ImovelRepository>(),
               i.get<ImagemRepository>(),
+              i.get<ContatoRepository>(),
             )),
         Bind((i) => AddressRepository()),
+        Bind((i) => ContatoRepository(i.get<CustomDio>())),
         Bind((i) => TipoAnuncioRepository(i.get<CustomDio>())),
         Bind((i) => TipoImovelRepository(i.get<CustomDio>())),
         Bind((i) => ImagemRepository(i.get<CustomDio>())),
@@ -60,8 +65,11 @@ class HomeModule extends ChildModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
-        ModularRouter('details',
-            child: (_, args) => DetailsPage(),
+        ModularRouter('details_home',
+            child: (_, args) => DetailsHome(),
+            transition: TransitionType.rightToLeft),
+        ModularRouter('details_crud',
+            child: (_, args) => DetailsCrud(),
             transition: TransitionType.rightToLeft),
         ModularRouter('filter',
             child: (_, args) => FilterPage(),

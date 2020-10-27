@@ -104,6 +104,21 @@ mixin _$PropertyHomeController on _PropertyHomeControllerBase, Store {
     });
   }
 
+  final _$contatosAtom = Atom(name: '_PropertyHomeControllerBase.contatos');
+
+  @override
+  ObservableFuture<ObservableList<ContatoModel>> get contatos {
+    _$contatosAtom.reportRead();
+    return super.contatos;
+  }
+
+  @override
+  set contatos(ObservableFuture<ObservableList<ContatoModel>> value) {
+    _$contatosAtom.reportWrite(value, super.contatos, () {
+      super.contatos = value;
+    });
+  }
+
   final _$imovelModelAtom =
       Atom(name: '_PropertyHomeControllerBase.imovelModel');
 
@@ -203,6 +218,7 @@ tipoImoveis: ${tipoImoveis},
 tipoHospedagens: ${tipoHospedagens},
 imagens: ${imagens},
 enderecos: ${enderecos},
+contatos: ${contatos},
 imovelModel: ${imovelModel},
 enderecoModel: ${enderecoModel}
     ''';

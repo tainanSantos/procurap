@@ -3,16 +3,6 @@
 part of 'login_controller.dart';
 
 // **************************************************************************
-// InjectionGenerator
-// **************************************************************************
-
-final $LoginController = BindInject(
-  (i) => LoginController(),
-  singleton: true,
-  lazy: true,
-);
-
-// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
@@ -26,6 +16,36 @@ mixin _$LoginController on _LoginControllerBase, Store {
       (_$getVisiblePassComputed ??= Computed<bool>(() => super.getVisiblePass,
               name: '_LoginControllerBase.getVisiblePass'))
           .value;
+
+  final _$usuarioAtom = Atom(name: '_LoginControllerBase.usuario');
+
+  @override
+  String get usuario {
+    _$usuarioAtom.reportRead();
+    return super.usuario;
+  }
+
+  @override
+  set usuario(String value) {
+    _$usuarioAtom.reportWrite(value, super.usuario, () {
+      super.usuario = value;
+    });
+  }
+
+  final _$senhaAtom = Atom(name: '_LoginControllerBase.senha');
+
+  @override
+  String get senha {
+    _$senhaAtom.reportRead();
+    return super.senha;
+  }
+
+  @override
+  set senha(String value) {
+    _$senhaAtom.reportWrite(value, super.senha, () {
+      super.senha = value;
+    });
+  }
 
   final _$visiblePassAtom = Atom(name: '_LoginControllerBase.visiblePass');
 
@@ -46,6 +66,28 @@ mixin _$LoginController on _LoginControllerBase, Store {
       ActionController(name: '_LoginControllerBase');
 
   @override
+  dynamic setUsuario(String value) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.setUsuario');
+    try {
+      return super.setUsuario(value);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setSenha(String value) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.setSenha');
+    try {
+      return super.setSenha(value);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setVisiblePass() {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
         name: '_LoginControllerBase.setVisiblePass');
@@ -59,6 +101,8 @@ mixin _$LoginController on _LoginControllerBase, Store {
   @override
   String toString() {
     return '''
+usuario: ${usuario},
+senha: ${senha},
 visiblePass: ${visiblePass},
 getVisiblePass: ${getVisiblePass}
     ''';

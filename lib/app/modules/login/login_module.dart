@@ -3,6 +3,7 @@ import 'package:procurap/app/modules/login/pages/reset/reset_controller.dart';
 import 'package:procurap/app/modules/login/pages/reset/reset_page.dart';
 
 import 'package:procurap/app/modules/login/pages/register/register_controller.dart';
+import 'package:procurap/app/modules/login/repository/auth.dart';
 import 'login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -13,7 +14,10 @@ class LoginModule extends ChildModule {
   List<Bind> get binds => [
         $ResetController,
         $RegisterController,
-        $LoginController,
+        Bind((i) => LoginController(
+              i.get<Auth>(),
+            )),
+        Bind((i) => Auth())
       ];
 
   @override
@@ -24,8 +28,7 @@ class LoginModule extends ChildModule {
             transition: TransitionType.downToUp),
         ModularRouter('/reset',
             child: (_, args) => ResetPage(),
-            transition: TransitionType.
-            downToUp),
+            transition: TransitionType.downToUp),
       ];
 
   static Inject get to => Inject<LoginModule>.of();

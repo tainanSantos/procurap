@@ -31,6 +31,8 @@ dependencies:
   flutter_masked_text: ^0.8.0
   intl: ^0.16.1
 
+  shared_preferences: ^0.5.12+2
+
 
 
   # camera: #plugin da camera tá com defeito
