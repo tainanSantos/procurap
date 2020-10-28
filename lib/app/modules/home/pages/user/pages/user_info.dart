@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/show_modal_cutom.dart';
+import 'package:procurap/app/modules/home/pages/user/user_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class UserInfo extends StatelessWidget {
+  final controller = Modular.get<UserController>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,10 +26,10 @@ class UserInfo extends StatelessWidget {
                 flex: 1,
                 child: ListTile(
                   title: Text(
-                    "Maria Santos",
+                    "Tainan",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text("Proprietária"),
+                  subtitle: Text("Proprietário"),
                 ),
               ),
               Flexible(
@@ -167,7 +169,8 @@ class UserInfo extends StatelessWidget {
                                         color: CustomColor.primary, width: 2),
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    await controller.exitApp();
                                     exit(0);
                                   },
                                   child: Text("SIM",

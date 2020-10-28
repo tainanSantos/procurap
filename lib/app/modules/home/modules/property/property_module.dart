@@ -3,7 +3,10 @@ import 'package:procurap/app/modules/home/modules/property/pages/new_property/an
 import 'package:procurap/app/modules/home/modules/property/pages/new_property/complemet_page.dart';
 import 'package:procurap/app/modules/home/modules/property/pages/new_property/photos_page.dart';
 import 'package:procurap/app/modules/home/modules/property/pages/new_property/price_page.dart';
+import 'package:procurap/app/modules/home/repository/contato_repository.dart';
 import 'package:procurap/app/modules/home/repository/endereco_repository.dart';
+import 'package:procurap/app/modules/home/repository/imagem_repository.dart';
+import 'package:procurap/app/modules/home/repository/imovel_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_anuncio_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_hospedagem_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_imovel_repository.dart';
@@ -20,17 +23,24 @@ class PropertyModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => PropertyController(
-            i.get<AddressRepository>(),
-            i.get<TipoAnuncioRepository>(),
-            i.get<EnderecoRepository>(),
-            i.get<TipoImovelRepository>(),
-            i.get<TipoHospedagemRepository>())),
+              i.get<AddressRepository>(),
+              i.get<TipoAnuncioRepository>(),
+              i.get<EnderecoRepository>(),
+              i.get<TipoImovelRepository>(),
+              i.get<TipoHospedagemRepository>(),
+              i.get<ImovelRepository>(),
+              i.get<ContatoRepository>(),
+              i.get<ImagemRepository>(),
+            )),
         Bind((i) => AddressRepository()),
+        Bind((i) => ImagemRepository(i.get<CustomDio>())),
+        Bind((i) => ContatoRepository(i.get<CustomDio>())),
+        Bind((i) => ImovelRepository(i.get<CustomDio>())),
         Bind((i) => EnderecoRepository(i.get<CustomDio>())),
         Bind((i) => TipoHospedagemRepository(i.get<CustomDio>())),
         Bind((i) => TipoAnuncioRepository(i.get<CustomDio>())),
         Bind((i) => TipoImovelRepository(i.get<CustomDio>())),
-        Bind((i) => CustomDio())
+        Bind((i) => CustomDio.withAutentication())
       ];
 
   @override

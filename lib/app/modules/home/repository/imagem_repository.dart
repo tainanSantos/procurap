@@ -24,4 +24,24 @@ class ImagemRepository {
       return e.response.data;
     }
   }
+
+  Future<ObservableList<ImagemModel>> save(List<ImagemModel> imagens) async {
+    try {
+
+      // FormData.
+
+      var imgs = ObservableList<ImagemModel>();
+
+      for (var imagem in imagens) {
+        this._response =
+            await _dio.instance.post("${Urls.IMAGENS_IMOVEL}/", data: imagem.toJson());
+        ImagemModel img = ImagemModel.fromJson(this._response.data);
+        imgs.add(img);
+      }
+      return imgs;
+    } catch (e) {
+      // esse retorno tá errado
+      return e.response.data;
+    }
+  }
 }

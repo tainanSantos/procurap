@@ -45,13 +45,19 @@ class _PhotosPageState extends State<PhotosPage> {
                         color: Colors.grey,
                       ),
                       onPressed: () async {
-                        var gallery = await ImagePicker.platform.pickImage(
-                          source: ImageSource.gallery,
-                        );
+                        try {
+                          final gallery = await ImagePicker.platform.pickImage(
+                            source: ImageSource.gallery,
+                          );
+                          // File img = gallery.path;
 
-                        if (gallery != null) if (gallery.path != null)
-                          controller.addUrlImage(gallery.path);
-                        print("CAMINHO DA IMAGEMS >>> ${gallery.path}");
+                          if (gallery.path != null)
+                            await controller.addUrlImage(gallery.path);
+                        } catch (e) {
+                          return;
+                        }
+
+                        // print("CAMINHO DA IMAGEMS >>> ${gallery.path}");
                       }),
                   IconButton(
                     icon: Icon(
@@ -59,11 +65,15 @@ class _PhotosPageState extends State<PhotosPage> {
                       color: Colors.grey,
                     ),
                     onPressed: () async {
-                      var picture = await ImagePicker.platform.pickImage(
-                        source: ImageSource.camera,
-                      );
-                      if (picture != null) if (picture.path != null)
-                        controller.addUrlImage(picture.path);
+                      try {
+                        final picture = await ImagePicker.platform.pickImage(
+                          source: ImageSource.camera,
+                        );
+                        if (picture.path != null)
+                          await controller.addUrlImage(picture.path);
+                      } catch (e) {
+                        return;
+                      }
                     },
                   ),
                 ],
@@ -87,15 +97,16 @@ class _PhotosPageState extends State<PhotosPage> {
                                 backgroundColor: Colors.black,
                                 actions: [
                                   IconButton(
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () {
-                                        controller.urlImagesList.remove(
-                                            controller.urlImagesList[index]);
-                                        Navigator.pop(context);
-                                      })
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      controller.urlImagesList.remove(
+                                          controller.urlImagesList[index]);
+                                      Navigator.pop(context);
+                                    },
+                                  )
                                 ],
                               ),
                               backgroundColor: Colors.black,

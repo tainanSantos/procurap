@@ -72,7 +72,9 @@ class _DetailsCrudState extends State<DetailsCrud> {
       cidade: _cidade,
       telCelular: _telCelular,
       telFixo: _telFixo,
-      function: () {},
+      function: ()  {
+        
+      },
     );
   }
 }

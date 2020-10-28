@@ -1,11 +1,18 @@
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/home/repository/contato_repository.dart';
 import 'package:procurap/app/modules/home/repository/endereco_repository.dart';
+import 'package:procurap/app/modules/home/repository/imagem_repository.dart';
+import 'package:procurap/app/modules/home/repository/imovel_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_anuncio_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_hospedagem_repository.dart';
 import 'package:procurap/app/modules/home/repository/tipo_imovel_repository.dart';
 import 'package:procurap/app/shared/models/address_model.dart';
+import 'package:procurap/app/shared/models/contato_model.dart';
+import 'package:procurap/app/shared/models/endereco_model.dart';
+import 'package:procurap/app/shared/models/imagem_model.dart';
+import 'package:procurap/app/shared/models/imovel_model.dart';
 import 'package:procurap/app/shared/models/tipo_anuncio_model.dart';
 import 'package:procurap/app/shared/models/tipo_hospedagem_model.dart';
 import 'package:procurap/app/shared/models/tipo_imovel_model.dart';
@@ -33,6 +40,9 @@ abstract class _PropertyControllerBase with Store {
   final EnderecoRepository enderecoRepository;
   final TipoImovelRepository tipoImovelRepository;
   final TipoHospedagemRepository tipoHospedagemRepository;
+  final ImovelRepository imovelRepository;
+  final ContatoRepository contatoRepository;
+  final ImagemRepository imagemRepository;
 
   @observable
   ObservableFuture<ObservableList<TipoAnuncioModel>> tipoAnuncios;
@@ -52,6 +62,9 @@ abstract class _PropertyControllerBase with Store {
     this.enderecoRepository,
     this.tipoImovelRepository,
     this.tipoHospedagemRepository,
+    this.imovelRepository,
+    this.contatoRepository,
+    this.imagemRepository,
   ) {
     this.urlImagesList = ObservableList<String>();
     this.tipoAnuncios = this.tipoAnuncioRepository.findAll().asObservable();
@@ -321,6 +334,88 @@ abstract class _PropertyControllerBase with Store {
 
   @observable
   bool upload = false;
+
+  @observable
+  EnderecoModel endereco;
+
+  @observable
+  ImovelModel imovelModel;
+
+  @observable
+  bool salvandoImovel;
+
+  salvarImovel() async {
+    // SALVA O ENDERECO
+    this.salvandoImovel = false;
+    if (this.endereco?.id == null) {
+      this.endereco = EnderecoModel();
+    }
+    this.endereco.logradouro = this.publicPlace;
+    this.endereco.numero = this.number;
+    this.endereco.bairro = this.neighborhood;
+    this.endereco.complemento = this.complement;
+    this.endereco.cidade = this.city;
+    this.endereco.estado = this.state;
+    this.endereco.cep = this.cep;
+    EnderecoModel ender = await enderecoRepository.save(this.endereco);
+
+    // SALVA IMÓVEL
+
+    if (this.imovelModel?.id == null) {
+      this.imovelModel = ImovelModel();
+    }
+    this.imovelModel.endereco = ender.id;
+    this.imovelModel.tipoAnuncio = this.tipoAnuncio.id;
+    this.imovelModel.tipoImovel = this.tipoImovel.id;
+    this.imovelModel.numBanheiros = this.numBanheiro;
+    this.imovelModel.numQuartos = this.numQuartos;
+    this.imovelModel.numVagas = this.numGaragen;
+    this.imovelModel.numConzinhas = this.numConzinha;
+    this.imovelModel.classificacao = "10";
+    this.imovelModel.descricao = "";
+
+    this.imovelModel.precoAluguel = "${this.aluguel}";
+    this.imovelModel.precoImovel = "${this.precoImovel}";
+
+    print("__________________________________________");
+    print(this.endereco.toJson());
+    print("__________________________________________");
+    print(this.imovelModel.toJson());
+    print("__________________________________________");
+
+    ImovelModel imov = await this.imovelRepository.save(imovelModel);
+
+    // SALVA COTATOS
+
+    List<ContatoModel> contatos = List<ContatoModel>();
+
+    ContatoModel fixo = ContatoModel();
+    fixo.tipoContato = 2;
+    fixo.valor = this.telFixo;
+    fixo.imovel = imov.id;
+
+    ContatoModel celular = ContatoModel();
+    celular.tipoContato = 3;
+    celular.valor = this.telCelular;
+    celular.imovel = imov.id;
+
+    contatos.add(fixo);
+    contatos.add(celular);
+
+    ObservableList<ContatoModel> conts =
+        await this.contatoRepository.save(contatos);
+
+    // SALVA IMAGENS
+    List<ImagemModel> imgs = List<ImagemModel>();
+    for (var i = 0; i < this.urlImagesList.length; i++) {
+      ImagemModel img = ImagemModel();
+      img.imovel = imov.id;
+      img.url = this.urlImagesList[i];
+      imgs.add(img);
+    }
+    ObservableList<ImagemModel> imgsResp = await imagemRepository.save(imgs);
+    this.salvandoImovel = true;
+  }
 }
 
 const List<String> listStates = [

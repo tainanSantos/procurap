@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDio {
   var _dio;
@@ -11,32 +12,30 @@ class CustomDio {
     _dio = Dio();
     _dio.interceptors.add(InterceptorsWrapper(
         onRequest: _onRequest, onResponse: _onResponse, onError: _onError));
-
   }
 
   Dio get instance => _dio;
 
   _onRequest(RequestOptions options) async {
     print("REQUEST >>> ${options.data}");
-    options.headers['Authorization'] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MDA1NTEzLCJqdGkiOiIwMmY5YWJiNjI1ZWE0NDYwYTkyZWQzYWVkZTQ5ZmUzYyIsInVzZXJfaWQiOjF9.-ONsQ0XS3kXjLSy6OpgcwAfFGrVuWlfFMu9nRDW9Zwg";
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = await prefs.getString('token');
+    print("TOKEN >>> $token");
+    options.headers['Authorization'] = token;
     return options;
   }
-
 
   _onResponse(Response response) async {
     print("RESPONSE >>> ${response.data}");
     return response;
   }
 
-
   _onError(DioError error) async {
     print(
         "\n\nDEU ERRO >>> DATA >>> ${error.response.data}; CODE >>> ${error.response.statusCode}; MSG >>> ${error.message}\n\n");
     return error;
   }
-  
 }
-
 
 // enum DioErrorType {
 //   /// When opening  url timeout, it occurs.
@@ -55,3 +54,9 @@ class CustomDio {
 //   /// read the DioError.error if it is not null.
 //   DEFAULT,
 // }
+
+
+
+
+
+

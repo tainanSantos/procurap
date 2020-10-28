@@ -10,7 +10,7 @@ class Auth {
   Future<bool> login(String usuario, String senha) async {
     try {
       this._response = await _dio.instance.post(Urls.GET_TOKEN,
-          data: {"username": "${usuario}", "password": "${senha}"});
+          data: {"username": "$usuario", "password": "$senha"});
       if (this._response.statusCode == 200 ||
           this._response.statusCode == 201) {
         // vamos salta o toke e o nome do uauário
@@ -19,7 +19,7 @@ class Auth {
         print("TOKEN >>> $token");
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString("usuario", usuario);
-        prefs.setString("token", token);
+        await prefs.setString('token', 'Bearer $token');
         return true;
       }
     } catch (e) {

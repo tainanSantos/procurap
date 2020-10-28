@@ -9,11 +9,12 @@ class UserController = _UserControllerBase with _$UserController;
 
 abstract class _UserControllerBase with Store {
   @observable
-  bool token = false;
+  bool token;
 
   _UserControllerBase() {
     // verificar se exitet token
     // se existir, então modificar a tela de exibição
+    veifi();
   }
 
   veifi() async {
@@ -25,6 +26,12 @@ abstract class _UserControllerBase with Store {
     } else {
       this.token = false;
     }
+  }
+
+  exitApp() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("usuario", null);
+    prefs.setString("token", null);
   }
 
   @action

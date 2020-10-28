@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/components/logo_app.dart';
 import 'package:procurap/app/modules/components/show_modal_cutom.dart';
 import 'package:procurap/app/modules/home/pages/property_home/components/card_custom_list.dart';
@@ -23,7 +22,6 @@ class _PropertyHomePageState
   void initState() {
     // TODO: implement initState
     super.initState();
-    
   }
 
   @override
@@ -39,19 +37,15 @@ class _PropertyHomePageState
             onSelected: (value) {
               switch (value) {
                 case 1:
-                  Modular.to.pushReplacementNamed("/login");
-
                   break;
                 case 2:
                   break;
-                case 3:
-                  break;
+
                 default:
               }
             },
             icon: Icon(Icons.menu),
             itemBuilder: (_) => [
-              PopupMenuItem(value: 1, child: Text("Divulgar meu imóvel")),
               PopupMenuItem(value: 2, child: Text("Sobre")),
               PopupMenuItem(value: 3, child: Text("Tutórial")),
             ],
@@ -92,8 +86,7 @@ class _PropertyHomePageState
             )
           ],
         ),
-        body:  
-        Observer(
+        body: Observer(
           builder: (_) {
             if (controller.imovelModels.error != null) {
               return Center(
@@ -103,7 +96,12 @@ class _PropertyHomePageState
                 ),
               );
             }
-            if (controller.imovelModels.value == null) {
+            if (controller.imovelModels.value == null ||
+                controller.tipoAnuncios.value == null ||
+                controller.tipoHospedagens.value == null ||
+                controller.imagens.value == null ||
+                controller.enderecos.value == null ||
+                controller.contatos.value == null) {
               return Center(
                 child: CircularProgressIndicator(),
               );

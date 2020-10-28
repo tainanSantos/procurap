@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/dialog.dart';
+import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 class Details extends StatelessWidget {
@@ -333,15 +335,24 @@ class Details extends StatelessWidget {
                                       Icons.save,
                                       color: Colors.white,
                                     ),
-                                    onPressed: () {
+                                    onPressed: () async {
                                       // Lembrar de salvar antes
-                                      // Criar a extenção do controller aqui e e salvar os dados
-                                      Modular.to.pop();
-                                      Modular.to.pop();
-                                      Modular.to.pop();
-                                      Modular.to.pop();
-                                      Modular.to.pop();
-                                      Modular.to.pop();
+                                      print("Chegando aqui");
+                                      final controllerP =
+                                          Modular.get<PropertyController>();
+                                      await controllerP.salvarImovel();
+
+                                      // Modular.to.pop();
+                                      // Modular.to.pop();
+                                      // Modular.to.pop();
+                                      // Modular.to.pop();
+                                      // Modular.to.pop();
+                                      // Modular.to.pop();
+
+                                      AlertDialogCustom.Msg(
+                                          title: "Salvando imóvel",
+                                          context: context,
+                                          i: 1);
                                     },
                                     label: Text("Salvar",
                                         style: TextStyle(

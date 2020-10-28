@@ -464,6 +464,52 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
     });
   }
 
+  final _$enderecoAtom = Atom(name: '_PropertyControllerBase.endereco');
+
+  @override
+  EnderecoModel get endereco {
+    _$enderecoAtom.reportRead();
+    return super.endereco;
+  }
+
+  @override
+  set endereco(EnderecoModel value) {
+    _$enderecoAtom.reportWrite(value, super.endereco, () {
+      super.endereco = value;
+    });
+  }
+
+  final _$imovelModelAtom = Atom(name: '_PropertyControllerBase.imovelModel');
+
+  @override
+  ImovelModel get imovelModel {
+    _$imovelModelAtom.reportRead();
+    return super.imovelModel;
+  }
+
+  @override
+  set imovelModel(ImovelModel value) {
+    _$imovelModelAtom.reportWrite(value, super.imovelModel, () {
+      super.imovelModel = value;
+    });
+  }
+
+  final _$salvandoImovelAtom =
+      Atom(name: '_PropertyControllerBase.salvandoImovel');
+
+  @override
+  bool get salvandoImovel {
+    _$salvandoImovelAtom.reportRead();
+    return super.salvandoImovel;
+  }
+
+  @override
+  set salvandoImovel(bool value) {
+    _$salvandoImovelAtom.reportWrite(value, super.salvandoImovel, () {
+      super.salvandoImovel = value;
+    });
+  }
+
   final _$setCepAsyncAction = AsyncAction('_PropertyControllerBase.setCep');
 
   @override
@@ -717,6 +763,9 @@ city: ${city},
 state: ${state},
 cep: ${cep},
 upload: ${upload},
+endereco: ${endereco},
+imovelModel: ${imovelModel},
+salvandoImovel: ${salvandoImovel},
 valTipoAnuncio: ${valTipoAnuncio},
 valTipoImovel: ${valTipoImovel},
 valiTipoHospedagem: ${valiTipoHospedagem},

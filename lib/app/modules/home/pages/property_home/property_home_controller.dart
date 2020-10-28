@@ -89,7 +89,7 @@ abstract class _PropertyHomeControllerBase with Store {
 
   @action
   List<String> getImgsImovel(int id) {
-    if (this.imagens != null) {
+    if (this.imagens.value != null) {
       var imgs = List<String>();
       for (var item in this.imagens.value) {
         if (item.imovel == id) imgs.add(item.url);
@@ -100,19 +100,19 @@ abstract class _PropertyHomeControllerBase with Store {
 
   @action
   String getTipoImovel(int id) {
-    if (this.tipoImoveis != null)
+    if (this.tipoImoveis.value != null)
       for (var item in this.tipoImoveis.value)
         if (item.id == id) return item.nome;
   }
 
   @action
   EnderecoModel getEndereco(int id) {
-    if (this.enderecos != null)
+    if (this.enderecos.value != null)
       for (var item in this.enderecos.value) if (item.id == id) return item;
   }
 
   List<String> getContatos(int id) {
-    if (this.contatos != null) {
+    if (this.contatos.value != null) {
       var conts = List<String>();
       for (var item in this.contatos.value) {
         if (item.imovel == id) conts.add(item.valor);

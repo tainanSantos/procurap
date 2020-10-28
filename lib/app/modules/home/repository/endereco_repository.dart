@@ -13,7 +13,7 @@ class EnderecoRepository {
 
   Future<ObservableList<EnderecoModel>> findAll() async {
     try {
-      this._response = await _dio.instance.get("${Urls.ENDERECO}");
+      this._response = await _dio.instance.get("${Urls.ENDERECO}/");
       var listEnderecos = ObservableList<EnderecoModel>();
       for (var item in this._response.data) {
         listEnderecos.add(EnderecoModel.fromJson(item));
@@ -30,6 +30,18 @@ class EnderecoRepository {
       return EnderecoModel.fromJson(this._response.data);
     } catch (erro) {
       return erro.respose.data;
+    }
+  }
+
+  Future<EnderecoModel> save(EnderecoModel enderecoModel) async {
+    try {
+      this._response = await _dio.instance
+          .post("${Urls.ENDERECO}/", data: enderecoModel.toJson());
+      EnderecoModel endereco = EnderecoModel.fromJson(this._response.data);
+      return endereco;
+    } catch (e) {
+      // esse retorno tá errado
+      return e.response.data;
     }
   }
 }

@@ -59,7 +59,7 @@ class HomeModule extends ChildModule {
         Bind((i) => EnderecoRepository(i.get<CustomDio>())),
         Bind((i) => ImovelRepository(i.get<CustomDio>())),
         Bind((i) => FilterRepository(i.get<CustomDio>())),
-        Bind((i) => CustomDio()),
+        Bind((i) => CustomDio.withAutentication()),
       ];
 
   @override

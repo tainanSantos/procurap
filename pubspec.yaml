@@ -31,6 +31,9 @@ dependencies:
   flutter_masked_text: ^0.8.0
   intl: ^0.16.1
 
+  http_parser: ^3.1.4 # pacote para mandar imagens para a API
+
+
   shared_preferences: ^0.5.12+2
 
 
@@ -45,11 +48,6 @@ dependencies:
 
 
   cached_network_image: ^2.3.3
-
-
-
-
-
 
 
 
@@ -76,18 +74,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-  fonts:
-    - family: Raleway
-      fonts:
-        - asset: fonts/fonts/Raleway-Regular.ttf
-        - asset: fonts/fonts/Raleway-Italic.ttf
-          # style: italic
-    - family: Roboto
-      fonts:
-        - asset: fonts/fonts/Roboto-Regular.ttf
-        - asset: fonts/fonts/Roboto-Bold.ttf
-          # weight: 700
-  
+  # assets:
+  # - asse
+  # assets:
+  #   - images/  
   uses-material-design: true
 
   #   - family: Trajan Prodata

@@ -13,7 +13,7 @@ class ImovelRepository {
 
   Future<ObservableList<ImovelModel>> findAll() async {
     try {
-      this._response = await _dio.instance.get("${Urls.IMOVEL}");
+      this._response = await _dio.instance.get("${Urls.IMOVEL}/");
       var imoveis = ObservableList<ImovelModel>();
 
       for (var item in this._response.data) {
@@ -27,7 +27,6 @@ class ImovelRepository {
     }
   }
 
-
   Future<ImovelModel> findById(int id) async {
     try {
       this._response = await _dio.instance.get("${Urls.IMOVEL}/${id}");
@@ -37,5 +36,13 @@ class ImovelRepository {
     }
   }
 
-  
+  Future<ImovelModel> save(ImovelModel imovelModel) async {
+    try {
+      this._response = await _dio.instance.post("${Urls.IMOVEL}/", data: imovelModel.toJson());
+      return ImovelModel.fromJson(this._response.data);
+    } catch (e) {
+      // esse retorno tá errado
+      return e.response.data;
+    }
+  }
 }

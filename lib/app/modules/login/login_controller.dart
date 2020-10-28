@@ -13,6 +13,15 @@ abstract class _LoginControllerBase with Store {
   _LoginControllerBase(this.auth);
 
   @observable
+  bool visiblePass = true;
+
+  @observable
+  bool respApi;
+
+  @observable
+  bool isLogin = false;
+
+  @observable
   String usuario;
 
   @observable
@@ -24,8 +33,21 @@ abstract class _LoginControllerBase with Store {
   @action
   setSenha(String value) => this.senha = value;
 
-  @observable
-  bool visiblePass = true;
+  @action
+  setIsLogin(bool value) => this.isLogin = value;
+
+  @computed
+  bool get getIsLogin => this.isLogin;
+
+  fazerLogin() async {
+    this.respApi = await this.auth.login(this.usuario, this.senha);
+    if (this.respApi) {
+      setIsLogin(true);
+    } else {
+      // que dizer que deu erro no lógin
+      setIsLogin(false);
+    }
+  }
 
   @action
   setVisiblePass() => this.visiblePass = !this.visiblePass;
