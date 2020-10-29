@@ -17,6 +17,21 @@ mixin _$GalleryController on _GalleryControllerBase, Store {
               name: '_GalleryControllerBase.getIdImovel'))
           .value;
 
+  final _$imagensAtom = Atom(name: '_GalleryControllerBase.imagens');
+
+  @override
+  ObservableFuture<ObservableList<ImagemModel>> get imagens {
+    _$imagensAtom.reportRead();
+    return super.imagens;
+  }
+
+  @override
+  set imagens(ObservableFuture<ObservableList<ImagemModel>> value) {
+    _$imagensAtom.reportWrite(value, super.imagens, () {
+      super.imagens = value;
+    });
+  }
+
   final _$_idImovelAtom = Atom(name: '_GalleryControllerBase._idImovel');
 
   @override
@@ -64,6 +79,7 @@ mixin _$GalleryController on _GalleryControllerBase, Store {
   @override
   String toString() {
     return '''
+imagens: ${imagens},
 urls: ${urls},
 getIdImovel: ${getIdImovel}
     ''';

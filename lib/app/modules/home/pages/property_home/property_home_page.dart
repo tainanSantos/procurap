@@ -30,124 +30,124 @@ class _PropertyHomePageState
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: CustomColor.primary,
-          title: LogoApp(),
-          leading: PopupMenuButton(
-            onSelected: (value) {
-              switch (value) {
-                case 1:
-                  break;
-                case 2:
-                  break;
+      appBar: AppBar(
+        backgroundColor: CustomColor.primary,
+        title: LogoApp(),
+        leading: PopupMenuButton(
+          onSelected: (value) {
+            switch (value) {
+              case 1:
+                break;
+              case 2:
+                break;
 
-                default:
-              }
-            },
-            icon: Icon(Icons.menu),
-            itemBuilder: (_) => [
-              PopupMenuItem(value: 2, child: Text("Sobre")),
-              PopupMenuItem(value: 3, child: Text("Tutórial")),
-            ],
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                // Modular.to.pushNamed("/home/filter");
-                ShowModalCustom.show(
-                  context: context,
-                  widget: FilterPage(),
-                );
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.map),
-              onPressed: () {
-                ShowModalCustom.show(
-                  context: context,
-                  widget: Container(
-                    height: 50,
-                    color: Colors.red,
-                    child: Center(
-                      child: Text(
-                        "Não implementado.",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                );
-
-                // AlertDialogCustom.Msg(
-                //     context: context, title: "Não Implementado", i: 3);
-                // Timer(Duration(seconds: 1), () => Modular.to.pop());
-              },
-            )
+              default:
+            }
+          },
+          icon: Icon(Icons.menu),
+          itemBuilder: (_) => [
+            PopupMenuItem(value: 2, child: Text("Sobre")),
+            PopupMenuItem(value: 3, child: Text("Tutórial")),
           ],
         ),
-        body: Observer(
-          builder: (_) {
-            if (controller.imovelModels.error != null) {
-              return Center(
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("Erro ao carregar"),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // Modular.to.pushNamed("/home/filter");
+              ShowModalCustom.show(
+                context: context,
+                widget: FilterPage(),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.map),
+            onPressed: () {
+              ShowModalCustom.show(
+                context: context,
+                widget: Container(
+                  height: 50,
+                  color: Colors.red,
+                  child: Center(
+                    child: Text(
+                      "Não implementado.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               );
-            }
-            if (controller.imovelModels.value == null ||
-                controller.tipoAnuncios.value == null ||
-                controller.tipoHospedagens.value == null ||
-                controller.imagens.value == null ||
-                controller.enderecos.value == null ||
-                controller.contatos.value == null) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (controller.imovelModels.value.length == 0) {
-              return Center(
-                child: Text("Nenhum imóvek cadastrado"),
-              );
-            }
-            // if (controller.imovelModels.value == null ||
-            //   controller.tipoAnuncios.value == null ||
-            //   controller.tipoImoveis.value == null ||
-            //   controller.tipoHospedagens == null ||
-            //   controller.imagens.value == null ||
-            //   controller.enderecos == null) {
-            // return Center(
-            //   child: CircularProgressIndicator(),
-            // );
-            // }
-            List<ImovelModel> imoveis = controller.imovelModels.value;
 
-            return ListView.builder(
-              itemCount: imoveis.length,
-              itemBuilder: (context, index) {
-                return CardCustomList(
-                  onTap: () async {
-                    await controller.setImovelModel(imoveis[index]);
-                    await controller.setEnderecoModel(
-                        controller.getEndereco(imoveis[index].endereco));
-
-                    Modular.to.pushNamed("/home/details_home");
-                  },
-                  isFavorite: false,
-                  type: controller.getTipoImovel(imoveis[index].tipoImovel),
-                  addrens:
-                      controller.getEndereco(imoveis[index].endereco).cidade,
-                  value: "RS ${imoveis[index].precoAluguel}",
-                  description:
-                      "${imoveis[index].numQuartos} quarto(s), ${imoveis[index].numVagas} garagem(ns), ${imoveis[index].numBanheiros} banheiro(s), ${imoveis[index].numConzinhas} cozinha(s) ",
-                  urlImage: controller.getImgsImovel(imoveis[index].id)[0],
-                );
-              },
+              // AlertDialogCustom.Msg(
+              //     context: context, title: "Não Implementado", i: 3);
+              // Timer(Duration(seconds: 1), () => Modular.to.pop());
+            },
+          )
+        ],
+      ),
+      body: Observer(
+        builder: (_) {
+          if (controller.imovelModels.error != null) {
+            return Center(
+              child: FlatButton(
+                onPressed: () {},
+                child: Text("Erro ao carregar"),
+              ),
             );
-          },
-        ));
- 
+          }
+          if (controller.imovelModels.value == null ||
+              controller.tipoAnuncios.value == null ||
+              controller.tipoHospedagens.value == null ||
+              controller.imagens.value == null ||
+              controller.enderecos.value == null ||
+              controller.contatos.value == null) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (controller.imovelModels.value.length == 0) {
+            return Center(
+              child: Text("Nenhum imóvek cadastrado"),
+            );
+          }
+          // if (controller.imovelModels.value == null ||
+          //   controller.tipoAnuncios.value == null ||
+          //   controller.tipoImoveis.value == null ||
+          //   controller.tipoHospedagens == null ||
+          //   controller.imagens.value == null ||
+          //   controller.enderecos == null) {
+          // return Center(
+          //   child: CircularProgressIndicator(),
+          // );
+          // }
+          List<ImovelModel> imoveis = controller.imovelModels.value;
+
+          return ListView.builder(
+            itemCount: imoveis.length,
+            itemBuilder: (context, index) {
+              return CardCustomList(
+                onTap: () async {
+                  await controller.setImovelModel(imoveis[index]);
+                  await controller.setEnderecoModel(
+                      controller.getEndereco(imoveis[index].endereco));
+
+                  Modular.to.pushNamed("/home/details_home");
+                },
+                isFavorite: false,
+                type: controller.getTipoImovel(imoveis[index].tipoImovel),
+                addrens: controller.getEndereco(imoveis[index].endereco).cidade,
+                value: "RS ${imoveis[index].precoAluguel}",
+                description:
+                    "${imoveis[index].numQuartos} quarto(s), ${imoveis[index].numVagas} garagem(ns), ${imoveis[index].numBanheiros} banheiro(s), ${imoveis[index].numConzinhas} cozinha(s) ",
+                urlImage: controller.getImgsImovel(imoveis[index].id)[0],
+              );
+            },
+          );
+        },
+      ),
+   
+    );
   }
 
   Widget rowTitle(String tittleRow) => Row(

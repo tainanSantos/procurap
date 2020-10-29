@@ -380,15 +380,16 @@ abstract class _PropertyControllerBase with Store {
     ImovelModel imov = await this.imovelRepository.save(imovelModel);
 
     // SALVA IMAGENS
-    List<ImagemModel> imgs = List<ImagemModel>();
+    // List<ImagemModel> imgs = List<ImagemModel>();
     for (var i = 0; i < this.urlImagesList.length; i++) {
       ImagemModel img = ImagemModel();
       img.imovel = imov.id;
       img.url = this.urlImagesList[i];
-      imgs.add(img);
+      await imagemRepository.save(img);
+      // imgs.add(img);
     }
-    ImagemModel imgsResp = await imagemRepository.save(imgs[0]);
-    this.salvandoImovel = true;
+
+    // ImagemModel imgsResp = await imagemRepository.save(imgs);
 
     // SALVA COTATOS
     ContatoModel fixo = ContatoModel();

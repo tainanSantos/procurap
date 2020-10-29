@@ -61,28 +61,30 @@ class Details extends StatelessWidget {
             expandedHeight: 250,
             floating: true,
             pinned: true,
-            actions: [
-              FlatButton(
-                onPressed: () {
-                  Modular.to.pushNamed("/home/gallery_page");
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.photo_library,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Galeria",
-                      style: TextStyle(color: Colors.white),
+            actions: function == null
+                ? [
+                    FlatButton(
+                      onPressed: () {
+                        Modular.to.pushNamed("/home/gallery_page");
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.photo_library,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Galeria",
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
                     )
-                  ],
-                ),
-              )
-            ],
+                  ]
+                : null,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 width: MediaQuery.of(context).size.width - 50,
