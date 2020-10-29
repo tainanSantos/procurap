@@ -9,6 +9,21 @@ part of 'property_home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PropertyHomeController on _PropertyHomeControllerBase, Store {
+  Computed<EnderecoModel> _$getEnderecoMododelComputed;
+
+  @override
+  EnderecoModel get getEnderecoMododel => (_$getEnderecoMododelComputed ??=
+          Computed<EnderecoModel>(() => super.getEnderecoMododel,
+              name: '_PropertyHomeControllerBase.getEnderecoMododel'))
+      .value;
+  Computed<ImovelModel> _$getImovelModelComputed;
+
+  @override
+  ImovelModel get getImovelModel => (_$getImovelModelComputed ??=
+          Computed<ImovelModel>(() => super.getImovelModel,
+              name: '_PropertyHomeControllerBase.getImovelModel'))
+      .value;
+
   final _$imovelModelsAtom =
       Atom(name: '_PropertyHomeControllerBase.imovelModels');
 
@@ -155,7 +170,7 @@ mixin _$PropertyHomeController on _PropertyHomeControllerBase, Store {
       ActionController(name: '_PropertyHomeControllerBase');
 
   @override
-  dynamic setImovelModel(ImovelModel value) {
+  dynamic setImovelModel(dynamic value) {
     final _$actionInfo = _$_PropertyHomeControllerBaseActionController
         .startAction(name: '_PropertyHomeControllerBase.setImovelModel');
     try {
@@ -166,7 +181,7 @@ mixin _$PropertyHomeController on _PropertyHomeControllerBase, Store {
   }
 
   @override
-  dynamic setEnderecoModel(EnderecoModel value) {
+  dynamic setEnderecoModel(dynamic value) {
     final _$actionInfo = _$_PropertyHomeControllerBaseActionController
         .startAction(name: '_PropertyHomeControllerBase.setEnderecoModel');
     try {
@@ -220,7 +235,9 @@ imagens: ${imagens},
 enderecos: ${enderecos},
 contatos: ${contatos},
 imovelModel: ${imovelModel},
-enderecoModel: ${enderecoModel}
+enderecoModel: ${enderecoModel},
+getEnderecoMododel: ${getEnderecoMododel},
+getImovelModel: ${getImovelModel}
     ''';
   }
 }

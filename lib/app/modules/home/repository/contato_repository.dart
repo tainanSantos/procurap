@@ -24,19 +24,14 @@ class ContatoRepository {
     }
   }
 
-  Future<ObservableList<ContatoModel>> save(List<ContatoModel> contatos) async {
+  Future<ContatoModel> save(ContatoModel contato) async {
     try {
-      var contatos = ObservableList<ContatoModel>();
-
-      for (var contato in contatos) {
-        this._response = await _dio.instance
-            .post("${Urls.CONTATOS}/", data: contato.toJson());
-        ContatoModel cont = ContatoModel.fromJson(this._response.data);
-        contatos.add(cont);
-      }
-      return contatos;
+      this._response =
+          await _dio.instance.post("${Urls.CONTATOS}/", data: contato.toJson());
+      return ContatoModel.fromJson(_response.data);
     } catch (e) {
       // esse retorno tá errado
+      print("Erro ao salvar o contato");
       return e.response.data;
     }
   }

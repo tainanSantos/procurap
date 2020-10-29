@@ -377,33 +377,7 @@ abstract class _PropertyControllerBase with Store {
     this.imovelModel.precoAluguel = "${this.aluguel}";
     this.imovelModel.precoImovel = "${this.precoImovel}";
 
-    print("__________________________________________");
-    print(this.endereco.toJson());
-    print("__________________________________________");
-    print(this.imovelModel.toJson());
-    print("__________________________________________");
-
     ImovelModel imov = await this.imovelRepository.save(imovelModel);
-
-    // SALVA COTATOS
-
-    List<ContatoModel> contatos = List<ContatoModel>();
-
-    ContatoModel fixo = ContatoModel();
-    fixo.tipoContato = 2;
-    fixo.valor = this.telFixo;
-    fixo.imovel = imov.id;
-
-    ContatoModel celular = ContatoModel();
-    celular.tipoContato = 3;
-    celular.valor = this.telCelular;
-    celular.imovel = imov.id;
-
-    contatos.add(fixo);
-    contatos.add(celular);
-
-    ObservableList<ContatoModel> conts =
-        await this.contatoRepository.save(contatos);
 
     // SALVA IMAGENS
     List<ImagemModel> imgs = List<ImagemModel>();
@@ -413,7 +387,26 @@ abstract class _PropertyControllerBase with Store {
       img.url = this.urlImagesList[i];
       imgs.add(img);
     }
-    ObservableList<ImagemModel> imgsResp = await imagemRepository.save(imgs);
+    ImagemModel imgsResp = await imagemRepository.save(imgs[0]);
+    this.salvandoImovel = true;
+
+    // SALVA COTATOS
+    ContatoModel fixo = ContatoModel();
+    fixo.tipoContato = 2;
+    fixo.valor = this.telFixo;
+    fixo.imovel = imov.id;
+    await this.contatoRepository.save(fixo);
+
+    ContatoModel celular = ContatoModel();
+    celular.tipoContato = 2;
+    celular.valor = this.telCelular;
+    celular.imovel = imov.id;
+
+    print("CELULAR >>> ${celular.toJson()}");
+    print("FIXO >>> ${fixo.toJson()}");
+
+    await this.contatoRepository.save(celular);
+
     this.salvandoImovel = true;
   }
 }

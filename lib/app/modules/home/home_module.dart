@@ -1,3 +1,5 @@
+import 'pages/property_home/gallery/gallery_controller.dart';
+import 'pages/property_home/gallery/gallery_page.dart';
 import 'package:dio/dio.dart';
 import 'package:procurap/app/modules/home/modules/property/property_module.dart';
 import 'package:procurap/app/modules/home/modules/rent/rent_module.dart';
@@ -41,6 +43,9 @@ class HomeModule extends ChildModule {
         $ListController,
         $FilterController,
         $HomeController,
+        Bind(
+          (i)=>GalleryController(i.get<ImagemRepository>())
+        ),
         Bind((i) => PropertyHomeController(
               i.get<TipoAnuncioRepository>(),
               i.get<EnderecoRepository>(),
@@ -67,6 +72,9 @@ class HomeModule extends ChildModule {
         ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
         ModularRouter('details_home',
             child: (_, args) => DetailsHome(),
+            transition: TransitionType.rightToLeft),
+        ModularRouter('gallery_page',
+            child: (_, args) => GalleryPage(),
             transition: TransitionType.rightToLeft),
         ModularRouter('details_crud',
             child: (_, args) => DetailsCrud(),

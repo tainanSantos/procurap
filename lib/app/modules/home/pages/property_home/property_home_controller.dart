@@ -52,12 +52,6 @@ abstract class _PropertyHomeControllerBase with Store {
   @observable
   ObservableFuture<ObservableList<ContatoModel>> contatos;
 
-  @observable
-  ImovelModel imovelModel;
-
-  @observable
-  EnderecoModel enderecoModel;
-
   // @observable
   // ObservableList<String> urlImagesList;
 
@@ -81,11 +75,23 @@ abstract class _PropertyHomeControllerBase with Store {
     this.contatos = this.contatoRepository.findAll().asObservable();
   }
 
-  @action
-  setImovelModel(ImovelModel value) => this.imovelModel = value;
+  @observable
+  ImovelModel imovelModel;
+
+  @observable
+  EnderecoModel enderecoModel;
 
   @action
-  setEnderecoModel(EnderecoModel value) => this.enderecoModel = value;
+  setImovelModel(value) => this.imovelModel = value;
+
+  @action
+  setEnderecoModel(value) => this.enderecoModel = value;
+
+  @computed
+  EnderecoModel get getEnderecoMododel => this.enderecoModel;
+
+  @computed
+  ImovelModel get getImovelModel => this.imovelModel;
 
   @action
   List<String> getImgsImovel(int id) {
@@ -107,8 +113,9 @@ abstract class _PropertyHomeControllerBase with Store {
 
   @action
   EnderecoModel getEndereco(int id) {
-    if (this.enderecos.value != null)
-      for (var item in this.enderecos.value) if (item.id == id) return item;
+    if (this.enderecos.value != null && this.imovelModels.value != null)
+      for (EnderecoModel endereco in this.enderecos.value)
+        if (endereco.id == id) return endereco;
   }
 
   List<String> getContatos(int id) {

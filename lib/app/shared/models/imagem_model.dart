@@ -1,3 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
+
 class ImagemModel {
   int id;
   int imovel;
@@ -19,3 +22,5 @@ class ImagemModel {
     return data;
   }
 }
+
+

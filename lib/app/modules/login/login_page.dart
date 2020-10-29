@@ -29,6 +29,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       },
       child: Scaffold(
         // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+        backgroundColor: CustomColor.primary,
         appBar: AppBar(
           backgroundColor: CustomColor.primary,
           elevation: 0,
@@ -39,19 +40,19 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
             },
           ),
         ),
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                height: (height / 2) - 70,
+                height: (height / 2) - 100,
                 child: Stack(
                   children: [
                     Container(
                       color: CustomColor.primary,
                       // color: Color.fromRGBO(74, 76, 255, 1),
                     ),
-                    Align(child: LogoApp()),
+                    // Align(child: LogoApp()),
                     Positioned(
                       left: 30,
                       bottom: 5,
@@ -85,15 +86,15 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                 ),
               ),
               Container(
-                // margin: EdgeInsets.all(10),
+                margin: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                      // topLeft: Radius.circular(20),
-                      // topRight: Radius.circular(20),
-                      // bottomLeft: Radius.circular(10),
-                      // bottomRight: Radius.circular(10),
-                      ),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  ),
                 ),
                 height: (height * 0.5),
                 child: SingleChildScrollView(

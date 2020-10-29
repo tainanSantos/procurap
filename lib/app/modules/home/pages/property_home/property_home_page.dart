@@ -127,15 +127,17 @@ class _PropertyHomePageState
               itemCount: imoveis.length,
               itemBuilder: (context, index) {
                 return CardCustomList(
-                  onTap: () {
-                    controller.setImovelModel(imoveis[index]);
-                    controller.setEnderecoModel(
-                        controller.getEndereco(imoveis[index].id));
+                  onTap: () async {
+                    await controller.setImovelModel(imoveis[index]);
+                    await controller.setEnderecoModel(
+                        controller.getEndereco(imoveis[index].endereco));
+
                     Modular.to.pushNamed("/home/details_home");
                   },
                   isFavorite: false,
-                  type: controller.getTipoImovel(imoveis[index].id),
-                  addrens: controller.getEndereco(imoveis[index].id).cidade,
+                  type: controller.getTipoImovel(imoveis[index].tipoImovel),
+                  addrens:
+                      controller.getEndereco(imoveis[index].endereco).cidade,
                   value: "RS ${imoveis[index].precoAluguel}",
                   description:
                       "${imoveis[index].numQuartos} quarto(s), ${imoveis[index].numVagas} garagem(ns), ${imoveis[index].numBanheiros} banheiro(s), ${imoveis[index].numConzinhas} cozinha(s) ",
@@ -145,6 +147,7 @@ class _PropertyHomePageState
             );
           },
         ));
+ 
   }
 
   Widget rowTitle(String tittleRow) => Row(

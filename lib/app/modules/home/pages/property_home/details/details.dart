@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -62,7 +64,7 @@ class Details extends StatelessWidget {
             actions: [
               FlatButton(
                 onPressed: () {
-                  Modular.to.pushNamed("/home/gallery");
+                  Modular.to.pushNamed("/home/gallery_page");
                 },
                 child: Row(
                   children: [
@@ -342,17 +344,26 @@ class Details extends StatelessWidget {
                                           Modular.get<PropertyController>();
                                       await controllerP.salvarImovel();
 
-                                      // Modular.to.pop();
-                                      // Modular.to.pop();
-                                      // Modular.to.pop();
-                                      // Modular.to.pop();
-                                      // Modular.to.pop();
-                                      // Modular.to.pop();
-
                                       AlertDialogCustom.Msg(
-                                          title: "Salvando imóvel",
+                                          title: "Salvando imóvel ... ",
                                           context: context,
                                           i: 1);
+                                      Timer(Duration(microseconds: 2000), () {
+                                        AlertDialogCustom.Msg(
+                                            title: "Salvo Com sucesso",
+                                            context: context,
+                                            i: 2);
+                                        Timer(Duration(), () {
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                        });
+                                      });
                                     },
                                     label: Text("Salvar",
                                         style: TextStyle(

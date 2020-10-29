@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -49,10 +50,14 @@ class _PhotosPageState extends State<PhotosPage> {
                           final gallery = await ImagePicker.platform.pickImage(
                             source: ImageSource.gallery,
                           );
-                          // File img = gallery.path;
 
                           if (gallery.path != null)
                             await controller.addUrlImage(gallery.path);
+                                       
+
+                          print(gallery.path.replaceAll(
+                              "/data/user/0/br.com.tainansantos.procurap/cache/",
+                              ""));
                         } catch (e) {
                           return;
                         }
@@ -71,6 +76,9 @@ class _PhotosPageState extends State<PhotosPage> {
                         );
                         if (picture.path != null)
                           await controller.addUrlImage(picture.path);
+                        print(picture.path.replaceAll(
+                            "/data/user/0/br.com.tainansantos.procurap/cache/",
+                            ""));
                       } catch (e) {
                         return;
                       }

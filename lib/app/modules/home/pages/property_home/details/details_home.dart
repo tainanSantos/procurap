@@ -31,12 +31,17 @@ class _DetailsHomeState extends State<DetailsHome> {
   @override
   void initState() {
     super.initState();
+
     this.propertyHomeC = Modular.get<PropertyHomeController>();
+
     int id = propertyHomeC.imovelModel.id;
-    var imovel = propertyHomeC.imovelModel;
+    var imovel = propertyHomeC.getImovelModel;
+    print("${imovel.toJson()['tipo_imovel']}");
+
     var endereco = propertyHomeC.enderecoModel;
     this._imgUrl = propertyHomeC.getImgsImovel(id)[0];
-    this._tipoImovel = propertyHomeC.getTipoImovel(id);
+    this._tipoImovel =
+        propertyHomeC.getTipoImovel(imovel.toJson()['tipo_imovel']);
     List<String> conts = propertyHomeC.getContatos(id);
 
     this._aluguel = imovel.precoAluguel;
