@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pinch_zoom_image/pinch_zoom_image.dart';
 import 'package:procurap/app/modules/home/pages/property_home/property_home_controller.dart';
 import 'package:procurap/app/shared/models/imagem_model.dart';
 import 'gallery_controller.dart';
@@ -79,13 +77,27 @@ class _GalleryPageState extends ModularState<GalleryPage, GalleryController> {
           return ListView.builder(
             itemCount: imgs.length,
             itemBuilder: (context, index) {
-              return PinchZoomImage(
-                image: CachedNetworkImage(
-                  imageUrl: imgs[index].url,
-                ),
-                zoomedBackgroundColor: Color.fromRGBO(240, 240, 240, 1.0),
-                hideStatusBarWhileZooming: true,
-              );
+              return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (b) => Scaffold(
+                                  appBar: AppBar(
+                                    backgroundColor: Colors.black,
+                                  ),
+                                  backgroundColor: Colors.black,
+                                  body: Container(
+                                    child: Center(
+                                      child: Image.network(imgs[index].url),
+                                    ),
+                                  ),
+                                )));
+                  },
+                  child: Container(
+                    child: Image.network(imgs[index].url),
+                  ));
+
               // Container(
               //   height: MediaQuery.of(context).size.height / 3,
               //   width: MediaQuery.of(context).size.width,

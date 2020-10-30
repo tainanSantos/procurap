@@ -33,6 +33,18 @@ class EnderecoRepository {
     }
   }
 
+  Future<EnderecoModel> delete(int id) async {
+    print("ID >>> $id");
+    try {
+      this._response = await _dio.instance.delete("${Urls.ENDERECO}/${id}/");
+      return EnderecoModel.fromJson(this._response.data);
+    } catch (erro) {
+      print("DEU ERRO");
+      return null;
+      // return erro.respose.data;
+    }
+  }
+
   Future<EnderecoModel> save(EnderecoModel enderecoModel) async {
     try {
       this._response = await _dio.instance
@@ -40,7 +52,6 @@ class EnderecoRepository {
       EnderecoModel endereco = EnderecoModel.fromJson(this._response.data);
       return endereco;
     } catch (e) {
-      // esse retorno tá errado
       return e.response.data;
     }
   }

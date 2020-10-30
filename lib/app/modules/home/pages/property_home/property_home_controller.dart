@@ -75,6 +75,19 @@ abstract class _PropertyHomeControllerBase with Store {
     this.contatos = this.contatoRepository.findAll().asObservable();
   }
 
+  @action
+  load() {
+    this.imovelModels = this.imovelRepository.findAll().asObservable();
+
+    this.tipoAnuncios = this.tipoAnuncioRepository.findAll().asObservable();
+    this.tipoImoveis = this.tipoImovelRepository.findAll().asObservable();
+    this.tipoHospedagens =
+        this.tipoHospedagemRepository.findAll().asObservable();
+    this.imagens = this.imagemRepository.findAll().asObservable();
+    this.enderecos = this.enderecoRepository.findAll().asObservable();
+    this.contatos = this.contatoRepository.findAll().asObservable();
+  }
+
   @observable
   ImovelModel imovelModel;
 

@@ -39,9 +39,7 @@ class UserInfo extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: Colors.grey,
                     radius: 35.0,
-                    child: Card(
-                      color: Colors.grey,
-                      child: IconButton(
+                    child:  IconButton(
                           icon: Icon(
                             Icons.camera_alt,
                             color: Colors.white,
@@ -67,7 +65,7 @@ class UserInfo extends StatelessWidget {
                     // ),
                   ),
                 ),
-              ),
+              
             ],
           ),
           SizedBox(
@@ -75,6 +73,10 @@ class UserInfo extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
+
+              // Perguntgar se o usuário quet ver ou deletar o imóvel
+
+
               Modular.to.pushNamed("/home/my_propertys");
             },
             title: Text("Imóveis"),
@@ -135,12 +137,12 @@ class UserInfo extends StatelessWidget {
                           height: 20,
                         ),
                         Container(
-                          width: 180,
+                          width: 260,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                width: 80,
+                                width: 120,
                                 height: 40,
                                 child: RaisedButton(
                                   elevation: 0,
@@ -160,7 +162,7 @@ class UserInfo extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                width: 80,
+                                width: 120,
                                 height: 40,
                                 child: RaisedButton(
                                   color: CustomColor.primary,
@@ -188,6 +190,7 @@ class UserInfo extends StatelessWidget {
                   ),
                 ),
               );
+             
               // AlertDialogCustom.Action(
               //     context: context,
               //     title: "Sair",

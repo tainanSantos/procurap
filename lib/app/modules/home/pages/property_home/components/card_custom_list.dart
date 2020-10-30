@@ -20,7 +20,8 @@ class CardCustomList extends StatelessWidget {
       this.value,
       this.description,
       this.isFavorite = false,
-      this.isFavoriteVisible = false, this.onTap})
+      this.isFavoriteVisible = false,
+      this.onTap})
       : super(key: key); // componente para gerencia de estados do botão faorito
 
   @override
@@ -55,7 +56,7 @@ class CardCustomList extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 170,
+                height: 200,
                 width: MediaQuery.of(context).size.width,
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,

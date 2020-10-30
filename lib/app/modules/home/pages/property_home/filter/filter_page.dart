@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/drop_down_custom.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
@@ -16,22 +17,29 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColor.primary,
+        backgroundColor: CustomColor.primary2Filter,
         title: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Text(
             "Filtros",
-            // style: TextStyle(color: Colors.black87,),
+            style: TextStyle(
+              color: Colors.black87,
+            ),
           ),
         ),
-        elevation: 0,
+        // elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: RaisedButton(
               onPressed: () {
-                Modular.to.pop();
+                if (controller.getUf != null &&
+                    controller.getCidade != null &&
+                    controller.getBairro != null) {
+                  Modular.to.pop();
+                  Modular.to.pushNamed("/home/list");
+                }
               },
               color: Colors.transparent,
               elevation: 0,
@@ -43,86 +51,71 @@ class _FilterPageState extends ModularState<FilterPage, FilterController> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 15, right: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 30,
-            ),
-            DropDownCustom(
-              labelText: "Desejo",
-              list: [
-                'ALUGAR',
-                'COMPRAR',
-              ],
-              onChanged: (value) {},
-              errorText: (controller.value != null)
-                  ? null
-                  : "O campo destino não pode ser vazio.",
-            ),
-            _myDivider(),
-            DropDownCustom(
-              labelText: "Estado",
-              list: [
-                'AMAZONIA',
-                'PARAIBA',
-                'PERNAMBUCO',
-                'RIO DE JANEIRO',
-              ],
-              onChanged: (value) {},
-              errorText: (controller.value != null)
-                  ? null
-                  : "O campo destino não pode ser vazio.",
-            ),
-            _myDivider(),
-            DropDownCustom(
-              labelText: "Cidade",
-              list: ['TABIRA', 'TRIUNFO', 'SERRA TALHADA', 'FLORES', 'ALAGOAS'],
-              onChanged: (value) {},
-              errorText: (controller.value != null)
-                  ? null
-                  : "O campo destino não pode ser vazio.",
-            ),
-            _myDivider(),
-            DropDownCustom(
-              labelText: "Bairro",
-              list: [
-                'BOM JESUSUS RESSUCITADO',
-                'ALTO DA CONCEIÇÃO',
-                'BOMBA',
-                'AABB',
-                'BAIRRO UNIVERSITÁRIO'
-              ],
-              onChanged: (value) {},
-              errorText: (controller.value != null)
-                  ? null
-                  : "O campo destino não pode ser vazio.",
-            ),
-            _myDivider(),
-            DropDownCustom(
-              labelText: "Categoria",
-              list: [
-                "Apartamento padrão",
-                "Casas",
-                "Casas de praia e de campo",
-                "Coberturas",
-                "Depósitos",
-                "Flats",
-                "Lofts",
-                "Lojas",
-                "Kitnet",
-                "Mansões",
-                "Sala"
-              ],
-              onChanged: (value) {},
-              errorText: (controller.value != null)
-                  ? null
-                  : "O campo destino não pode ser vazio.",
-            ),
-            _myDivider()
-          ],
+      body: Observer(
+        builder: (_) => SingleChildScrollView(
+          padding: EdgeInsets.only(left: 15, right: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 30,
+              ),
+              DropDownCustom(
+                labelText: "Estado",
+                list: controller.getUfs(),
+                onChanged: (value) {
+                  controller.setCidade(null);
+                  controller.setBairro(null);
+                  controller.setCategoria(null);
+                  controller.setUf(value);
+                },
+                value: controller.getUf,
+                errorText: (controller.value != null)
+                    ? null
+                    : "O campo destino não pode ser vazio.",
+              ),
+              _myDivider(),
+              DropDownCustom(
+                labelText: "Cidade",
+                list: controller.getCidades(),
+                onChanged: (value) {
+                  controller.setCategoria(null);
+
+                  controller.setBairro(null);
+                  controller.setCidade(value);
+                },
+                value: controller.getCidade,
+                errorText: (controller.value != null)
+                    ? null
+                    : "O campo destino não pode ser vazio.",
+              ),
+              _myDivider(),
+              DropDownCustom(
+                labelText: "Bairro",
+                list: controller.getBairros(),
+                value: controller.getBairro,
+                onChanged: (value) {
+                  controller.setCategoria(null);
+
+                  controller.setBairro(value);
+                },
+                errorText: (controller.value != null)
+                    ? null
+                    : "O campo destino não pode ser vazio.",
+              ),
+              _myDivider(),
+              // DropDownCustom(
+              //   labelText: "Categoria",
+              //   list: controller.getCategorias(),
+              //   onChanged: controller.setCategoria,
+              //   value: controller.getCategoria,
+              //   errorText: (controller.value != null)
+              //       ? null
+              //       : "O campo destino não pode ser vazio.",
+              // ),
+              // _myDivider()
+            ],
+          ),
         ),
       ),
     );

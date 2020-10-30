@@ -170,6 +170,17 @@ mixin _$PropertyHomeController on _PropertyHomeControllerBase, Store {
       ActionController(name: '_PropertyHomeControllerBase');
 
   @override
+  dynamic load() {
+    final _$actionInfo = _$_PropertyHomeControllerBaseActionController
+        .startAction(name: '_PropertyHomeControllerBase.load');
+    try {
+      return super.load();
+    } finally {
+      _$_PropertyHomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setImovelModel(dynamic value) {
     final _$actionInfo = _$_PropertyHomeControllerBaseActionController
         .startAction(name: '_PropertyHomeControllerBase.setImovelModel');

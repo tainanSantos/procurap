@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/home/pages/property_home/components/card_custom_list.dart';
 import 'package:procurap/app/modules/home/pages/property_home/property_home_controller.dart';
 import 'package:procurap/app/shared/models/imovel_model.dart';
@@ -68,11 +69,155 @@ class _MyPropertysState extends State<MyPropertys> {
               itemBuilder: (context, index) {
                 return CardCustomList(
                   onTap: () async {
-                    await controller.setImovelModel(imoveis[index]);
-                    await controller.setEnderecoModel(
-                        controller.getEndereco(imoveis[index].endereco));
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (_) => Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          padding:
+                              EdgeInsets.only(left: 30, right: 30, top: 10),
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.grey[300],
+                                    borderRadius: BorderRadius.circular(10)),
+                                height: 5,
+                                width: 35,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text("O que você deseja fazer com este imóvel?"),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                width: 260,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: 120,
+                                      height: 40,
+                                      child: RaisedButton(
+                                        color: Colors.red,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Colors.red, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        onPressed: () async {
+                                          // Aqui tu vai deletar o imóvel
+                                          // é só apagar o email e o istema faz o resto
 
-                    Modular.to.pushNamed("/home/details_home");
+                                          Navigator.pop(context);
+                                          AlertDialogCustom.Action(
+                                              context: context,
+                                              msg:
+                                                  "Tem Certeza que deseja DELETAR este imóvel?",
+                                              onPressed: () async {
+                                                await controller
+                                                    .enderecoRepository
+                                                    .delete(imoveis[index]
+                                                        .endereco);
+                                                controller.load();
+                                                Navigator.pop(context);
+                                              },
+                                              text: "SIM",
+                                              onPressedCancel: () {
+                                                Navigator.pop(context);
+                                              },
+                                              textCancel: "NÃO",
+                                              title: "DELETAR");
+                                        },
+                                        child: Text("DELETAR",
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 120,
+                                      height: 40,
+                                      child: RaisedButton(
+                                        elevation: 0,
+                                        color: CustomColor.primary,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: CustomColor.primary,
+                                              width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        onPressed: () async {
+                                          await controller
+                                              .setImovelModel(imoveis[index]);
+                                          await controller.setEnderecoModel(
+                                              controller.getEndereco(
+                                                  imoveis[index].endereco));
+
+                                          Navigator.pop(context);
+
+                                          Modular.to
+                                              .pushNamed("/home/details_home");
+                                        },
+                                        child: Text(
+                                          "VER",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                width: 260,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: 260,
+                                      height: 40,
+                                      child: RaisedButton(
+                                        color: Colors.green,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Colors.green, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        onPressed: () async {
+                                          // Aqui tu vai deletar o imóvel
+                                          // é só apagar o email e o istema faz o resto
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("EDITAR",
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
                   },
                   isFavorite: false,
                   type: controller.getTipoImovel(imoveis[index].tipoImovel),
