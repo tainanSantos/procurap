@@ -194,8 +194,6 @@ abstract class _PropertyControllerBase with Store {
 
   // ___________________________________________________________________________
 
-  @observable
-  String msgCep;
   //___________________________________
 
   @observable
@@ -219,6 +217,9 @@ abstract class _PropertyControllerBase with Store {
   @observable
   String cep;
 
+  @observable
+  String msgErroCep;
+
   @action
   setPublicPlace(String value) => this.publicPlace = value;
 
@@ -241,18 +242,32 @@ abstract class _PropertyControllerBase with Store {
   setCep_(String value) => this.cep = value;
 
   @action
+  setMsgErroCep(value) => this.msgErroCep = value;
+
+  @action
   Future setCep(String value) async {
+    print("Entrei no cep");
+    print(this.msgErroCep);
+    if (this.msgErroCep != null) {
+      setMsgErroCep(null);
+    }
     this.cep = value;
     if (cep.length == 9) {
       AddressModel addres =
           await addressRepository.getByCep(this.cep.replaceAll('-', ''));
+
+      print(addres.toJson());
       if (addres.cep != null) {
         this.city = addres.localidade;
         this.state = addres.uf;
         this.complement = addres.complemento;
         this.neighborhood = addres.bairro;
         this.publicPlace = addres.logradouro;
+      } else {
+        // tem que nótificar que o cep é inválido
+        setMsgErroCep("Cep inválido");
       }
+      Modular.to.pop(); // para fechar o alert dialog
     }
   }
 
@@ -309,8 +324,11 @@ abstract class _PropertyControllerBase with Store {
     if (this.cep == null || this.cep.isEmpty)
       return "O campo CEP é Obrigatório";
     if (this.cep.length < 9) return "CEP inválido";
-    return this.msgCep;
+    if (this.cep.length == 9) return this.msgErroCep;
   }
+
+  @computed
+  String get validMsgErroCep => this.msgErroCep;
 
   bool get validateEndereco =>
       this.validatCep == null &&
@@ -407,6 +425,7 @@ abstract class _PropertyControllerBase with Store {
     print("FIXO >>> ${fixo.toJson()}");
 
     await this.contatoRepository.save(celular);
+
 
     this.salvandoImovel = true;
   }

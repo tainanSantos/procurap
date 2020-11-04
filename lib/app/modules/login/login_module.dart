@@ -3,7 +3,8 @@ import 'package:procurap/app/modules/login/pages/reset/reset_controller.dart';
 import 'package:procurap/app/modules/login/pages/reset/reset_page.dart';
 
 import 'package:procurap/app/modules/login/pages/register/register_controller.dart';
-import 'package:procurap/app/modules/login/repository/auth.dart';
+import 'package:procurap/app/modules/login/login_repository.dart';
+import 'package:procurap/app/shared/services/custom_dio.dart';
 import 'login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -15,9 +16,9 @@ class LoginModule extends ChildModule {
         $ResetController,
         $RegisterController,
         Bind((i) => LoginController(
-              i.get<Auth>(),
+              i.get<LoginRepository>(),
             )),
-        Bind((i) => Auth())
+        Bind((i) => LoginRepository(i.get<CustomDio>()))
       ];
 
   @override

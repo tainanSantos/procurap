@@ -5,16 +5,16 @@ class CustomDio {
   var _dio;
 
   CustomDio() {
-    _dio = Dio();
+    this._dio = Dio();
   }
 
   CustomDio.withAutentication() {
-    _dio = Dio();
-    _dio.interceptors.add(InterceptorsWrapper(
+    this._dio = Dio();
+    this._dio.interceptors.add(InterceptorsWrapper(
         onRequest: _onRequest, onResponse: _onResponse, onError: _onError));
   }
 
-  Dio get instance => _dio;
+  Dio get instance => this._dio;
 
   _onRequest(RequestOptions options) async {
     print("REQUEST >>> ${options.data}");
@@ -54,9 +54,3 @@ class CustomDio {
 //   /// read the DioError.error if it is not null.
 //   DEFAULT,
 // }
-
-
-
-
-
-

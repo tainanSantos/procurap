@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,15 +14,14 @@ abstract class _UserControllerBase with Store {
   bool token;
 
   _UserControllerBase() {
-    // verificar se exitet token
+    // verificar se exitet tokenzz
     // se existir, então modificar a tela de exibição
     veifi();
   }
 
   veifi() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String user = prefs.getString("usuario");
-    String token = prefs.getString("token");
+    String token = await prefs.getString("token");
     if (token != null) {
       this.token = true;
     } else {
@@ -30,8 +31,8 @@ abstract class _UserControllerBase with Store {
 
   exitApp() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("usuario", null);
-    prefs.setString("token", null);
+    prefs.setString('token', null);
+    exit(0);
   }
 
   @action

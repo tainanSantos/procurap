@@ -99,6 +99,13 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
       (_$validatCepComputed ??= Computed<String>(() => super.validatCep,
               name: '_PropertyControllerBase.validatCep'))
           .value;
+  Computed<String> _$validMsgErroCepComputed;
+
+  @override
+  String get validMsgErroCep => (_$validMsgErroCepComputed ??= Computed<String>(
+          () => super.validMsgErroCep,
+          name: '_PropertyControllerBase.validMsgErroCep'))
+      .value;
 
   final _$tipoAnunciosAtom = Atom(name: '_PropertyControllerBase.tipoAnuncios');
 
@@ -329,21 +336,6 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
     });
   }
 
-  final _$msgCepAtom = Atom(name: '_PropertyControllerBase.msgCep');
-
-  @override
-  String get msgCep {
-    _$msgCepAtom.reportRead();
-    return super.msgCep;
-  }
-
-  @override
-  set msgCep(String value) {
-    _$msgCepAtom.reportWrite(value, super.msgCep, () {
-      super.msgCep = value;
-    });
-  }
-
   final _$publicPlaceAtom = Atom(name: '_PropertyControllerBase.publicPlace');
 
   @override
@@ -446,6 +438,21 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
   set cep(String value) {
     _$cepAtom.reportWrite(value, super.cep, () {
       super.cep = value;
+    });
+  }
+
+  final _$msgErroCepAtom = Atom(name: '_PropertyControllerBase.msgErroCep');
+
+  @override
+  String get msgErroCep {
+    _$msgErroCepAtom.reportRead();
+    return super.msgErroCep;
+  }
+
+  @override
+  set msgErroCep(String value) {
+    _$msgErroCepAtom.reportWrite(value, super.msgErroCep, () {
+      super.msgErroCep = value;
     });
   }
 
@@ -737,6 +744,17 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
   }
 
   @override
+  dynamic setMsgErroCep(dynamic value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setMsgErroCep');
+    try {
+      return super.setMsgErroCep(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 tipoAnuncios: ${tipoAnuncios},
@@ -754,7 +772,6 @@ aluguel: ${aluguel},
 precoImovel: ${precoImovel},
 telFixo: ${telFixo},
 telCelular: ${telCelular},
-msgCep: ${msgCep},
 publicPlace: ${publicPlace},
 neighborhood: ${neighborhood},
 number: ${number},
@@ -762,6 +779,7 @@ complement: ${complement},
 city: ${city},
 state: ${state},
 cep: ${cep},
+msgErroCep: ${msgErroCep},
 upload: ${upload},
 endereco: ${endereco},
 imovelModel: ${imovelModel},
@@ -778,7 +796,8 @@ validatNumber: ${validatNumber},
 validatComplement: ${validatComplement},
 validatCity: ${validatCity},
 validatState: ${validatState},
-validatCep: ${validatCep}
+validatCep: ${validatCep},
+validMsgErroCep: ${validMsgErroCep}
     ''';
   }
 }

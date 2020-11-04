@@ -54,12 +54,17 @@ class AlertDialogCustom {
     showDialog(
       barrierDismissible: false,
       context: context,
+      barrierColor: Colors.black12,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(
-            title ?? "Ok",
-            textAlign: TextAlign.center,
-          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          title: title != null
+              ? Text(
+                  title,
+                  textAlign: TextAlign.center,
+                )
+              : null,
           content: _selectWidget(i),
         );
       },
@@ -69,11 +74,8 @@ class AlertDialogCustom {
   Widget _selectWidget(int i) {
     switch (i) {
       case 1:
-        return Container(
-          height: 50,
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
+        return Center(
+          child: CircularProgressIndicator(),
         );
       case 2:
         return Container(

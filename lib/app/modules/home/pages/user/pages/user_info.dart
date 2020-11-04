@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/show_modal_cutom.dart';
 import 'package:procurap/app/modules/home/pages/user/user_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserInfo extends StatelessWidget {
   final controller = Modular.get<UserController>();
@@ -39,33 +40,32 @@ class UserInfo extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: Colors.grey,
                     radius: 35.0,
-                    child:  IconButton(
-                          icon: Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            ShowModalCustom.show(
-                              context: context,
-                              widget: Container(
-                                height: 50,
-                                color: Colors.red,
-                                child: Center(
-                                  child: Text(
-                                    "Não implementado.",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          ShowModalCustom.show(
+                            context: context,
+                            widget: Container(
+                              height: 50,
+                              color: Colors.red,
+                              child: Center(
+                                child: Text(
+                                  "Não implementado.",
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                            );
-                          }),
-                    ),
-                    // backgroundImage: NetworkImage(
-                    //   "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg",
-                    // ),
+                            ),
+                          );
+                        }),
                   ),
+                  // backgroundImage: NetworkImage(
+                  //   "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg",
+                  // ),
                 ),
-              
+              ),
             ],
           ),
           SizedBox(
@@ -73,9 +73,7 @@ class UserInfo extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-
               // Perguntgar se o usuário quet ver ou deletar o imóvel
-
 
               Modular.to.pushNamed("/home/my_propertys");
             },
@@ -172,8 +170,11 @@ class UserInfo extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(5),
                                   ),
                                   onPressed: () async {
-                                    await controller.exitApp();
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    await prefs.setString('token', null);
                                     exit(0);
+                                    // await controller.exitApp();
                                   },
                                   child: Text("SIM",
                                       style: TextStyle(color: Colors.white)),
@@ -190,7 +191,7 @@ class UserInfo extends StatelessWidget {
                   ),
                 ),
               );
-             
+
               // AlertDialogCustom.Action(
               //     context: context,
               //     title: "Sair",

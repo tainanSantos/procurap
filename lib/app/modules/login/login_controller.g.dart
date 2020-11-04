@@ -9,13 +9,33 @@ part of 'login_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginController on _LoginControllerBase, Store {
-  Computed<bool> _$getIsLoginComputed;
+  Computed<bool> _$getLoginComputed;
 
   @override
-  bool get getIsLogin =>
-      (_$getIsLoginComputed ??= Computed<bool>(() => super.getIsLogin,
-              name: '_LoginControllerBase.getIsLogin'))
+  bool get getLogin =>
+      (_$getLoginComputed ??= Computed<bool>(() => super.getLogin,
+              name: '_LoginControllerBase.getLogin'))
           .value;
+  Computed<bool> _$getsenhaComputed;
+
+  @override
+  bool get getsenha =>
+      (_$getsenhaComputed ??= Computed<bool>(() => super.getsenha,
+              name: '_LoginControllerBase.getsenha'))
+          .value;
+  Computed<String> _$getMsgErroComputed;
+
+  @override
+  String get getMsgErro =>
+      (_$getMsgErroComputed ??= Computed<String>(() => super.getMsgErro,
+              name: '_LoginControllerBase.getMsgErro'))
+          .value;
+  Computed<bool> _$getLoadComputed;
+
+  @override
+  bool get getLoad => (_$getLoadComputed ??= Computed<bool>(() => super.getLoad,
+          name: '_LoginControllerBase.getLoad'))
+      .value;
   Computed<bool> _$getVisiblePassComputed;
 
   @override
@@ -23,6 +43,21 @@ mixin _$LoginController on _LoginControllerBase, Store {
       (_$getVisiblePassComputed ??= Computed<bool>(() => super.getVisiblePass,
               name: '_LoginControllerBase.getVisiblePass'))
           .value;
+
+  final _$msgErroAtom = Atom(name: '_LoginControllerBase.msgErro');
+
+  @override
+  String get msgErro {
+    _$msgErroAtom.reportRead();
+    return super.msgErro;
+  }
+
+  @override
+  set msgErro(String value) {
+    _$msgErroAtom.reportWrite(value, super.msgErro, () {
+      super.msgErro = value;
+    });
+  }
 
   final _$visiblePassAtom = Atom(name: '_LoginControllerBase.visiblePass');
 
@@ -54,18 +89,18 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  final _$isLoginAtom = Atom(name: '_LoginControllerBase.isLogin');
+  final _$loadAtom = Atom(name: '_LoginControllerBase.load');
 
   @override
-  bool get isLogin {
-    _$isLoginAtom.reportRead();
-    return super.isLogin;
+  bool get load {
+    _$loadAtom.reportRead();
+    return super.load;
   }
 
   @override
-  set isLogin(bool value) {
-    _$isLoginAtom.reportWrite(value, super.isLogin, () {
-      super.isLogin = value;
+  set load(bool value) {
+    _$loadAtom.reportWrite(value, super.load, () {
+      super.load = value;
     });
   }
 
@@ -125,11 +160,22 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
-  dynamic setIsLogin(bool value) {
+  dynamic setLoad(bool value) {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.setIsLogin');
+        name: '_LoginControllerBase.setLoad');
     try {
-      return super.setIsLogin(value);
+      return super.setLoad(value);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setMsgErro(dynamic value) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.setMsgErro');
+    try {
+      return super.setMsgErro(value);
     } finally {
       _$_LoginControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -149,12 +195,16 @@ mixin _$LoginController on _LoginControllerBase, Store {
   @override
   String toString() {
     return '''
+msgErro: ${msgErro},
 visiblePass: ${visiblePass},
 respApi: ${respApi},
-isLogin: ${isLogin},
+load: ${load},
 usuario: ${usuario},
 senha: ${senha},
-getIsLogin: ${getIsLogin},
+getLogin: ${getLogin},
+getsenha: ${getsenha},
+getMsgErro: ${getMsgErro},
+getLoad: ${getLoad},
 getVisiblePass: ${getVisiblePass}
     ''';
   }

@@ -1,20 +1,22 @@
 import 'package:dio/dio.dart';
+import 'package:procurap/app/shared/exceptions/rest_exception.dart';
 import 'package:procurap/app/shared/models/address_model.dart';
 import 'package:procurap/app/shared/services/custom_dio.dart';
 
 class AddressRepository {
+  Response _response;
+
   Future<AddressModel> getByCep(String cep) async {
-    print("A gente che");
-    print(cep);
+    
     try {
-      Response resp = await CustomDio()
+      this._response = await CustomDio()
           .instance
           .get("https://viacep.com.br/ws/${cep}/json/");
-      if (resp.statusCode == 200 || resp.statusCode == 201) {
-        return AddressModel.fromJson(resp.data);
-      }
-    } catch (e) {
-      return null;
+      return AddressModel.fromJson(this._response.data);
+    } on DioError catch (e) {
+      print(e.message);
+      print("Deu erro");
+      throw (RestException("message"));
     }
   }
 }

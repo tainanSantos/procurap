@@ -1,6 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:procurap/app/modules/login/repository/auth.dart';
+import 'package:procurap/app/modules/login/login_repository.dart';
+import 'package:procurap/app/shared/exceptions/rest_exception.dart';
 
 part 'login_controller.g.dart';
 
@@ -8,9 +9,14 @@ part 'login_controller.g.dart';
 class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
-  final Auth auth;
+  final LoginRepository loginRepository;
 
-  _LoginControllerBase(this.auth);
+  _LoginControllerBase(this.loginRepository) {
+    setLoad(true);
+  }
+
+  @observable
+  String msgErro;
 
   @observable
   bool visiblePass = true;
@@ -19,7 +25,7 @@ abstract class _LoginControllerBase with Store {
   bool respApi;
 
   @observable
-  bool isLogin = false;
+  bool load;
 
   @observable
   String usuario;
@@ -34,18 +40,40 @@ abstract class _LoginControllerBase with Store {
   setSenha(String value) => this.senha = value;
 
   @action
-  setIsLogin(bool value) => this.isLogin = value;
+  setLoad(bool value) => this.load = value;
+
+  @action
+  setMsgErro(value) => this.msgErro = value;
 
   @computed
-  bool get getIsLogin => this.isLogin;
+  bool get getLogin =>
+      (this.usuario == null || this.usuario.isEmpty) ? true : false;
 
-  fazerLogin() async {
-    this.respApi = await this.auth.login(this.usuario, this.senha);
-    if (this.respApi) {
-      setIsLogin(true);
-    } else {
-      // que dizer que deu erro no lógin
-      setIsLogin(false);
+  @computed
+  bool get getsenha =>
+      (this.senha == null || this.senha.isEmpty) ? true : false;
+
+  @computed
+  String get getMsgErro => this.msgErro;
+
+  @computed
+  bool get getLoad => this.load;
+
+  Future<void> fazerLogin() async {
+    print("Fazendo Login");
+    setMsgErro(null);
+    setLoad(true);
+    try {
+      this.respApi = await this.loginRepository.login(this.usuario, this.senha);
+      if (this.respApi) {
+        setLoad(false);
+
+        Modular.to.pushReplacementNamed("/home");
+      }
+    } on RestException catch (e) {
+      Modular.to.pop(); // para feixar a parada lá do load
+      print(e.message);
+      setMsgErro(e.message);
     }
   }
 

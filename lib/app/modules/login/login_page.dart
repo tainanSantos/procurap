@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
+import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/components/logo_app.dart';
 import 'package:procurap/app/modules/components/show_modal_cutom.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
@@ -17,6 +18,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   //use 'controller' variable to access controller
+  // final scaffoldlobalKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       },
       child: Scaffold(
         // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
+        key: _scaffoldKey,
         backgroundColor: CustomColor.primary,
         appBar: AppBar(
           backgroundColor: CustomColor.primary,
@@ -136,61 +140,28 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           height: 40,
                         ),
                         Observer(
-                          builder: (_) => !controller.isLogin
-                              ? ButtonCustom(
-                                  title: "Entar",
-                                  onPressed: () async {
-                                    print("Entrei aqui");
-                                    if ((controller.senha == null) ||
-                                        (controller.usuario == null) ||
-                                        controller.senha.isEmpty ||
-                                        controller.usuario.isEmpty) {
-                                      print("Entrei aqui");
-                                      ShowModalCustom.show(
-                                        context: context,
-                                        widget: Container(
-                                          height: 50,
-                                          color: Colors.red,
-                                          child: Center(
-                                            child: Text(
-                                              "Campos não podem ser vazios",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                      );
+                          builder: (_) => ButtonCustom(
+                            title: "Entar",
+                            onPressed: () async {
+                              // if()
 
-                                      return;
-                                    }
-                                    controller.setIsLogin(true);
+                              if (controller.getLogin || controller.getsenha) {
+                                print("Entrei no stacck");
+                                snack("Login ou senha não podem ser vazios!");
+                                return;
+                              }
 
-                                    await controller.fazerLogin();
+                              if (controller.load) {
+                                print("entrei aqi");
+                                AlertDialogCustom.Msg(context: context, i: 1);
+                                await controller.fazerLogin();
+                              }
 
-                                    if (controller.respApi) {
-                                      Modular.to.pushReplacementNamed("/home");
-                                    } else {
-                                      controller.setIsLogin(false);
-                                      showBottomSheet(
-                                        context: context,
-                                        builder: (_) => Container(
-                                          height: 50,
-                                          color: Colors.red,
-                                          child: Text(
-                                            "Erro ao fazer Login, \nverifique seus dados e tente novamente.",
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                )
-                              : Container(
-                                  child: Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                ),
+                              if (controller.getMsgErro != null) {
+                                snack(controller.getMsgErro);
+                              }
+                            },
+                          ),
                         ),
                         SizedBox(
                           height: 30,
@@ -212,4 +183,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       ),
     );
   }
+
+  snack(String message) => _scaffoldKey.currentState.showSnackBar(
+        new SnackBar(
+          // backgroundColor: Colors.pink,
+          content: Container(
+            height: 30,
+            child: Center(
+              child: new Text(message),
+            ),
+          ),
+          duration: Duration(seconds: 2),
+        ),
+      );
 }

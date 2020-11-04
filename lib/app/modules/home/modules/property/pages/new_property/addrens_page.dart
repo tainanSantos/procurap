@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
+import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/components/textfiled_cutom.dart';
 import 'package:procurap/app/modules/home/modules/property/components/appbar_custom.dart';
 import 'package:procurap/app/modules/home/modules/property/components/components.dart';
@@ -32,7 +33,6 @@ class _AddrensPageState extends State<AddrensPage> {
       appBar: appBarCutom(),
       body: containerCustom(
         [
-          // titleCustom("Endereço"),
 
           titleForm(
             value: "Endereço",
@@ -48,13 +48,15 @@ class _AddrensPageState extends State<AddrensPage> {
                       maxLength: 9,
                       labelText: "CEP",
                       keyboardType: TextInputType.number,
-                      errorText: controller.validatCep,
-                      helperText: "CEP da localidade ou Cidade",
+                      errorText: controller.msgErroCep,
+                      helperText: controller.msgErroCep == null
+                          ? "CEP da localidade ou Cidade"
+                          : null,
                       onChanged: (value) async {
-                        controller.setCep_(value);
+                        if (value.length < 9) controller.setCep(value);
                         if (value.length == 9) {
+                          AlertDialogCustom.Msg(context: context, i: 1);
                           await controller.setCep(value);
-                          // setState(() {
                           this.neighborhoodController.text =
                               controller.neighborhood;
                           this.cityController.text = controller.city;
@@ -64,7 +66,6 @@ class _AddrensPageState extends State<AddrensPage> {
                           this.state = controller.state;
                           this.publicPlaceController.text =
                               controller.publicPlace;
-                          // });
                         }
                       },
                       inputFormatters: controller.maskCep),
@@ -97,7 +98,6 @@ class _AddrensPageState extends State<AddrensPage> {
               labelText: "Logradouro",
               helperText: "Nome da rua ou nome da propriedade rural",
               onChanged: controller.setPublicPlace,
-              errorText: controller.validatPublicPlace,
             ),
           ),
 
@@ -107,7 +107,6 @@ class _AddrensPageState extends State<AddrensPage> {
               labelText: "Bairro",
               helperText: "Nome do Bairro",
               controller: neighborhoodController,
-              errorText: controller.validatNeighborhood,
               onChanged: controller.setNeighborhood,
             ),
           ),
@@ -123,7 +122,6 @@ class _AddrensPageState extends State<AddrensPage> {
                     maxLength: 150,
                     labelText: "Complemento",
                     helperText: "Ponto de Referência",
-                    errorText: controller.validatComplement,
                     controller: complementController,
                     onChanged: controller.setComplement,
                   ),
@@ -140,7 +138,6 @@ class _AddrensPageState extends State<AddrensPage> {
                     labelText: "Número",
                     helperText: "Número do Imóvel",
                     keyboardType: TextInputType.number,
-                    errorText: controller.validatNumber,
                     onChanged: controller.setNumber,
                   ),
                 ),
@@ -156,7 +153,6 @@ class _AddrensPageState extends State<AddrensPage> {
               maxLength: 150,
               controller: cityController,
               labelText: "Cidade",
-              errorText: controller.validatCity,
 
               helperText: "Nome da Cidade",
               onChanged: controller.setCity,

@@ -8,9 +8,10 @@ Widget titleForm({String value, IconData data}) => Row(
           child: Text(
             value,
             style: TextStyle(
-                fontSize: 17,
-                color: CustomColor.primary,
-                fontWeight: FontWeight.bold),
+              fontSize: 17,
+              color: CustomColor.primary,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         SizedBox(

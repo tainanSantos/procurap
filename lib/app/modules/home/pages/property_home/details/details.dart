@@ -340,32 +340,21 @@ class Details extends StatelessWidget {
                                       color: Colors.white,
                                     ),
                                     onPressed: () async {
-                                      // Lembrar de salvar antes
-                                      print("Chegando aqui");
+                                      AlertDialogCustom.Msg(
+                                          context: context, i: 1);
+
                                       final controllerP =
                                           Modular.get<PropertyController>();
                                       await controllerP.salvarImovel();
 
-                                      AlertDialogCustom.Msg(
-                                          title: "Salvando imóvel ... ",
-                                          context: context,
-                                          i: 1);
-                                      Timer(Duration(microseconds: 2000), () {
-                                        AlertDialogCustom.Msg(
-                                            title: "Salvo Com sucesso",
-                                            context: context,
-                                            i: 2);
-                                        Timer(Duration(), () {
-                                          Modular.to.pop();
-                                          Modular.to.pop();
-                                          Modular.to.pop();
-                                          Modular.to.pop();
-                                          Modular.to.pop();
-                                          Modular.to.pop();
-                                          Modular.to.pop();
-                                          Modular.to.pop();
-                                        });
-                                      });
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
+                                      Modular.to.pop();
                                     },
                                     label: Text("Salvar",
                                         style: TextStyle(

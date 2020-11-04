@@ -14,11 +14,15 @@ class EnderecoRepository {
   Future<ObservableList<EnderecoModel>> findAll() async {
     try {
       this._response = await _dio.instance.get("${Urls.ENDERECO}/");
-      var listEnderecos = ObservableList<EnderecoModel>();
-      for (var item in this._response.data) {
-        listEnderecos.add(EnderecoModel.fromJson(item));
-      }
-      return listEnderecos;
+      return ((this._response.data as List)
+              .map((element) => EnderecoModel.fromJson(element))
+              .toList())
+          .asObservable();
+      // var listEnderecos = ObservableList<EnderecoModel>();
+      // for (var item in this._response.data) {
+      //   listEnderecos.add(EnderecoModel.fromJson(item));
+      // }
+      // return listEnderecos;
     } catch (erro) {
       return erro.respose.data;
     }
