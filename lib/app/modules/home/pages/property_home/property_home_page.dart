@@ -146,7 +146,6 @@ class _PropertyHomePageState
           );
         },
       ),
-   
     );
   }
 

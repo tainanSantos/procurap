@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LogoApp extends StatelessWidget {
+  final Color logoColor;
+
+  const LogoApp({Key key, this.logoColor}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -11,7 +15,7 @@ class LogoApp extends StatelessWidget {
           child: Text(
             "procur.",
             style: TextStyle(
-              color: Colors.white,
+              color: logoColor ?? Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.bold,
             ),

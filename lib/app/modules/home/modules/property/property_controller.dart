@@ -99,6 +99,9 @@ abstract class _PropertyControllerBase with Store {
   int numConzinha;
 
   @observable
+  String descricao;
+
+  @observable
   double aluguel;
 
   @observable
@@ -148,6 +151,9 @@ abstract class _PropertyControllerBase with Store {
 
   @action
   setNumCozinha(String value) => this.numConzinha = int.parse(value);
+
+  @action
+  setDescricao(String value) => this.descricao = value;
 
   @action
   setAluguel(String value) => this.aluguel = double.parse(value);
@@ -375,6 +381,7 @@ abstract class _PropertyControllerBase with Store {
     this.endereco.cidade = this.city;
     this.endereco.estado = this.state;
     this.endereco.cep = this.cep;
+
     EnderecoModel ender = await enderecoRepository.save(this.endereco);
 
     // SALVA IMÓVEL
@@ -388,6 +395,7 @@ abstract class _PropertyControllerBase with Store {
     this.imovelModel.numBanheiros = this.numBanheiro;
     this.imovelModel.numQuartos = this.numQuartos;
     this.imovelModel.numVagas = this.numGaragen;
+    this.imovelModel.descricao = this.descricao;
     this.imovelModel.numConzinhas = this.numConzinha;
     this.imovelModel.classificacao = "10";
     this.imovelModel.descricao = "";
@@ -425,7 +433,6 @@ abstract class _PropertyControllerBase with Store {
     print("FIXO >>> ${fixo.toJson()}");
 
     await this.contatoRepository.save(celular);
-
 
     this.salvandoImovel = true;
   }

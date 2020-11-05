@@ -129,31 +129,37 @@ class Details extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: ListTile(
-                                title: Text(
-                                  "Aluguel",
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                child: ListTile(
+                                  title: Text(
+                                    "Aluguel",
+                                  ),
+                                  leading: Icon(Icons.monetization_on),
                                 ),
-                                leading: Icon(Icons.monetization_on),
+                                width: MediaQuery.of(context).size.width / 2,
                               ),
-                              width: MediaQuery.of(context).size.width / 2,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "R\$ ${this.aluguel}",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text("/Mensal")
-                                  ],
-                                ),
-                              ],
+                            Flexible(
+                              flex: 2,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "R\$ ${this.aluguel}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.teal[700],
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "/Mensal",
+                                    overflow: TextOverflow.ellipsis,
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -164,31 +170,34 @@ class Details extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: ListTile(
-                                title: Text(
-                                  "Venda",
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                child: ListTile(
+                                  title: Text(
+                                    "Venda",
+                                  ),
+                                  leading: Icon(Icons.monetization_on),
                                 ),
-                                leading: Icon(Icons.monetization_on),
+                                width: MediaQuery.of(context).size.width / 2,
                               ),
-                              width: MediaQuery.of(context).size.width / 2,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "R\$ ${this.precoImovel}",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.teal[700],
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    // Text("/${propertyController.precoImovel}")
-                                  ],
-                                ),
-                              ],
+                            Flexible(
+                              flex: 2,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "R\$ ${this.precoImovel}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.teal[700],
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  // Text("/${propertyController.precoImovel}")
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -260,13 +269,7 @@ class Details extends StatelessWidget {
                               _addrensDetails("Estado:", "${this.estado}"),
                               _addrensDetails("CEP:", "${this.cep}"),
 
-                              // Row(
-                              //   children: [
-                              //     Text(
-                              //       "Logradouro: Afonsso de Souza; \nNúmero: 450; \nBairro: Bom Jesus; \nCompemento: Depois do Trevo 125; \nCidade: Serra Talhada; \nEstado: Pernambuco.",
-                              //     ),
-                              //   ],
-                              // )
+                           
                             ],
                           ))
                     ],
@@ -354,7 +357,6 @@ class Details extends StatelessWidget {
                                       Modular.to.pop();
                                       Modular.to.pop();
                                       Modular.to.pop();
-                                      Modular.to.pop();
                                     },
                                     label: Text("Salvar",
                                         style: TextStyle(
@@ -376,20 +378,24 @@ class Details extends StatelessWidget {
     );
   }
 
-  Widget _addrensDetails(String title, String value) => Row(
-        children: [
-          Text(title),
-          SizedBox(
-            width: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 4, top: 4),
-            child: Text(
-              value,
-              style: TextStyle(fontSize: 15, color: Colors.teal[700]),
+  Widget _addrensDetails(String title, String value) => Container(
+        padding: EdgeInsets.only(top: 4, bottom: 4),
+        child: Row(
+          children: [
+            Text(title),
+            SizedBox(
+              width: 15,
             ),
-          )
-        ],
+            Flexible(
+              child: Text(
+                value,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(fontSize: 15, color: Colors.teal[700]),
+              ),
+            ),
+          ],
+        ),
       );
 
   TextStyle _style() => TextStyle(fontSize: 18, color: Colors.teal[700]);

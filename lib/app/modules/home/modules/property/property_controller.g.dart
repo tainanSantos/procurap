@@ -276,6 +276,21 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
     });
   }
 
+  final _$descricaoAtom = Atom(name: '_PropertyControllerBase.descricao');
+
+  @override
+  String get descricao {
+    _$descricaoAtom.reportRead();
+    return super.descricao;
+  }
+
+  @override
+  set descricao(String value) {
+    _$descricaoAtom.reportWrite(value, super.descricao, () {
+      super.descricao = value;
+    });
+  }
+
   final _$aluguelAtom = Atom(name: '_PropertyControllerBase.aluguel');
 
   @override
@@ -612,6 +627,17 @@ mixin _$PropertyController on _PropertyControllerBase, Store {
   }
 
   @override
+  dynamic setDescricao(String value) {
+    final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
+        name: '_PropertyControllerBase.setDescricao');
+    try {
+      return super.setDescricao(value);
+    } finally {
+      _$_PropertyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setAluguel(String value) {
     final _$actionInfo = _$_PropertyControllerBaseActionController.startAction(
         name: '_PropertyControllerBase.setAluguel');
@@ -768,6 +794,7 @@ numBanheiro: ${numBanheiro},
 numGaragen: ${numGaragen},
 numQuartos: ${numQuartos},
 numConzinha: ${numConzinha},
+descricao: ${descricao},
 aluguel: ${aluguel},
 precoImovel: ${precoImovel},
 telFixo: ${telFixo},

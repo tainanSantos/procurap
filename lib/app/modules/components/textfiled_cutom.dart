@@ -21,9 +21,10 @@ Widget textField(
         controller: controller ?? null,
         onChanged: onChanged,
         // maxLength: maxLength ?? null,
-
+        autofocus: false,
         decoration: InputDecoration(
           // border: OutlineInputBorder(),
+
           prefix: prefix,
           hintText: hintText,
           helperText: helperText,

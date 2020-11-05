@@ -27,9 +27,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     double width = MediaQuery.of(context).size.width;
 
     return WillPopScope(
-      onWillPop: () {
-        Modular.to.pushReplacementNamed("/home");
-      },
+      onWillPop: () => Modular.to.pushReplacementNamed("/home"),
       child: Scaffold(
         // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
         key: _scaffoldKey,

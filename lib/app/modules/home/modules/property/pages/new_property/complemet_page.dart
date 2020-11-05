@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
+import 'package:procurap/app/modules/components/textfiled_cutom.dart';
 import 'package:procurap/app/modules/home/modules/property/components/appbar_custom.dart';
 import 'package:procurap/app/modules/home/modules/property/components/components.dart';
 import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
@@ -29,8 +30,7 @@ class _ComplemetPageState extends State<ComplemetPage> {
         appBar: appBarCutom(),
         body: containerCustom(
           [
-            titleForm(value: "Quantidade de cômodos"),
-
+            titleForm(value: "Nª de cômodos"),
             Row(
               children: [
                 Flexible(
@@ -76,7 +76,6 @@ class _ComplemetPageState extends State<ComplemetPage> {
                 ),
               ],
             ),
-
             Row(
               children: [
                 Flexible(
@@ -122,16 +121,25 @@ class _ComplemetPageState extends State<ComplemetPage> {
             SizedBox(
               height: 30,
             ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // ButtonCustom(
-            //   title: "Próximo",
-            //   color: CustomColor.primary2,
-            //   onPressed: () {
-            //     Modular.to.pushNamed('/home/property/price');
-            //   },
-            // )
+            titleForm(value: "Descrição"),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+                enableInteractiveSelection: false,
+                focusNode: FocusNode(),
+                textAlignVertical: TextAlignVertical.top,
+                keyboardType: TextInputType.multiline,
+                maxLines: 8,
+                decoration: InputDecoration(
+                    fillColor: Colors.blueAccent[50],
+                    filled: true,
+                    labelText: "Descrição",
+                    alignLabelWithHint: true,
+                    helperText:
+                        "Gostaria de acresecntar alguma descrição?\nEste campo não obrigatório",
+                    labelStyle: TextStyle()),
+                onChanged: controller.setDescricao),
           ],
         ),
         floatingActionButton: Observer(
