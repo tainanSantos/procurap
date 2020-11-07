@@ -31,40 +31,44 @@ class _PhotosPageState extends State<PhotosPage> {
             ListTile(
               // contentPadding: EdgeInsets.all(0),
               title: Text(
-                "Adcionar imagens",
+                "Imagens",
                 style: TextStyle(
                     fontSize: 17,
-                    color: CustomColor.primary,
+                    // color: Colors.grey[800],
                     fontWeight: FontWeight.bold),
               ),
               trailing: Wrap(
                 children: [
-                  IconButton(
-                      icon: Icon(
-                        Icons.photo_library,
-                        color: Colors.grey,
-                      ),
-                      onPressed: () async {
-                        try {
-                          final gallery = await ImagePicker.platform.pickImage(
-                            source: ImageSource.gallery,
-                          );
-
-                          if (gallery.path != null)
-                            await controller.addUrlImage(gallery.path);
-                        } catch (e) {
-                          return;
-                        }
-
-                        // print("CAMINHO DA IMAGEMS >>> ${gallery.path}");
-                      }),
-                  IconButton(
+                  FlatButton.icon(
                     icon: Icon(
-                      Icons.camera_alt,
-                      color: Colors.grey,
+                      Icons.photo_library,
+                      // color: Colors.grey,
                     ),
+                    label: Text("Galeria"),
                     onPressed: () async {
                       try {
+                        // ignore: invalid_use_of_visible_for_testing_member
+                        final gallery = await ImagePicker.platform.pickImage(
+                          source: ImageSource.gallery,
+                        );
+
+                        if (gallery.path != null)
+                          await controller.addUrlImage(gallery.path);
+                      } catch (e) {
+                        return;
+                      }
+
+                      // print("CAMINHO DA IMAGEMS >>> ${gallery.path}");
+                    },
+                  ),
+                  FlatButton.icon(
+                    icon: Icon(
+                      Icons.camera_alt,
+                    ),
+                    label: Text("Câmera"),
+                    onPressed: () async {
+                      try {
+                        // ignore: invalid_use_of_visible_for_testing_member
                         final picture = await ImagePicker.platform.pickImage(
                           source: ImageSource.camera,
                         );
@@ -85,7 +89,7 @@ class _PhotosPageState extends State<PhotosPage> {
                 height: MediaQuery.of(context).size.height - 175,
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
+                      crossAxisCount: 3),
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -110,9 +114,11 @@ class _PhotosPageState extends State<PhotosPage> {
                               ),
                               backgroundColor: Colors.black,
                               body: Center(
-                                child: Image.asset(
-                                  "${controller.urlImagesList[index]}",
-                                  fit: BoxFit.cover,
+                                child: Container(
+                                  child: Image.asset(
+                                    "${controller.urlImagesList[index]}",
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),

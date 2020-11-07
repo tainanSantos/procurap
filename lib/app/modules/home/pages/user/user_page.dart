@@ -49,7 +49,8 @@ class _UserPageState extends ModularState<UserPage, UserController> {
                             radius: 5,
                             title: "Entrar",
                             onPressed: () {
-                              Modular.to.pushReplacementNamed("/login");
+                              Modular.to.pushReplacementNamed("/login/");
+                              // Modular.to.pushReplacementNamed("/login");
                             },
                           ),
                         ),

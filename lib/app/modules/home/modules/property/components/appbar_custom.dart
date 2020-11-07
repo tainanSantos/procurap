@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 
 AppBar appBarCutom() {
   return AppBar(
-    // iconTheme: IconThemeData(color: CustomColor.primary),
-    // backgroundColor: Colors.white,
     backgroundColor: CustomColor.primary,
-    // elevation: 0,
-    // elevation: 0,
-    // leading: IconButton(
-    //     icon: Icon(Icons.arrow_back_ios),
-    //     onPressed: () {
-    //       Modular.to.pop();
-    //     }),
+    // backgroundColor: Colors.pink,
+    // iconTheme: IconThemeData(color: Colors.grey[800]),
+    // centerTitle: true,
+    elevation: 0,
     title: Text(
-      "Cadastro imóvel",
+      "Novo imóvel",
       style: TextStyle(
-        // color: CustomColor.primary,
+        // color: Colors.grey[800],
         fontWeight: FontWeight.bold,
       ),
     ),

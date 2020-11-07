@@ -1,6 +1,8 @@
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procurap/app/modules/home/modules/property/components/currency_input_formatter.dart';
 import 'package:procurap/app/modules/home/repository/contato_repository.dart';
 import 'package:procurap/app/modules/home/repository/endereco_repository.dart';
 import 'package:procurap/app/modules/home/repository/imagem_repository.dart';
@@ -30,10 +32,15 @@ abstract class _PropertyControllerBase with Store {
       mask: "(##) #####-####", filter: {"#": RegExp(r'[0-9]')});
   var maskPhone2 = MaskTextInputFormatter(
       mask: "(##) #####-####", filter: {"#": RegExp(r'[0-9]')});
-  var maskPriceProperty = MaskTextInputFormatter(
-      mask: "###########", filter: {"#": RegExp(r'[0-9]')});
-  var maskPriceRent =
-      MaskTextInputFormatter(mask: "##,00", filter: {"#": RegExp(r'[0-9]')});
+  // var maskPriceProperty = MaskTextInputFormatter(
+  //     mask: "###########", filter: {"#": RegExp(r'[0-9]')});
+  // var maskPriceRent =
+  //     MaskTextInputFormatter(mask: "{0:N}", filter: {"N": RegExp(r'[0-9]')});
+
+  var maskPriceRent = new CurrencyPtBrFormatter(maxDigits: 12);
+  var maskPriceProperty = new CurrencyPtBrFormatter(maxDigits: 22);
+
+  // var  maskPriceRent = MoneyMaskedTextController(decimalSeparator: '.', thousandSeparator: ',') as MaskTextInputFormatter; //after
 
   final AddressRepository addressRepository;
   final TipoAnuncioRepository tipoAnuncioRepository;
@@ -156,10 +163,16 @@ abstract class _PropertyControllerBase with Store {
   setDescricao(String value) => this.descricao = value;
 
   @action
-  setAluguel(String value) => this.aluguel = double.parse(value);
+  setAluguel(String value) {
+    this.aluguel = double.parse(
+        value.replaceAll(".", "").replaceAll(",", ".").replaceAll("R\$ ", ""));
+  }
 
   @action
-  setPrecoImovel(String value) => this.precoImovel = double.parse(value);
+  setPrecoImovel(String value) {
+    this.precoImovel = double.parse(
+        value.replaceAll(".", "").replaceAll(",", ".").replaceAll("R\$ ", ""));
+  }
 
   @action
   setTelFixo(String value) => this.telFixo = value;

@@ -8,7 +8,6 @@ import 'package:procurap/app/modules/home/modules/rent/rent_module.dart';
 import 'package:procurap/app/modules/home/pages/property_home/details/details_crud.dart';
 import 'package:procurap/app/modules/home/pages/property_home/details/details_home.dart';
 
-import 'package:procurap/app/modules/home/pages/property_home/details/details_page.dart';
 import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
 import 'package:procurap/app/modules/home/pages/property_home/list/list_page.dart';
 import 'package:procurap/app/modules/home/pages/user/pages/my_propertys.dart';
@@ -19,7 +18,6 @@ import 'package:procurap/app/modules/home/pages/property_home/list/list_page.dar
 
 import 'package:procurap/app/modules/home/pages/property_home/list/list_controller.dart';
 import 'package:procurap/app/modules/home/pages/property_home/filter/filter_controller.dart';
-import 'package:procurap/app/modules/home/pages/property_home/details/details_page.dart';
 import 'package:procurap/app/modules/home/pages/property_home/filter/filter_page.dart';
 import 'package:procurap/app/modules/home/pages/property_home/property_home_controller.dart';
 import 'package:procurap/app/modules/home/repository/contato_repository.dart';
@@ -91,6 +89,7 @@ class HomeModule extends ChildModule {
         ModularRouter('my_propertys',
             child: (_, args) => MyPropertys(),
             transition: TransitionType.fadeIn),
+       
         ModularRouter('/property', module: PropertyModule()),
         ModularRouter('/rent', module: RentModule()),
       ];

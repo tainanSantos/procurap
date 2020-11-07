@@ -33,10 +33,7 @@ class _AddrensPageState extends State<AddrensPage> {
       appBar: appBarCutom(),
       body: containerCustom(
         [
-
-          titleForm(
-            value: "Endereço",
-          ),
+          titleForm(value: "Endereço", data: Icons.location_on),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -170,6 +167,7 @@ class _AddrensPageState extends State<AddrensPage> {
         builder: (_) => ButtonCustom(
           radius: 0,
           title: "Próximo",
+          // color: Colors.blue,
           onPressed: controller.validateEndereco
               ? () async {
                   Modular.to.pushNamed('/home/property/announcement');

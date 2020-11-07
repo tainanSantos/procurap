@@ -3,8 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
 import 'package:procurap/app/modules/components/dialog.dart';
-import 'package:procurap/app/modules/components/logo_app.dart';
-import 'package:procurap/app/modules/components/show_modal_cutom.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
 import 'login_controller.dart';
 
@@ -27,7 +25,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     double width = MediaQuery.of(context).size.width;
 
     return WillPopScope(
-      onWillPop: () => Modular.to.pushReplacementNamed("/home"),
+      onWillPop: () => Modular.to.pushReplacementNamed("/home/"),
       child: Scaffold(
         // backgroundColor: Color.fromRGBO(74, 76, 255, 1),
         key: _scaffoldKey,
@@ -38,7 +36,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Modular.to.pushReplacementNamed("/home");
+              Modular.to.pushReplacementNamed("/home/");
             },
           ),
         ),
@@ -157,6 +155,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
                               if (controller.getMsgErro != null) {
                                 snack(controller.getMsgErro);
+                              } else {
+                                Modular.to.pop(); // aqui é para feixar o load
+                                Modular.to.pushReplacementNamed("/home/");
                               }
                             },
                           ),

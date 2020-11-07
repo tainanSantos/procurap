@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
 import 'package:procurap/app/modules/components/dialog.dart';
 import 'package:procurap/app/modules/home/modules/property/property_controller.dart';
 import 'package:procurap/app/shared/utils/curom_color.dart';
@@ -268,8 +269,6 @@ class Details extends StatelessWidget {
                               _addrensDetails("Cidade:", "${this.cidade}"),
                               _addrensDetails("Estado:", "${this.estado}"),
                               _addrensDetails("CEP:", "${this.cep}"),
-
-                           
                             ],
                           ))
                     ],
@@ -346,7 +345,7 @@ class Details extends StatelessWidget {
                                       AlertDialogCustom.Msg(
                                           context: context, i: 1);
 
-                                      final controllerP =
+                                      var controllerP =
                                           Modular.get<PropertyController>();
                                       await controllerP.salvarImovel();
 

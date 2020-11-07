@@ -3,23 +3,31 @@ import 'package:procurap/app/shared/utils/curom_color.dart';
 
 Widget titleForm({String value, IconData data}) => Row(
       children: [
+        // data == null ? Container() : Icon(data, color: Color(0XFF222222)),
+        // SizedBox(
+        //   width: 20,
+        // ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 2, top: 10),
+          padding: const EdgeInsets.only(bottom: 4, top: 5),
           child: Text(
             value,
             style: TextStyle(
               fontSize: 17,
-              color: CustomColor.primary,
+              // color: CustomColor.primary,
+              color: Color(0XFF222222),
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        SizedBox(
-          width: 10,
-        ),
-        data == null ? Container() : Icon(data, color: CustomColor.primary)
       ],
     );
+
+// Widget titleForm({String value, IconData data}) => ListTile(
+//       contentPadding: EdgeInsets.all(0),
+
+//       title: Text(value),
+//       leading: Icon(data, color: Colors.grey[700]),
+//     );
 
 Widget dropDownButtonField_(
     {List list,
@@ -58,7 +66,7 @@ Widget dropDownButtonField_(
 }
 
 Widget containerCustom(List<Widget> listW) => SingleChildScrollView(
-      padding: EdgeInsets.all(25),
+      padding: EdgeInsets.all(15),
       child:
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: listW),
     );

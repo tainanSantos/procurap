@@ -67,7 +67,6 @@ abstract class _LoginControllerBase with Store {
       this.respApi = await this.loginRepository.login(this.usuario, this.senha);
       if (this.respApi) {
         setLoad(false);
-        Modular.to.pushReplacementNamed("/home");
       }
     } on RestException catch (e) {
       Modular.to.pop(); // para feixar a parada lá do load

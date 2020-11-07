@@ -30,7 +30,7 @@ class _ComplemetPageState extends State<ComplemetPage> {
         appBar: appBarCutom(),
         body: containerCustom(
           [
-            titleForm(value: "Nª de cômodos"),
+            titleForm(value: "Nª de cômodos", data: Icons.home),
             Row(
               children: [
                 Flexible(
@@ -121,7 +121,7 @@ class _ComplemetPageState extends State<ComplemetPage> {
             SizedBox(
               height: 30,
             ),
-            titleForm(value: "Descrição"),
+            titleForm(value: "Descrição", data: Icons.description),
             SizedBox(
               height: 20,
             ),

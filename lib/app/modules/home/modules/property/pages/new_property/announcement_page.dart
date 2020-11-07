@@ -29,8 +29,7 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
         body: containerCustom(
           [
             titleForm(
-              value: "Categoria do anúncio",
-            ),
+                value: "Tipo do anúncio", data: Icons.speaker_group_sharp),
 
             Observer(
               builder: (_) => dropDownButtonField_(
@@ -50,7 +49,7 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
             ),
 
             // titleCustom("Qual é o tipo do seu imóvel?"),
-            titleForm(value: "Categoria do imóvel"),
+            titleForm(value: "Tipo do imóvel", data: Icons.location_city_outlined),
 
             Observer(
               builder: (_) => dropDownButtonField_(

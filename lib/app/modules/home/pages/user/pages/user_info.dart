@@ -12,7 +12,7 @@ class UserInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(15),
       child: Column(
         children: <Widget>[
           SizedBox(

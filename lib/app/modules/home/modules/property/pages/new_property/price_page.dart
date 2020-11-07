@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procurap/app/modules/components/button_custom.dart';
@@ -22,9 +23,9 @@ class _PricePageState extends State<PricePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        controller.telCelular = null;
-        controller.telFixo = null;
-      
+        controller.setTelCelular(null);
+        controller.setTelFixo(null);
+
         controller.tipoHospedagem = null;
         controller.precoImovel = null;
         controller.aluguel = null;
@@ -34,22 +35,24 @@ class _PricePageState extends State<PricePage> {
         appBar: appBarCutom(),
         body: containerCustom(
           [
-            titleForm(value: "Preços"),
+            titleForm(value: "Preços", data: Icons.monetization_on),
             Observer(
               builder: (_) => Row(
                 children: [
                   Flexible(
                     flex: 1,
-                    child: textField(
-                        // iconData: Icons.attach_money,
-                        top: 5,
+                    child: TextField(
+                      decoration: InputDecoration(
                         labelText: "Aluguel",
-                        keyboardType: TextInputType.number,
                         helperText: "Infrome o preço do aluguel",
-                        prefix: Text("R\$ "),
-                        onChanged: controller.setAluguel
-                        // prefix: Icon(Icons.attach_money)
-                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+                      onChanged: controller.setAluguel,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        controller.maskPriceRent,
+                      ],
+                    ),
                   ),
                   SizedBox(
                     width: 20,
@@ -72,18 +75,23 @@ class _PricePageState extends State<PricePage> {
               ),
             ),
             Observer(
-              builder: (_) => textField(
-                labelText: "Imóvel",
+              builder: (_) => TextField(
+                decoration: InputDecoration(
+                  labelText: "Imóvel",
+                  helperText: "Infome o preço de venda do imóvel (em reais)",
+                ),
                 keyboardType: TextInputType.number,
-                helperText: "Infome o preço de venda do imóvel (em reais)",
-                prefix: Text("R\$ "),
                 onChanged: controller.setPrecoImovel,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  controller.maskPriceRent,
+                ],
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 30,
             ),
-            titleForm(value: "Telefones para contato"),
+            titleForm(value: "Telefones para contato", data: Icons.phone),
             Row(
               children: [
                 Flexible(
