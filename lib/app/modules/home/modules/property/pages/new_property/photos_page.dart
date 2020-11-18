@@ -84,6 +84,7 @@ class _PhotosPageState extends State<PhotosPage> {
             ),
             Observer(
               builder: (_) => Container(
+                
                 // color: Colors.grey[200],
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height - 175,
