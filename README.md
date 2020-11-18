@@ -17,9 +17,11 @@ samples, guidance on mobile development, and a full API reference.
 
 # Pages
 
+
+<<<<<<< HEAD
 ## App para gerenceamento de alugueis, buscas e divulgações de imóveis.
 
-height
+
 
 <img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/2.png" height="600"/>
 <img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/3.png" height="600"/>
@@ -46,4 +48,6 @@ height
 <img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/24.png" height="600"/>
 <img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/25.png" height="600"/>
 <img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/26.png" height="600"/>
+=======
+>>>>>>> 9e6ec1afd71f8d2d85d2ecc4583c1d753ad406c2
           
