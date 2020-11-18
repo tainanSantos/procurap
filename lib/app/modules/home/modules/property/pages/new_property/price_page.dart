@@ -48,7 +48,7 @@ class _PricePageState extends State<PricePage> {
                       ),
                       keyboardType: TextInputType.number,
                       onChanged: controller.setAluguel,
-                      inputFormatters: [
+                      inputFormat valueters: [
                         FilteringTextInputFormatter.digitsOnly,
                         controller.maskPriceRent,
                       ],
