@@ -1,7 +1,7 @@
 ## procurap
 
 
-Aplicativo para gerenceamento de alugueis, buscas e divulgações de imóveis. Desenvolvido para a disciplina de Mobile.
+Aplicativo para gerenciamento de aluguéis, buscas e divulgações de imóveis. Desenvolvido para a disciplina de Mobile.
 
 
 ## Tencnologias utilizadas
