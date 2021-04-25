@@ -1,25 +1,18 @@
 # procurap
 
-A new Flutter application.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# Pages
+Aplicativo para gerenceamento de alugueis, buscas e divulgações de imóveis. Desenvolvido para a disciplina de Mobile.
 
 
-## App para gerenceamento de alugueis, buscas e divulgações de imóveis.
+# Tencnologias utilizadas
+ * [Flutter](https://flutter.dev/docs) 
+ * [django-rest-framework](https://www.django-rest-framework.org/) 
+ 
 
+
+
+
+# Paginas do aplicatico
 
 
 <img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/2.png" height="500"/>
