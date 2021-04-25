@@ -1,10 +1,10 @@
-# procurap
+## procurap
 
 
 Aplicativo para gerenceamento de alugueis, buscas e divulgações de imóveis. Desenvolvido para a disciplina de Mobile.
 
 
-# Tencnologias utilizadas
+## Tencnologias utilizadas
  * [Flutter](https://flutter.dev/docs) 
  * [django-rest-framework](https://www.django-rest-framework.org/) 
  
@@ -12,7 +12,7 @@ Aplicativo para gerenceamento de alugueis, buscas e divulgações de imóveis. D
 
 
 
-# Paginas do aplicatico
+## Paginas do aplicatico
 
 
 <img align="left" src="https://github.com/tainanSantos/procurap/blob/master/images/2.png" height="500"/>
